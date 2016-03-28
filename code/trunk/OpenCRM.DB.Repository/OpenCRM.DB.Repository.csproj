@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EA524E6D-EBFC-4ADC-BAE6-06E695C17D4E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OpenCRM.DB.Repository</RootNamespace>
+    <AssemblyName>OpenCRM.DB.Repository</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\packages\FluentNHibernate.2.0.3.0\lib\net40\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Impl\AuctionRepo.cs" />
+    <Compile Include="Impl\BuyerRepo.cs" />
+    <Compile Include="Impl\CompanyRepo.cs" />
+    <Compile Include="Impl\BidsRepo.cs" />
+    <Compile Include="Impl\CountryRepo.cs" />
+    <Compile Include="Impl\VehicleRepo.cs" />
+    <Compile Include="Impl\DealerShipRepo.cs" />
+    <Compile Include="Impl\MessageRepo.cs" />
+    <Compile Include="Interfaces\ICountryRepo.cs" />
+    <Compile Include="Interfaces\IDealerRepo.cs" />
+    <Compile Include="Interfaces\IVehicleRepo.cs" />
+    <Compile Include="Interfaces\IBidsRepo.cs" />
+    <Compile Include="Interfaces\IAuctionRepo.cs" />
+    <Compile Include="Interfaces\IBuyerRepo.cs" />
+    <Compile Include="Interfaces\ICompanyRepo.cs" />
+    <Compile Include="Interfaces\IDealerShipRepo.cs" />
+    <Compile Include="Interfaces\IMessageRepo.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IRoleRepo.cs" />
+    <Compile Include="Interfaces\ISearchParamsRepo.cs" />
+    <Compile Include="Interfaces\IUserRepo.cs" />
+    <Compile Include="Interfaces\IUserRoleRepo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Impl\Repository.cs" />
+    <Compile Include="Impl\RoleRepo.cs" />
+    <Compile Include="Impl\SearchParamsRepo.cs" />
+    <Compile Include="Impl\UserRepo.cs" />
+    <Compile Include="Impl\UserRoleRepo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OpenCRM.Common\OpenCRM.Common.csproj">
+      <Project>{386eaffd-6563-4085-8360-6a945d9c4d40}</Project>
+      <Name>OpenCRM.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenCRM.DomainObjects\OpenCRM.DB.DomainObjects.csproj">
+      <Project>{92705b96-77e6-41a4-8a1f-86456565be63}</Project>
+      <Name>OpenCRM.DB.DomainObjects</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

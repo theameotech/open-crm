@@ -1,0 +1,10 @@
+E:\opencrm\OpenCRM\OpenCRM.Common\bin\Debug\OpenCRM.Common.dll
+E:\opencrm\OpenCRM\OpenCRM.Common\bin\Debug\OpenCRM.Common.pdb
+E:\opencrm\OpenCRM\OpenCRM.Common\bin\Debug\CsvHelper.dll
+E:\opencrm\OpenCRM\OpenCRM.Common\bin\Debug\OpenCRM.DB.DomainObjects.dll
+E:\opencrm\OpenCRM\OpenCRM.Common\bin\Debug\OpenCRM.DB.DomainObjects.pdb
+E:\opencrm\OpenCRM\OpenCRM.Common\bin\Debug\CsvHelper.pdb
+E:\opencrm\OpenCRM\OpenCRM.Common\bin\Debug\CsvHelper.xml
+E:\opencrm\OpenCRM\OpenCRM.Common\obj\Debug\OpenCRM.Common.csprojResolveAssemblyReference.cache
+E:\opencrm\OpenCRM\OpenCRM.Common\obj\Debug\OpenCRM.Common.dll
+E:\opencrm\OpenCRM\OpenCRM.Common\obj\Debug\OpenCRM.Common.pdb

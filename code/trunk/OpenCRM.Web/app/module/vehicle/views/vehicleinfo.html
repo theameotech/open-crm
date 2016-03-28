@@ -1,0 +1,31 @@
+﻿<div block-ui="block-vehcle-form">
+    <form name="vehcleform" novalidate>
+        <div>
+            <img id="mySpinner" src="app/images/spinner.gif" ng-show="loading" />
+        </div>
+        <uib-pagination total-items="TotalItems" items-per-page="PageSize" max-size="8" boundary-links="true" 
+            ng-model="$parent.CurrentPage" ng-change="PageChanged()" style="float: right;"></uib-pagination>
+        <table class="table" id="example" ng-init="GetAllvechicleinfobyauction()">
+            <thead>
+                <tr>
+                    <th>Year</th>
+                    <th>Make, Model</th>
+                    <th>Vehicle Odometer</th>
+                    <th>Vehicle VIN</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="vehicle in Vehicleauctioninfo | orderBy : '-LastUpdateTime'">
+                    <td>{{vehicle.Model }}</td>
+                    <td style="padding-left: 15px;"><a href="#/bidsinfo/{{vehicle.Id}}">{{vehicle.Name}} , {{vehicle.Model }}</a></td>
+                    <td>{{vehicle.Odometer | number}}</td>
+                    <td>{{vehicle.Vin}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <uib-pagination total-items="TotalItems" items-per-page="PageSize" max-size="8" boundary-links="true"
+             ng-model="$parent.CurrentPage" ng-change="PageChanged()"></uib-pagination>
+
+    </form>
+
+</div>

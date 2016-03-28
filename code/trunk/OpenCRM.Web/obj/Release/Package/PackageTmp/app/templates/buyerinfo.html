@@ -1,0 +1,25 @@
+﻿<table class="table" id="example">
+    <thead>
+        <tr>
+            <th style="padding-left:15px;">Buyer Name</th>
+            <th>Vechile Name</th>
+            <th>Vechile Modal</th>
+            <th>Vechile ODOMeter</th>
+            <th>Vechile VIN</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="buyer in Vehiclebuyerinfo">
+            <td style="padding-left:15px;">{{buyer.buyername}}</a></td>
+            <td>{{buyer.vechiclename}}</td>
+            <td>{{buyer.vechiclemodel}}</td>
+            <td>{{buyer.vechicleobometer}}</td>
+            <td>{{buyer.vechiclevinnumber}}</td>
+            
+
+
+            <td><button class="btn btn-primary">Edit</button></td>
+        </tr>
+    </tbody>
+</table>

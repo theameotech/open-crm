@@ -1,0 +1,14 @@
+E:\opencrm\OpenCRM\OpenCRM.DB.Mapping\obj\Debug\OpenCRM.DB.Mapping.csprojResolveAssemblyReference.cache
+E:\opencrm\OpenCRM\OpenCRM.DB.Mapping\bin\Debug\OpenCRM.DB.Mapping.dll
+E:\opencrm\OpenCRM\OpenCRM.DB.Mapping\bin\Debug\OpenCRM.DB.Mapping.pdb
+E:\opencrm\OpenCRM\OpenCRM.DB.Mapping\bin\Debug\FluentNHibernate.dll
+E:\opencrm\OpenCRM\OpenCRM.DB.Mapping\bin\Debug\Iesi.Collections.dll
+E:\opencrm\OpenCRM\OpenCRM.DB.Mapping\bin\Debug\NHibernate.dll
+E:\opencrm\OpenCRM\OpenCRM.DB.Mapping\bin\Debug\OpenCRM.DB.DomainObjects.dll
+E:\opencrm\OpenCRM\OpenCRM.DB.Mapping\bin\Debug\OpenCRM.DB.DomainObjects.pdb
+E:\opencrm\OpenCRM\OpenCRM.DB.Mapping\bin\Debug\FluentNHibernate.pdb
+E:\opencrm\OpenCRM\OpenCRM.DB.Mapping\bin\Debug\FluentNHibernate.xml
+E:\opencrm\OpenCRM\OpenCRM.DB.Mapping\bin\Debug\Iesi.Collections.xml
+E:\opencrm\OpenCRM\OpenCRM.DB.Mapping\bin\Debug\NHibernate.xml
+E:\opencrm\OpenCRM\OpenCRM.DB.Mapping\obj\Debug\OpenCRM.DB.Mapping.dll
+E:\opencrm\OpenCRM\OpenCRM.DB.Mapping\obj\Debug\OpenCRM.DB.Mapping.pdb

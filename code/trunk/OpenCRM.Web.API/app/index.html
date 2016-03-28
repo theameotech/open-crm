@@ -1,0 +1,153 @@
+﻿<html ng-app='acApp'>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>{{PageTitle}}</title>
+    <script src="angular/jquery.min.js"></script>
+    <script src="angular/angular.js"></script>
+
+    <script src="angular/angular-route.js"></script>
+
+    <!--<script src="https://code.jquery.com/jquery-1.8.2.min.js"></script>-->
+    <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+    <!-- <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>-->
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <script type="text/javascript" src="http://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/bootstrap/latest/css/bootstrap.css" />
+
+
+    <script src="angular/angular-animate.js"></script>
+    <link href="angular/growl/angular-growl.css" rel="stylesheet" />
+    <script src="angular/growl/angular-growl.js"></script>
+
+    <script src="angular/block-ui/angular-block-ui.js"></script>
+    <link href="angular/block-ui/angular-block-ui.css" rel="stylesheet" />
+
+    <script src="angular/angular-datatables.js"></script>
+    <script src="angular/ui-bootstrap-tpls-1.1.1.js"></script>
+    <!--<script src="angular/ui-bootstrap-tpls-1.0.3.min.js"></script>-->
+    <script src="angular/angular-cookies.js"></script>
+    <script src="angular/bootstrap.min.js"></script>
+    <link href="angular/date-range-picker/daterangepicker-bs2.css" rel="stylesheet" />
+    <script src="angular/date-range-picker/angular-daterangepicker.js"></script>
+    <script src="angular/date-range-picker/daterangepicker.js"></script>
+    <script src="angular/date-range-picker/moment.js"></script>
+    <script src="angular/jslider/jslider/angular.rangeSlider.js"></script>
+    <link href="angular/jslider/jslider/angular.rangeSlider.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="app.js"></script>
+    <script src="module/login/controller/login-controller.js"></script>
+    <script src="module/company/controller/company-controller.js"></script>
+    <script src="module/login/service/login-service.js"></script>
+        <script src="module/dashboard/controller/chat-controller.js"></script>
+    <script src="module/vehicle/controller/vehicle-controller.js"></script>
+    <script src="module/dashboard/controller/dashboard-controller.js"></script>
+    <script src="module/user/controller/user-controller.js"></script>
+    <script src="module/user/service/user-service.js"></script>
+    <script src="module/user/controller/userprofile-controller.js"></script>
+    <script src="module/dashboard/service/message-service.js"></script>
+    <script src="module/buyer/controller/buyer-controller.js"></script>
+    <script src="module/buyer/service/buyer-service.js"></script>
+    <script src="module/bids/controller/bids-controller.js"></script>
+    <script src="module/auction/controller/auction-controller.js"></script>
+    <script src="module/auction/controller/auction-show-controller.js"></script>
+    <script src="module/auction/service/auction-service.js"></script>
+    <script src="angular/mask/ngMask.js"></script>
+    <script src="angular/mask/ngMask.min.js"></script>
+    <link href="css/style.css" rel="stylesheet" />
+    <!-- <link href="css/styles.css" rel="stylesheet" />-->
+    <script src="angular/validation/jquery.validationEngine-en.js"></script>
+    <script src="angular/validation/jquery.validationEngine.js"></script>
+    <link href="angular/validation/validationEngine.jquery.css" rel="stylesheet" />
+    <style>
+        .navbar1 {
+            background: #438eb9 none repeat scroll 0 0;
+            border-radius: 0;
+            border-width: 0;
+            box-shadow: none;
+            margin: 0;
+            min-height: 45px;
+            padding-left: 0;
+            padding-right: 0;
+        }
+    </style>
+
+</head>
+<body>
+    <nav class="navbar1 navbar-default navColor">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" style="color: #fff;" href="">
+                    <img src="images/logo.png" alt="OpenTrade" class="img-responsive dashboardlogo" /></a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="Div1">
+                <ul class="nav navbar-nav">
+                    <li><a href="" style="color: #fff;" ng-show="!shownavbar">Home <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#/dashboard" style="color: #fff;" ng-show="shownavbar">DashBoard <span class="sr-only">(current)</span></a></li>
+                    <li ng-show="shownavbar"><a href="#/auctionlist" style="color: #fff;">Auctions <span class="sr-only">(current)</span></a></li>
+                    <li ng-show="shownavbar"><a href="#/leads" style="color: #fff;">Leads <span class="sr-only">(current)</span></a></li>
+                    <li><a href="" style="color: #fff;">Seller <span class="sr-only">(current)</span></a></li>
+                    <li class="dropdown">
+                        <a style="color: #fff;" class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">Company <span class="caret"></span></a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li  ng-show="shownavbar"><a href="#/Company">Company Profile <span class="sr-only">(current)</span></a></li>
+                            <li  ng-show="shownavbar"><a href="#/admin/user">Users <span class="sr-only">(current)</span></a></li>
+                            <li  ng-show="shownavbar"><a href="">Marketing <span class="sr-only">(current)</span></a></li>
+                            <li  ng-show="shownavbar"><a href="">Accounting <span class="sr-only">(current)</span></a></li>
+                            <li  ng-show="shownavbar"><a href="">Arbitration <span class="sr-only">(current)</span></a></li>
+                            <li  ng-show="shownavbar"><a href="">Transportation <span class="sr-only">(current)</span></a></li>
+                            <li ng-show="!shownavbar"><a href="">Register <span class="sr-only">(current)</span></a></li>
+                            <li ng-show="!shownavbar"><a href="">Login <span class="sr-only">(current)</span></a></li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right" ng-show="shownavbar">
+                    <li class="dropdown">
+                    <a  style="color: #fff;" class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                        <i class="fa fa-user fa-fw"></i>  {{FirstName}} {{LastName}} <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#/admin/user/createuser/{{UserId}}"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li><a href=""><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a  role="menuitem" tabindex="-1" ng-click="Logout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div style="min-height: 530px; padding: 20px; background-color: #ffffff;">
+        <div growl></div>
+        <ng-view></ng-view>
+    </div>
+   <!-- <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>Copyright © 2016 <a href="" target="blank">OpenCRM</a> All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>-->
+</body>
+</html>
+
+<!--<script type="text/javascript">
+    $(function () {
+        $('.dropdown').hover(function () {
+            $(this).addClass('open');
+        },
+        function () {
+            $(this).removeClass('open');
+        });
+    });
+</script>-->

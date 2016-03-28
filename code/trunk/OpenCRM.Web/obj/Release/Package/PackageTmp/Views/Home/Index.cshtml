@@ -1,0 +1,53 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html ng-app="acApp">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>
+        Buyers
+    </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="~/Scripts/angular/angular.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/angular/app.js"></script>
+    <script src="~/Scripts/angular/buyer-service.js"></script>
+    <script src="~/Scripts/angular/buyer-controller.js"></script>
+</head>
+<body ng-controller="buyer-controller">
+    <div class="container">
+        <h2>Most Active Buyers With In Last 7 Days.</h2>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>CreateTime</th>
+                    <th>LastUpdateTime</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="data in MostActiveBuyers">
+                    <td>{{data.Name}}</td>
+                    <td>{{data.Address}}</td>
+                    <td>{{data.Phone}}</td>
+                    <td>{{data.Email}}</td>
+                    <td>{{data.CreateTime | date}}</td>
+                    <td>{{data.LastUpdateTime | date}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+

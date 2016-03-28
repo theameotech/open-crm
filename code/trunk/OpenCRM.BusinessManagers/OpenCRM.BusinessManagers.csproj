@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4FA34CE8-CCD1-46AF-B84D-3F05151D5532}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OpenCRM.BusinessManagers</RootNamespace>
+    <AssemblyName>OpenCRM.BusinessManagers</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CsvHelper.2.13.5.0\lib\net40-client\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Transactions.Workflows">
+      <HintPath>..\packages\System.Transactions.Workflows.0.1.2.0\lib\net40\System.Transactions.Workflows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Impl\AuctionManager.cs" />
+    <Compile Include="Impl\BidsManager.cs" />
+    <Compile Include="Impl\BuyerManager.cs" />
+    <Compile Include="Impl\DealerShipManager.cs" />
+    <Compile Include="Impl\LoginManager.cs" />
+    <Compile Include="Impl\LookupManager.cs" />
+    <Compile Include="Impl\MessageManager.cs" />
+    <Compile Include="Impl\RolesManager.cs" />
+    <Compile Include="Impl\UserManager.cs" />
+    <Compile Include="Impl\VehicleManager.cs" />
+    <Compile Include="Interfaces\IAuctionManager.cs" />
+    <Compile Include="Interfaces\IBidsManager.cs" />
+    <Compile Include="Interfaces\IBuyerManager.cs" />
+    <Compile Include="Interfaces\IDealerShipManager.cs" />
+    <Compile Include="Interfaces\ILoginManager.cs" />
+    <Compile Include="Interfaces\ILookupManager.cs" />
+    <Compile Include="Interfaces\IMessageManager.cs" />
+    <Compile Include="Interfaces\IRolesManager.cs" />
+    <Compile Include="Interfaces\IUserManager.cs" />
+    <Compile Include="Interfaces\IVehicleManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OpenCRM.BizLogic.Helpers\OpenCRM.BizLogic.Helpers.csproj">
+      <Project>{389887dd-f837-46f0-a752-110b6840c326}</Project>
+      <Name>OpenCRM.BizLogic.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenCRM.Common\OpenCRM.Common.csproj">
+      <Project>{386eaffd-6563-4085-8360-6a945d9c4d40}</Project>
+      <Name>OpenCRM.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenCRM.DomainObjects\OpenCRM.DB.DomainObjects.csproj">
+      <Project>{92705b96-77e6-41a4-8a1f-86456565be63}</Project>
+      <Name>OpenCRM.DB.DomainObjects</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

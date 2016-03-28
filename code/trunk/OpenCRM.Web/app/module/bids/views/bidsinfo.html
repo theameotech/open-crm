@@ -1,0 +1,49 @@
+﻿<div ng-init="GetAllbidsinfo()" block-ui="block-bids-form">
+    <form name="bidsform" novalidate>
+        <div>
+            <img id="mySpinner" src="app/images/spinner.gif" ng-show="loading" />
+        </div>
+        <div class="panel panel-default">
+            <p style="margin-top: 10px; padding-left: 10px;">
+                Make,Model: {{Name}} , {{Model}}
+                <br />
+                Vehicle Vin  : {{Vin}}<br />
+               Year : {{Model}}<br />
+                Vehicle Odometer : {{Odometer | number}}
+
+
+            </p>
+        </div>
+        <uib-pagination total-items="TotalItems" items-per-page="PageSize"
+            max-size="8" boundary-links="true" ng-model="$parent.CurrentPage" ng-change="OnPageChanged()" style="float: right;"></uib-pagination>
+        <table class="table" id="example">
+            <thead>
+                <tr>
+                    <th>Buyer</th>
+                    <th>Amount</th>
+                    <th>Bid Type</th>
+                    <th>Auction Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="bids in Bidsinfo | orderBy : '-AuctionDate'">
+                    <td>
+                        Dealership : {{bids.BuyerName }}<br />
+                        First Name : {{bids.ContactFirstName }}<br />
+                        Last Name : {{bids.ContactLastName }}<br />
+                        Email : {{bids.BuyerEmail}}<br />
+                        Address : {{ bids.BuyerAddress}}<br />
+                        Phone : {{bids.BuyerPhone}}
+                    </td>
+                    <td>{{bids.Amount}}</td>
+                    <td>{{bids.Type}}</td>
+                    <td>{{bids.AuctionDate | date}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <uib-pagination total-items="TotalItems" items-per-page="PageSize" max-size="8" boundary-links="true"
+            ng-model="$parent.CurrentPage" ng-change="OnPageChanged()"></uib-pagination>
+
+    </form>
+
+</div>

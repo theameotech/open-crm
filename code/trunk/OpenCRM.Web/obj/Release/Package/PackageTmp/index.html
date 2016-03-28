@@ -1,0 +1,70 @@
+﻿<html ng-app='acApp'>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>
+        Buyers
+    </title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.js"></script>
+
+    <script src="app/angular/angular-route.js"></script>
+ 
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+
+    <link href="app/angular/growl/angular-growl.css" rel="stylesheet" />
+    <script src="app/angular/growl/angular-growl.js"></script>
+
+    <script src="app/angular/angular-datatables.js"></script>
+
+    <script src="app/angular/ui-bootstrap-tpls-1.0.3.min.js"></script>
+
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <script src="app/app.js"></script>
+    <script src="app/module/service/buyer-service.js"></script>
+    <script src="app/module/service/auction-service.js"></script>
+    <script src="app/module/controller/auction-controller.js"></script>
+
+    <script src="app/module/controller/buyer-controller.js"></script>
+    <script src="app/module/controller/bids-controller.js"></script>
+
+    <style>
+        .navbar1 {
+            background: #438eb9 none repeat scroll 0 0;
+            border-radius: 0;
+            border-width: 0;
+            box-shadow: none;
+            margin: 0;
+            min-height: 45px;
+            padding-left: 0;
+            padding-right: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar1 navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#/">Open Trade</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#/">Auctions <span class="sr-only">(current)</span></a></li>
+                    <li class="active"><a href="#/buyers">Buyers <span class="sr-only">(current)</span></a></li>
+                    
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div style="padding:20px;background-color: #f5f5f5;">
+        <div growl></div>
+        <ng-view></ng-view>
+    </div>
+</body>
+</html>
+

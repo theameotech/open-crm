@@ -1,0 +1,52 @@
+﻿<div block-ui="block-buyerinfo-form">
+    <form name="buyerinfoform" novalidate>
+         <div>
+            <img id="mySpinner" src="app/images/spinner.gif" ng-show="loading" />
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <p style="margin-top: 10px; padding-left: 10px;">
+                        BuyerName : {{BuyerName}}<br />
+                        BuyerAddress : {{BuyerAddress}}<br />
+                        BuyerPhone :{{BuyerPhone}}
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <p style="margin-top: 10px; padding-left: 10px;">
+                        ContactName : {{ContactFirstName}} {{ContactLastName}}
+                        <br />
+                        ContactEmail : {{ContactEmail}}<br />
+                        ContactPhone :{{ContactPhone}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <table class="table" id="example">
+            <thead>
+                <tr>
+                    <th>Vechile Modal</th>
+                    <th>Vechile Name</th>
+                    <th>Vechile ODOMeter</th>
+                    <th>Vechile VIN</th>
+                    <th>Amount</th>
+                    <th>Bid Type</th>
+                    <th>Auction Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="buyer in Vehiclebuyerinfo | orderBy : '-AuctionDate'">
+                    <td>{{buyer.Model}}</td>
+                    <td>{{buyer.Name}}</td>
+                    <td>{{buyer.Odometer | number}}</td>
+                    <td>{{buyer.Vin}}</td>
+                    <td>{{buyer.Amount}}</td>
+                    <td>{{buyer.Type}}</td>
+                    <td>{{buyer.AuctionDate | date}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>

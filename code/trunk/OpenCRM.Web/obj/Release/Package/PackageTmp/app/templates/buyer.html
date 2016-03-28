@@ -1,0 +1,36 @@
+﻿<div style="">
+    <h2 style="padding-left:15px;">Most Active Buyers.</h2>
+    <div class="col-lg-3">
+        <select ng-options="item as item.Name for item in Intervals" ng-change="OnIntervalChange()" ng-model="Interval" class="form-control"></select>
+    </div>
+    <div class="col-md-9" style="text-align:right;margin-top:-20px;">
+        <uib-pagination total-items="TotalItems" boundary-links="true" max-size="8" ng-model="CurrentPage" ng-change="PageChanged()"></uib-pagination>
+    </div>
+    <table class="table" id="example">
+        <thead>
+            <tr>
+                <th style="padding-left:15px;">Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Contact Person</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="buyer in MostActiveBuyers">
+                <td style="padding-left:15px;"><a href="#/buyerinfo/{{buyer.Id}}">{{buyer.Name}}</a></td>
+                <td>{{buyer.BuyerAddress}}</td>
+                <td>{{buyer.BuyerPhone}}</td>
+                <td>
+                    Name : {{buyer.ContactFirstName }} {{ buyer.ContactLastName}}
+                    <br /> Email : {{buyer.ContactEmail}}
+                    <br /> Phone : {{buyer.ContactPhone}}
+                </td>
+
+
+                <td><button class="btn btn-primary" ng-click="OpenBuyerEditPopup(buyer)">Edit</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <uib-pagination total-items="TotalItems" boundary-links="true" max-size="8" ng-model="CurrentPage" ng-change="PageChanged()"></uib-pagination>
+</div>

@@ -1,0 +1,5 @@
+E:\opencrm\OpenCRM\OpenCRM.DomainObjects\bin\Debug\OpenCRM.DB.DomainObjects.dll
+E:\opencrm\OpenCRM\OpenCRM.DomainObjects\bin\Debug\OpenCRM.DB.DomainObjects.pdb
+E:\opencrm\OpenCRM\OpenCRM.DomainObjects\obj\Debug\OpenCRM.DB.DomainObjects.dll
+E:\opencrm\OpenCRM\OpenCRM.DomainObjects\obj\Debug\OpenCRM.DB.DomainObjects.pdb
+E:\opencrm\OpenCRM\OpenCRM.DomainObjects\obj\Debug\OpenCRM.DB.DomainObjects.csprojResolveAssemblyReference.cache

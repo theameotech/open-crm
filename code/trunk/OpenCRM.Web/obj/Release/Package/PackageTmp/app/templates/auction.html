@@ -1,0 +1,32 @@
+﻿<div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6">
+        <form>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Auction Name</label>
+                <input type="text" ng-model="AuctionName" class="form-control" />
+            </div>
+
+           
+               
+                    <p class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+               
+
+
+                <div class="form-group">
+                    <label for="exampleInputFile">Upload Csv File</label>
+                    <input type="file" id="bidsfile" />
+                </div>
+
+                <button type="submit" class="btn btn-success" ng-click="CreateAuction()">Submit</button>
+                        
+
+</form>
+    </div>
+</div>
