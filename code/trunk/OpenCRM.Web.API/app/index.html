@@ -40,7 +40,7 @@
     <script src="module/login/controller/login-controller.js"></script>
     <script src="module/company/controller/company-controller.js"></script>
     <script src="module/login/service/login-service.js"></script>
-        <script src="module/dashboard/controller/chat-controller.js"></script>
+    <script src="module/dashboard/controller/chat-controller.js"></script>
     <script src="module/vehicle/controller/vehicle-controller.js"></script>
     <script src="module/dashboard/controller/dashboard-controller.js"></script>
     <script src="module/user/controller/user-controller.js"></script>
@@ -53,6 +53,10 @@
     <script src="module/auction/controller/auction-controller.js"></script>
     <script src="module/auction/controller/auction-show-controller.js"></script>
     <script src="module/auction/service/auction-service.js"></script>
+    <script src="module/register/controller/register-controller.js"></script>
+    <script src="module/leadregister/controller/leadregister-controller.js"></script>
+    <script src="module/sellerregister/controller/sellerregister-controller.js"></script>
+
     <script src="angular/mask/ngMask.js"></script>
     <script src="angular/mask/ngMask.min.js"></script>
     <link href="css/style.css" rel="stylesheet" />
@@ -88,38 +92,55 @@
                     <li><a href="#/dashboard" style="color: #fff;" ng-show="shownavbar">DashBoard <span class="sr-only">(current)</span></a></li>
                     <li ng-show="shownavbar"><a href="#/auctionlist" style="color: #fff;">Auctions <span class="sr-only">(current)</span></a></li>
                     <li ng-show="shownavbar"><a href="#/leads" style="color: #fff;">Leads <span class="sr-only">(current)</span></a></li>
-                    <li><a href="" style="color: #fff;">Seller <span class="sr-only">(current)</span></a></li>
+                    <!--   <li><a href="" style="color: #fff;">Seller <span class="sr-only">(current)</span></a></li>-->
+                    <li class="dropdown">
+                        <a style="color: #fff;" class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)" ng-show="!shownavbar">Leads <span class="caret"></span></a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li ng-show="!shownavbar"><a href="#/leadregister">Register <span class="sr-only">(current)</span></a></li>
+                            <li ng-show="!shownavbar"><a href="#/Leadlogin">Login <span class="sr-only">(current)</span></a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <a style="color: #fff;" class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">Seller <span class="caret"></span></a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li ng-show="!shownavbar"><a href="#/sellerregister">Register <span class="sr-only">(current)</span></a></li>
+                            <li ng-show="!shownavbar"><a href="#/sellerlogin">Login <span class="sr-only">(current)</span></a></li>
+                        </ul>
+                    </li>
+
                     <li class="dropdown">
                         <a style="color: #fff;" class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">Company <span class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-user">
-                            <li  ng-show="shownavbar"><a href="#/Company">Company Profile <span class="sr-only">(current)</span></a></li>
-                            <li  ng-show="shownavbar"><a href="#/admin/user">Users <span class="sr-only">(current)</span></a></li>
-                            <li  ng-show="shownavbar"><a href="">Marketing <span class="sr-only">(current)</span></a></li>
-                            <li  ng-show="shownavbar"><a href="">Accounting <span class="sr-only">(current)</span></a></li>
-                            <li  ng-show="shownavbar"><a href="">Arbitration <span class="sr-only">(current)</span></a></li>
-                            <li  ng-show="shownavbar"><a href="">Transportation <span class="sr-only">(current)</span></a></li>
-                            <li ng-show="!shownavbar"><a href="">Register <span class="sr-only">(current)</span></a></li>
-                            <li ng-show="!shownavbar"><a href="">Login <span class="sr-only">(current)</span></a></li>
+                            <li ng-show="shownavbar"><a href="#/Company">Company Profile <span class="sr-only">(current)</span></a></li>
+                            <li ng-show="shownavbar"><a href="#/admin/user">Users <span class="sr-only">(current)</span></a></li>
+                            <li ng-show="shownavbar"><a href="">Marketing <span class="sr-only">(current)</span></a></li>
+                            <li ng-show="shownavbar"><a href="">Accounting <span class="sr-only">(current)</span></a></li>
+                            <li ng-show="shownavbar"><a href="">Arbitration <span class="sr-only">(current)</span></a></li>
+                            <li ng-show="shownavbar"><a href="">Transportation <span class="sr-only">(current)</span></a></li>
+                            <li ng-show="!shownavbar"><a href="#/register">Register <span class="sr-only">(current)</span></a></li>
+                            <li ng-show="!shownavbar"><a href="#/companylogin">Login <span class="sr-only">(current)</span></a></li>
                         </ul>
                     </li>
-                    
+
                 </ul>
                 <ul class="nav navbar-nav navbar-right" ng-show="shownavbar">
                     <li class="dropdown">
-                    <a  style="color: #fff;" class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
-                        <i class="fa fa-user fa-fw"></i>  {{FirstName}} {{LastName}} <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#/admin/user/createuser/{{UserId}}"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href=""><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a  role="menuitem" tabindex="-1" ng-click="Logout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
+                        <a style="color: #fff;" class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                            <i class="fa fa-user fa-fw"></i>{{FirstName}} {{LastName}} <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="#/admin/user/createuser/{{UserId}}"><i class="fa fa-user fa-fw"></i>User Profile</a>
+                            </li>
+                            <li><a href=""><i class="fa fa-gear fa-fw"></i>Settings</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a role="menuitem" tabindex="-1" ng-click="Logout()"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-user -->
+                    </li>
                 </ul>
             </div>
         </div>
@@ -129,7 +150,7 @@
         <div growl></div>
         <ng-view></ng-view>
     </div>
-   <!-- <footer class="footer">
+    <!-- <footer class="footer">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">

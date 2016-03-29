@@ -9,10 +9,10 @@ app.config(['growlProvider', function (growlProvider) {
     growlProvider.globalTimeToLive(5000);
 }]);
 
-app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'buyerService','$rootScope','userService',
+app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'buyerService', '$rootScope', 'userService',
     function ($rootScope, $cookieStore, loginService, $http, $location, buyerService, $rootScope, userService) {
-               
-      
+
+
         $rootScope.globals = $cookieStore.get('globals') || ''
         $cookieStore.IsAdmin = $cookieStore.get('IsAdmin');
         $rootScope.IsAdmin = $cookieStore.get('IsAdmin');
@@ -29,9 +29,10 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
 
         $rootScope.Logout = function () {
             $rootScope.shownavbar = false;
+            $rootScope.TabBar = false;
             loginService.logout({ AuthToken: $rootScope.globals })
             .then(function () {
-             
+
                 $rootScope.globals = ''
                 $cookieStore.remove('globals');
                 $location.path("login");
@@ -46,7 +47,8 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
         if ($rootScope.globals != "") {
             $http.defaults.headers.common['Authorization'] = $rootScope.globals; // jshint ignore:line
             $rootScope.Auth = true;
-            $rootScope.shownavbar = true;          
+            $rootScope.shownavbar = true;
+            $rootScope.TabBar = true;
             if ($.inArray($location.path(), ['/login', '/forgotpassword']) !== -1)
                 $location.path("dashboard");
 
@@ -74,7 +76,8 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
         });
 
         $rootScope.$on('$routeChangeStart', function (event, next, current) {
-            var restrictedPage = $.inArray($location.path(), ['/login', '/forgotpassword']) === -1;
+            var restrictedPage = $.inArray($location.path(), ['/login', '/forgotpassword', '/register',
+                '/leadregister', '/sellerregister', '/Leadlogin', '/companylogin', '/sellerlogin']) === -1;
             $rootScope.globals = $cookieStore.get('globals') || ''
             if (restrictedPage && $rootScope.globals == "") {
                 $rootScope.Auth = false;
@@ -103,13 +106,13 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
         })
         .when('/login', {
             templateUrl: 'module/login/views/login.html',
-        controller: 'login-controller',
-        resolve: {
-            setPageTitle: function ($rootScope) {
-                $rootScope.PageTitle = "Login";
+            controller: 'login-controller',
+            resolve: {
+                setPageTitle: function ($rootScope) {
+                    $rootScope.PageTitle = "Login";
+                }
             }
-        }
-    })
+        })
         .when('/auction', {
             templateUrl: 'module/auction/views/auction.html',
             controller: 'auctionController',
@@ -125,6 +128,65 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
              resolve: {
                  setPageTitle: function ($rootScope) {
                      $rootScope.PageTitle = "leads";
+                 }
+             }
+         })
+
+
+        .when('/register', {
+            templateUrl: 'module/register/views/register.html',
+            controller: 'register-controller',
+            resolve: {
+                setPageTitle: function ($rootScope) {
+                    $rootScope.PageTitle = "Register User";
+                }
+            }
+        })
+
+           .when('/companylogin', {
+               templateUrl: 'module/register/views/loginregister.html',
+               controller: 'register-controller',
+               resolve: {
+                   setPageTitle: function ($rootScope) {
+                       $rootScope.PageTitle = " Login";
+                   }
+               }
+           })
+         .when('/leadregister', {
+             templateUrl: 'module/leadregister/views/leadregister.html',
+             controller: 'leadregister-controller',
+             resolve: {
+                 setPageTitle: function ($rootScope) {
+                     $rootScope.PageTitle = "Register Lead";
+                 }
+             }
+         })
+
+         .when('/Leadlogin', {
+             templateUrl: 'module/leadregister/views/loginlead.html',
+             controller: 'leadregister-controller',
+             resolve: {
+                 setPageTitle: function ($rootScope) {
+                     $rootScope.PageTitle = "login ";
+                 }
+             }
+         })
+         .when('/sellerregister', {
+             templateUrl: 'module/sellerregister/views/sellerregister.html',
+             controller: 'sellerregister-controller',
+             resolve: {
+                 setPageTitle: function ($rootScope) {
+                     $rootScope.PageTitle = "Register Seller";
+                 }
+             }
+         })
+
+         .when('/sellerlogin', {
+             templateUrl: 'module/sellerregister/views/sellerregister.html',
+             controller: 'sellerregister-controller',
+             resolve: {
+                 setPageTitle: function ($rootScope) {
+                     $rootScope.PageTitle = "Login";
                  }
              }
          })
