@@ -56,7 +56,10 @@
     <script src="module/register/controller/register-controller.js"></script>
     <script src="module/leadregister/controller/leadregister-controller.js"></script>
     <script src="module/sellerregister/controller/sellerregister-controller.js"></script>
-
+    <!-- Signup Forms Style and Script-->
+    <link href="css/switchery.min.css" rel="stylesheet" />
+    <script src="../Scripts/switchery.min.js"></script>
+    <!-- Signup Forms Style and Script -->
     <script src="angular/mask/ngMask.js"></script>
     <script src="angular/mask/ngMask.min.js"></script>
     <link href="css/style.css" rel="stylesheet" />
@@ -159,6 +162,8 @@
             </div>
         </div>
     </footer>-->
+
+
 </body>
 </html>
 
@@ -172,3 +177,12 @@
         });
     });
 </script>-->
+
+    <script type="text/javascript">
+        var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+
+        elems.forEach(function (html) {
+            var switchery = new Switchery(html);
+        });
+    </script>
+
