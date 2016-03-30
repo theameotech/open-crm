@@ -197,6 +197,19 @@ h1 {
     -webkit-border-radius: 4px;
     border-radius: 4px;
 }
+.log-btnregister {
+    background: #67C8FF;
+    dispaly: inline-block;
+    width: 50%;
+    font-size: 16px;
+    height: 50px;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
 
 .link {
     text-decoration: none;
@@ -434,11 +447,13 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 html { overflow-y: scroll; }
 body {
   font-family: Arial, Tahoma, sans-serif;
   background: #e2eef4;
   line-height: 1; 
+  overflow:hidden;
 }
 
 br { display: block; line-height: 1.6em; } 
@@ -463,8 +478,8 @@ h1 {
 }
 
 
-/** form field **/
-form {
+ 
+.form-register {
   display: block;
   margin: 30px;
   overflow: hidden;
@@ -480,9 +495,14 @@ form > div > label {
   vertical-align: top;
   font-size: 13px;
   font-weight: bold;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   color: #939393;
   cursor: pointer;
+}
+
+form > div > label >input{
+ font-weight: normal;
+ color:#1f1d1d;
 }
 form > div.switch > label {
   padding: 16px 20px 13px;
@@ -594,4 +614,6 @@ button.submitbtn:active {
   .col-4 { width: 25% }
   
   .col-submit button { width: 30%; margin: 0 auto; }
-}
+  }
+
+   

@@ -37,6 +37,7 @@
     <link href="angular/jslider/jslider/angular.rangeSlider.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="app.js"></script>
+    <script src="../Scripts/switchery.min.js"></script>
     <script src="module/login/controller/login-controller.js"></script>
     <script src="module/company/controller/company-controller.js"></script>
     <script src="module/login/service/login-service.js"></script>
@@ -56,6 +57,8 @@
     <script src="module/register/controller/register-controller.js"></script>
     <script src="module/leadregister/controller/leadregister-controller.js"></script>
     <script src="module/sellerregister/controller/sellerregister-controller.js"></script>
+    <script src="module/company/service/company-service.js"></script>
+
     <!-- Signup Forms Style and Script-->
     <link href="css/switchery.min.css" rel="stylesheet" />
     <script src="../Scripts/switchery.min.js"></script>
@@ -122,7 +125,7 @@
                             <li ng-show="shownavbar"><a href="">Accounting <span class="sr-only">(current)</span></a></li>
                             <li ng-show="shownavbar"><a href="">Arbitration <span class="sr-only">(current)</span></a></li>
                             <li ng-show="shownavbar"><a href="">Transportation <span class="sr-only">(current)</span></a></li>
-                            <li ng-show="!shownavbar"><a href="#/register">Register <span class="sr-only">(current)</span></a></li>
+                            <li ng-show="!shownavbar"><a href="#/registercompany">Register <span class="sr-only">(current)</span></a></li>
                             <li ng-show="!shownavbar"><a href="#/companylogin">Login <span class="sr-only">(current)</span></a></li>
                         </ul>
                     </li>

@@ -7,7 +7,17 @@ namespace OpenCRM.Common.DTO
 {
     public class HttpResult
     {
-        public string Message { get; set; }
+        public HttpResult(string message, bool result)
+        {
+            Success = result;
+            Message = message;
+        }
         public bool Success { get; set; }
+        public string Message { get; set; }
+        public HttpResult()
+        {
+         
+        }
     }
+
 }

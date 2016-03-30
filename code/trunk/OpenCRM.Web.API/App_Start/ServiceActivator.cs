@@ -125,7 +125,9 @@ namespace OpenCRM.Web.API
                 x.For<ILookupManager>().Add<LookupManager>();
                 x.For<IRolesManager>().Add<RolesManager>();
                 x.For<IUserManager>().Add<UserManager>();
-                x.For<IVehicleManager>().Add<VehicleManager>(); 
+                x.For<IVehicleManager>().Add<VehicleManager>();
+                x.For<ICompanyHelper>().Add<CompanyHelper>();
+                x.For<ICompanyManager>().Add<CompanyManager>();
             });
         }
     }

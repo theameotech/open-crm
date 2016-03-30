@@ -50,6 +50,7 @@
     <Compile Include="Impl\AuctionManager.cs" />
     <Compile Include="Impl\BidsManager.cs" />
     <Compile Include="Impl\BuyerManager.cs" />
+    <Compile Include="Impl\CompanyManager.cs" />
     <Compile Include="Impl\DealerShipManager.cs" />
     <Compile Include="Impl\LoginManager.cs" />
     <Compile Include="Impl\LookupManager.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Interfaces\IAuctionManager.cs" />
     <Compile Include="Interfaces\IBidsManager.cs" />
     <Compile Include="Interfaces\IBuyerManager.cs" />
+    <Compile Include="Interfaces\ICompanyManager.cs" />
     <Compile Include="Interfaces\IDealerShipManager.cs" />
     <Compile Include="Interfaces\ILoginManager.cs" />
     <Compile Include="Interfaces\ILookupManager.cs" />

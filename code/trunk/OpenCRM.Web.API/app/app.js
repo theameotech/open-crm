@@ -76,7 +76,7 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
         });
 
         $rootScope.$on('$routeChangeStart', function (event, next, current) {
-            var restrictedPage = $.inArray($location.path(), ['/login', '/forgotpassword', '/register',
+            var restrictedPage = $.inArray($location.path(), ['/login', '/forgotpassword', '/registercompany',
                 '/leadregister', '/sellerregister', '/Leadlogin', '/companylogin', '/sellerlogin']) === -1;
             $rootScope.globals = $cookieStore.get('globals') || ''
             if (restrictedPage && $rootScope.globals == "") {
@@ -133,9 +133,9 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
          })
 
 
-        .when('/register', {
-            templateUrl: 'module/register/views/register.html',
-            controller: 'register-controller',
+        .when('/registercompany', {
+            templateUrl: 'module/company/views/register.html',
+            controller: 'company-controller',
             resolve: {
                 setPageTitle: function ($rootScope) {
                     $rootScope.PageTitle = "Register User";

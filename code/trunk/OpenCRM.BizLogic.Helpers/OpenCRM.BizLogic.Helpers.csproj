@@ -51,6 +51,7 @@
     <Compile Include="Impl\AuctionHelper.cs" />
     <Compile Include="Impl\BidsHelper.cs" />
     <Compile Include="Impl\BuyerHelper.cs" />
+    <Compile Include="Impl\CompanyHelper.cs" />
     <Compile Include="Impl\DealerShipHelper.cs" />
     <Compile Include="Impl\LoginHelper.cs" />
     <Compile Include="Impl\LookupHelper.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Interfaces\IAuctionHelper.cs" />
     <Compile Include="Interfaces\IBidsHelper.cs" />
     <Compile Include="Interfaces\IBuyerHelper.cs" />
+    <Compile Include="Interfaces\ICompanyHelper.cs" />
     <Compile Include="Interfaces\IDealerShipHelper.cs" />
     <Compile Include="Interfaces\ILookupHelper.cs" />
     <Compile Include="Interfaces\ILoginHelper.cs" />
