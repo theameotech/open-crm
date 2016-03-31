@@ -55,7 +55,8 @@ namespace OpenCRM.BizLogic.Helpers.Impl
                         UserId = dbUser.Id,
                         CompanyId = dbUser.CompanyId,
                         FirstName = dbUser.FirstName,
-                        LastName = dbUser.LastName
+                        LastName = dbUser.LastName,
+                        CreateTime=dbUser.CreateTime
 
                     };
                 }

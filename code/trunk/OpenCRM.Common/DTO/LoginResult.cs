@@ -15,5 +15,6 @@ namespace OpenCRM.Common.DTO
         public int CompanyId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public DateTime CreateTime { get; set; }
     }
 }

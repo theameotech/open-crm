@@ -9,6 +9,7 @@ app.config(['growlProvider', function (growlProvider) {
     growlProvider.globalTimeToLive(5000);
 }]);
 
+
 app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'buyerService', '$rootScope', 'userService',
     function ($rootScope, $cookieStore, loginService, $http, $location, buyerService, $rootScope, userService) {
 
@@ -21,11 +22,14 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
         $cookieStore.LastName = $cookieStore.get('LastName');
         $cookieStore.UserId = $cookieStore.get('UserId');
         $cookieStore.CompanyId = $cookieStore.get('CompanyId');
+        $cookieStore.CreateTime = $cookieStore.get('CreateTime');
+
         //$rootScope.userName = $cookieStore.userName;
         $rootScope.FirstName = $cookieStore.FirstName;
         $rootScope.LastName = $cookieStore.LastName;
         $rootScope.UserId = $cookieStore.UserId;
         $rootScope.CompanyId = $cookieStore.CompanyId;
+        $rootScope.CreateTime = $cookieStore.CreateTime;
 
         $rootScope.Logout = function () {
             $rootScope.shownavbar = false;
@@ -60,6 +64,32 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
         }
 
 
+        $rootScope.AssignRoles = [];
+        $rootScope.GetRoles = function () {
+            userService.getUserRoles($rootScope.UserId)
+                .then(function (response) {
+                    $rootScope.AssignRoles = response.data;
+                });
+        };
+
+        if ($rootScope.UserId > 0)
+        {
+            $rootScope.GetRoles();
+        }
+ 
+
+        $rootScope.UsersList = [];
+        $rootScope.GetAllUsers = function () {
+            userService.getUser()
+                .then(function (response) {
+                    $rootScope.UsersList = response.data;
+
+                });
+        };
+        $rootScope.GetAllUsers();
+
+
+
 
         function loadSearchParam() {
 
@@ -86,6 +116,9 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
             }
         });
     }]);
+
+
+
 
 app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($routeProvider, blockUIConfig, growlProvider) {
 
