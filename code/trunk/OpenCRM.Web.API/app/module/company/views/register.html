@@ -70,10 +70,11 @@
                 </label>
             </div>
             <div class="col-4 switch">
-                <label>
+               <!-- <div  ng-style="passwordStrength" style="color:#fff;font-size:13px;"><b>{{status}}</b></div>-->
+                <label  ng-style="passwordStrength">
                     Password
-            <input type="password" ng-model="CompanyModel.AdminPassword" placeholder="Password" class="validate[required] text-input"><!--<input type="checkbox" class="js-switch"></input>-->
-
+            <input type="password" ng-model="CompanyModel.AdminPassword" ng-change="analyze(CompanyModel.AdminPassword)" placeholder="Password" class="validate[required] text-input"><!--<input type="checkbox" class="js-switch"></input>-->
+                    
                 </label>
             </div>
             <div class="col-4 switch">

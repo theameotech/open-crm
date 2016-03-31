@@ -39,6 +39,41 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
             });
         };
 
+
+        var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+        var mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+
+
+        //$rootScope.passwordStrength = {
+        //    "float": "left",
+        //    "width": "100px",
+        //    "height": "13px",
+        //    "margin-left": "5px",
+        //    "margin-left": "5px",
+        //    "text-align": "center",
+
+        //};
+        $rootScope.passwordStrength = {
+           
+        };
+
+
+        $rootScope.analyze = function (value) {
+            if (strongRegex.test(value)) {
+                $rootScope.passwordStrength["color"] = "green";
+                $rootScope.status = "Strong";
+
+            } else if (mediumRegex.test(value)) {
+                $rootScope.passwordStrength["color"] = "orange";
+                $rootScope.status = "Medium";
+            } else {
+                $rootScope.passwordStrength["color"] = "red";
+                $rootScope.status = "Weak";
+            }
+        };
+
+
+
         $rootScope.DateHelper = {
             SelectedDate: { startDate: new Date(), endDate: new Date() },
         };
@@ -271,6 +306,62 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
              resolve: {
                  setPageTitle: function ($rootScope) {
                      $rootScope.PageTitle = "Edit User";
+                 }
+             }
+         })
+
+
+        .when('/sales', {
+            templateUrl: 'module/sales/views/sales.html',
+            controller: 'auction-show-controller',
+            resolve: {
+                setPageTitle: function ($rootScope) {
+                    $rootScope.PageTitle = "Auction List";
+                }
+            }
+        })
+        .when('/finance', {
+            templateUrl: 'module/finance/views/finance.html',
+            controller: 'auction-show-controller',
+            resolve: {
+                setPageTitle: function ($rootScope) {
+                    $rootScope.PageTitle = "Auction List";
+                }
+            }
+        })
+        .when('/accounting', {
+            templateUrl: 'module/accounting/views/accounting.html',
+            controller: 'auction-show-controller',
+            resolve: {
+                setPageTitle: function ($rootScope) {
+                    $rootScope.PageTitle = "Auction List";
+                }
+            }
+        })
+        .when('/arbitration', {
+            templateUrl: 'module/arbitration/views/arbitration.html',
+            controller: 'auction-show-controller',
+            resolve: {
+                setPageTitle: function ($rootScope) {
+                    $rootScope.PageTitle = "Auction List";
+                }
+            }
+        })
+        .when('/transportation', {
+            templateUrl: 'module/transportation/views/transportation.html',
+            controller: 'auction-show-controller',
+            resolve: {
+                setPageTitle: function ($rootScope) {
+                    $rootScope.PageTitle = "Auction List";
+                }
+            }
+        })
+         .when('/marketing', {
+             templateUrl: 'module/marketing/views/marketing.html',
+             controller: 'auction-show-controller',
+             resolve: {
+                 setPageTitle: function ($rootScope) {
+                     $rootScope.PageTitle = "Auction List";
                  }
              }
          })
