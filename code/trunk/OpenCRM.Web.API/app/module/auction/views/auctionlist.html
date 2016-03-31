@@ -1,18 +1,20 @@
-﻿<div>
-    <button class="btn btn-primary" ng-click="AddAuction()" style="float:right;">Add Auction</button>
-    <table class="table table-bordered table-hover table-striped" id="example">
-        <thead>
-            <tr>
-                <th>Auction Name</th>
-                <th>Auction Date</th>
-       
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="auction in Auctions | orderBy : '-AuctionDate'">
-                <td style="padding-left:15px;"><a href="#/vehicleinfo/{{auction.Id}}">{{auction.Name}} ({{auction.AuctionDate| date}})</a></td>
-                <td>{{auction.AuctionDate| date}}</td>
-            </tr>
-        </tbody>
-    </table>
+﻿<div class="content-wrapper">
+    <div>
+        <button class="btn btn-primary" ng-click="AddAuction()" style="float: right;">Add Auction</button>
+        <table class="table table-bordered table-hover table-striped" id="example">
+            <thead>
+                <tr>
+                    <th>Auction Name</th>
+                    <th>Auction Date</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="auction in Auctions | orderBy : '-AuctionDate'">
+                    <td style="padding-left: 15px;"><a href="#/vehicleinfo/{{auction.Id}}">{{auction.Name}} ({{auction.AuctionDate| date}})</a></td>
+                    <td>{{auction.AuctionDate| date}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

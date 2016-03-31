@@ -1,21 +1,23 @@
-﻿<div>
-    <form id="LoginID" name="loginForm">
-        <div class="login-form">
-            <div>
-                <img src="images/logo.png" class="img-responsive applogo" alt="OpenTrade" />
+﻿<div class="content-wrapper">
+    <div>
+        <form id="LoginID" name="loginForm">
+            <div class="login-form">
+                <div>
+                    <img src="images/logo.png" class="img-responsive applogo" alt="OpenTrade" />
+                </div>
+                <div class="form-group1 ">
+                    <input type="text" class="form-control1 validate[required] text-input" ng-model="UserModel.UserName" placeholder="Username " id="UserName">
+                    <i class="fa fa-user"></i>
+                </div>
+                <div class="form-group1">
+                    <input type="password" class="form-control1 validate[required] text-input" ng-model="UserModel.Password" placeholder="Password" id="Passwod">
+                    <i class="fa fa-lock"></i>
+                </div>
+                <a class="link" href="">Lost your password?</a>
+                <button type="button" class="log-btn" ng-click="Login()">Log in</button>
             </div>
-            <div class="form-group1 ">
-                <input type="text" class="form-control1 validate[required] text-input" ng-model="UserModel.UserName" placeholder="Username " id="UserName">
-                <i class="fa fa-user"></i>
-            </div>
-            <div class="form-group1">
-                <input type="password" class="form-control1 validate[required] text-input" ng-model="UserModel.Password" placeholder="Password" id="Passwod">
-                <i class="fa fa-lock"></i>
-            </div>
-            <a class="link" href="">Lost your password?</a>
-            <button type="button" class="log-btn" ng-click="Login()">Log in</button>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 
 
