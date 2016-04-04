@@ -314,6 +314,15 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
                  }
              }
          })
+         .when('/inbox', {
+             templateUrl: 'module/inbox/views/inbox.html',
+             controller: 'inbox-controller',
+             resolve: {
+                 setPageTitle: function ($rootScope) {
+                     $rootScope.PageTitle = "Inbox";
+                 }
+             }
+         })
 
         .when('/admin/user', {
             templateUrl: 'module/user/views/userlist.html',
