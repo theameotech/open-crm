@@ -19,6 +19,8 @@ using OpenCRM.BizLogic.Helpers.Interfaces;
 using OpenCRM.BizLogic.Helpers.Impl;
 using OpenCRM.BusinessManagers.Interfaces;
 using OpenCRM.BusinessManagers.Impl;
+using OpenCRM.DB.Repository.Interfaces;
+using OpenCRM.DB.Repository.Impl;
 
 namespace OpenCRM.Web.API
 {
@@ -128,6 +130,9 @@ namespace OpenCRM.Web.API
                 x.For<IVehicleManager>().Add<VehicleManager>();
                 x.For<ICompanyHelper>().Add<CompanyHelper>();
                 x.For<ICompanyManager>().Add<CompanyManager>();
+                x.For<IInboxHelper>().Add<InboxHelper>();
+                x.For<IInboxManager>().Add<InboxManager>();
+                x.For<IInboxRepo>().Add<InboxRepo>();
             });
         }
     }
