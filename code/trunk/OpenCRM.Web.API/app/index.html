@@ -77,7 +77,6 @@
 
 
 
-
     <!-- Sparkline -->
     <script src="plugins/sparkline/jquery.sparkline.min.js"></script>
     <!-- jvectormap -->
@@ -664,6 +663,15 @@
             <strong>Copyright &copy; 2016 <a href="#">OpenCRM</a>.</strong> All rights reserved.
      
         </footer>
+         <footer class="footer-Login" ng-show="!Auth">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 2.3.0
+       
+            </div>
+            <strong>Copyright &copy; 2016 <a href="#">OpenCRM</a>.</strong> All rights reserved.
+     
+        </footer>
+
 
         <aside class="control-sidebar control-sidebar-dark" ng-show="Auth">
             <h2 class="chat-header"><a class="chat-close" href="#"><i class="entypo-cancel"></i></a><i class="entypo-users"></i>
@@ -684,31 +692,12 @@
     </div>
 </body>
 </html>
-
-<!--<script type="text/javascript">
-    $(function () {
-        $('.dropdown').hover(function () {
-            $(this).addClass('open');
-        },
-        function () {
-            $(this).removeClass('open');
-        });
-    });
-</script>-->
-
 <script type="text/javascript">
     var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
 
     elems.forEach(function (html) {
         var switchery = new Switchery(html);
     });
-
-
-    //$(function () {
-    //    $("togllebtn").click(function () {
-    //        $(this).toggleClass("highlight");
-    //    });
-    //});
 
 </script>
 

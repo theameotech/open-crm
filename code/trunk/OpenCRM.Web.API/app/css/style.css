@@ -655,3 +655,12 @@ button {
 .nav-style {
  float:right;
 }
+
+.footer-Login {
+
+    background: #fff none repeat scroll 0 0;
+    border-top: 1px solid #d2d6de;
+    color: #444;
+    padding: 15px;
+    margin-left:0px;
+}
