@@ -126,10 +126,11 @@
     <script src="module/marketing/controller/marketing-controller.js"></script>
     <script src="module/sales/controller/sales-controller.js"></script>
     <script src="module/transportation/controller/transportation-controller.js"></script>
-
+    <link href="plugins/iCheck/all.css" rel="stylesheet" />
     <script src="module/inbox/controller/inbox-controller.js"></script>
     <script src="module/inbox/service/inbox-service.js"></script>
-
+    <script src="plugins/iCheck/icheck.js"></script>
+    <script src="plugins/iCheck/icheck.min.js"></script>
     <!-- Signup Forms Style and Script-->
     <link href="css/AdminLTE.min.css" rel="stylesheet" />
     <link href="css/switchery.min.css" rel="stylesheet" />
@@ -156,7 +157,7 @@
     </style>
 
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini" >
 
     <div class="wrapper">
 
@@ -166,7 +167,7 @@
             <span class="logo-lg"><a class="navbar-brand" href="">
                 <img src="images/logo.png" alt="OpenTrade" class="img-responsive dashboardlogo" /></a></span>
 
-            <nav class="navbar navbar-static-top" role="navigation" style="color: #4E80B8;">
+            <nav class="navbar navbar-static-top" role="navigation">
                 <!-- Sidebar toggle button-->
                 <a href="" id="togllebtn" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                     <span class="sr-only">Toggle navigation</span>
@@ -418,8 +419,40 @@
                         </li>
                     </ul>
                 </div>
+
+                <div class="navbar-custom-menu" ng-show="!shownavbar">
+                    <ul class="nav navbar-nav">
+                        <!-- Messages: style can be found in dropdown.less-->
+                        <li class="dropdown messages-menu">
+                            <a href="">
+                                <i class="fa fa-envelope-o"></i>
+                                SignIn
+                            </a>
+                            <ul class="dropdown-menu">
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <nav class="navbar navbar-static-top" role="navigation" style="color: #4E80B8;" ng-show="!Auth">
             </nav>
         </header>
+
+        <header class="main-header" ng-show="!Auth">
+            <!-- Logo -->
+
+            <span class="logo-lg"><a class="navbar-brand" href="">
+                <img src="images/logo.png" alt="OpenTrade" class="img-responsive dashboardlogo" /></a></span>
+
+            <nav class="navbar navbar-static-top" role="navigation">
+                <ul class="nav navbar-nav nav-style">
+                    <li><a href="#/login" style="color: #fff;">SignIn <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#/registercompany" style="color: #fff;">SignUp <span class="sr-only">(current)</span></a></li>
+                </ul>
+            </nav>
+
+        </header>
+
         <aside class="main-sidebar" ng-show="Auth">
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar" style="height: auto;">
@@ -453,7 +486,7 @@
                         <ul class="treeview-menu" style="display: none;">
                             <li class=""><a href="#/dashboard"><i class="fa fa-circle-o"></i>DashBoard</a></li>
                             <li class=""><a href="#/Company"><i class="fa fa-circle-o"></i>Company Profile</a></li>
-                            <li><a href="#/admin/user"><i class="fa fa-circle-o"></i>Users</a></li>                           
+                            <li><a href="#/admin/user"><i class="fa fa-circle-o"></i>Users</a></li>
                         </ul>
                     </li>
 
@@ -473,7 +506,7 @@
                         </ul>
                     </li>
 
-                      <li>
+                    <li>
                         <a href="#/inbox">
                             <i class="fa fa-envelope"></i><span>Mailbox</span>
                             <small class="label pull-right bg-yellow">12</small>
@@ -618,21 +651,10 @@
             <!-- /.sidebar -->
         </aside>
 
-
         <div id="divsap">
             <div growl></div>
             <ng-view></ng-view>
         </div>
-
-        <!-- <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <p>Copyright © 2016 <a href="" target="blank">OpenCRM</a> All rights reserved.</p>
-                </div>
-            </div>
-        </div>
-    </footer>-->
 
         <footer class="main-footer" ng-show="Auth">
             <div class="pull-right hidden-xs">
@@ -643,7 +665,7 @@
      
         </footer>
 
-        <aside class="control-sidebar control-sidebar-dark">
+        <aside class="control-sidebar control-sidebar-dark" ng-show="Auth">
             <h2 class="chat-header"><a class="chat-close" href="#"><i class="entypo-cancel"></i></a><i class="entypo-users"></i>
                 Chat
                 <span class="badge badge-success is-hidden">0</span> </h2>
@@ -659,6 +681,7 @@
 
         </aside>
         <div class="control-sidebar-bg"></div>
+    </div>
 </body>
 </html>
 
