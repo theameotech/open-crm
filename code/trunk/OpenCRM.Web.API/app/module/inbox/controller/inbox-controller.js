@@ -3,7 +3,7 @@ var app = angular.module('acApp').controller('inbox-controller',
     ['$scope', 'userService', 'inboxService', '$rootScope', '$routeParams', '$interval',
 function ($scope, userService, inboxService, $rootScope, $routeParams, $interval) {
     $scope.inboxeModel = {
-        CompanyID: 1,
+        CompanyID: $rootScope.CompanyId,
         UserID: $rootScope.UserId,
       };
 
@@ -33,11 +33,6 @@ function ($scope, userService, inboxService, $rootScope, $routeParams, $interval
     };
 
     
-
-  
-
-   
-
     $scope.GetAllEmails();
 }]);
 
