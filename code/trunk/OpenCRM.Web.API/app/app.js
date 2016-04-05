@@ -351,6 +351,16 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
                  }
              }
          })
+        .when('/admin/user/userprofile/:userId', {
+            templateUrl: 'module/user/views/userprofile.html',
+            controller: 'user-controller',
+            resolve: {
+                setPageTitle: function ($rootScope) {
+                    $rootScope.PageTitle = "User Profile";
+                }
+            }
+        })
+
 
 
         .when('/sales', {

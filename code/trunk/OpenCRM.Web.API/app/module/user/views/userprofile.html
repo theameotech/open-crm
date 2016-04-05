@@ -1,12 +1,12 @@
 ﻿<div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>Company Profile
+        <h1>User Profile
           </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
             <li><a href="#">Examples</a></li>
-            <li class="active">Company profile</li>
+            <li class="active">User profile</li>
         </ol>
     </section>
 
@@ -19,8 +19,8 @@
                 <div class="box box-primary">
                     <div class="box-body box-profile">
                         <img class="profile-user-img img-responsive img-circle" src="http://img.djavaui.com/?create=100x100,4888E1?f=ffffff" alt="User profile picture">
-                        <h3 class="profile-username text-center">Company Name</h3>
-                        <p class="text-muted text-center">Company Type</p>
+                        <h3 class="profile-username text-center">{{User.FirstName}} {{User.LastName}}</h3>
+                        <p class="text-muted text-center">{{User.CompanyName}}</p>
                         <a href="" class="btn btn-success btn-block">PRO Account</a>
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
@@ -33,7 +33,7 @@
                                 <b>Friends</b> <a class="pull-right">13,287</a>
                             </li>
                         </ul>
-                        <a href="" class="btn btn-default btn-block"><i class="fa fa-cog pull-right"></i>Edit Profile</a>
+                        <a href="" class="btn btn-default btn-block" ng-click="CreateUser()" ng-show="UserId>0"><i class="fa fa-cog pull-right"></i>Edit Profile</a>
                         <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
                     </div>
                     <!-- /.box-body -->
@@ -51,9 +51,9 @@
                     <!-- /.panel-heading -->
                     <div class="box-body box-profile">
                         <ul class="list-group list-group-unbordered">
-                            <li class="list-group-item"><i class="fa fa-envelope mr-5"></i> support@djavaui.com</li>
-                            <li class="list-group-item"><i class="fa fa-globe mr-5"></i> www.djavaui.com</li>
-                            <li class="list-group-item"><i class="fa fa-phone mr-5"></i> +6281 903 xxx xxx</li>
+                            <li class="list-group-item"><i class="fa fa-envelope mr-5"></i> {{User.Email}}</li>
+                            <li class="list-group-item"><i class="fa fa-mobile mr-5"></i> {{User.Phone}}</li>
+                            <li class="list-group-item"><i class="fa fa-phone mr-5"></i> {{User.Office}} Ex. {{User.EXT}}</li>
                         </ul>
                     </div>
                     <!-- /.panel-body -->
@@ -64,7 +64,7 @@
                 <!-- About Company Box -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">About Company</h3>
+                        <h3 class="box-title">About Me</h3>
                     </div>
                     <div class="clearfix"></div>
                     <!-- /.box-header -->
@@ -77,9 +77,16 @@
 
                         <hr>
 
-                        <strong><i class="fa fa-map-marker margin-r-5"></i>Location</strong>
-                        <p class="text-muted">Malibu, California</p>
+                        <strong><i class="fa fa-map-marker margin-r-5"></i>Address</strong>
+                        <p class="text-muted">{{User.StreetAddress1}}</p>
+                        <p class="text-muted">{{User.StreetAddress2}}</p>
+                        <p class="text-muted">{{User.City}}</p>
+                        <p class="text-muted">{{User.State}}</p>
+                        <p class="text-muted">{{User.PostalCode}}</p>
+                        <p class="text-muted">{{User.Country}}</p>
 
+
+                     
 
                     </div>
                     <!-- /.box-body -->
@@ -354,3 +361,203 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+
+
+<div class="content-wrapper">
+    <div class="general-wrapper">
+        <section class="content">
+            <div class="box new-user col-lg-11 overloadbox" style="margin-top: 26px;">
+                <div class="container containerOverride container-realtive-pos user-create-form">
+                    <form id="formID" name="userform">
+                        <div class="row">
+                            <div style="margin: 10px;" ng-show="Error!=''" class="alert alert-danger">{{Error}}</div>
+                            <div class="col-md-6">
+                                <div class="form-group col-lg-6" style="margin-left: -15px;">
+                                    <label>First Name</label>
+                                    <input type="text" name="FirstName" ng-model="User.FirstName"
+                                        class="form-control validate[required] text-input" />
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>Last Name</label>
+                                    <input type="text" name="lastName"
+                                        ng-model="User.LastName" class="form-control validate[required] text-input" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Username</label>
+                                    <input type="text" name="usernmame"
+                                        ng-model="User.UserName" id="txtEmpName" onkeypress="return AvoidSpace(event)" class="form-control validate[required] text-input" />
+                                </div>
+                                <div class="form-group" ng-show="UserId<=0">
+                                    <label>Password</label>
+                                    <input type="password" name="password"
+                                        ng-model="User.Password" class="form-control validate[required] text-input" />
+                                </div>
+                                <div class="form-group" ng-show="UserId>0">
+                                    <label>Update Password</label>
+                                    <input type="password"
+                                        ng-model="User.Password" class="form-control" />
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Confirm Password</label>
+                                    <input type="password"
+                                        name="ConfirmPassword"
+                                        ng-blur="Comparepassword()"
+                                        ng-keyup="ComparepasswordChanged()"
+                                        ng-model="User.ConfirmPassword"
+                                        class="form-control validate[required] text-input" />
+                                    <div ng-show="ComparepasswordStatus" style="color: red;">
+                                        <span>password does not match</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" name="Email"
+                                        ng-model="User.Email" placeholder="username@domain.com" class="form-control validate[required] text-input" />
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+                                <div>
+                                    <label>Address:</label>
+                                </div>
+                                <div class="col-lg-6">
+                                    Street Address 1:
+                                     <input type="text" ng-model="User.StreetAddress1" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    Street Address 2:
+                                    <input type="text" ng-model="User.StreetAddress2" class="form-control">
+                                </div>
+                                <div class="col-lg-6">
+                                    City:
+                                    <input type="text" ng-model="User.City" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    State:
+                                    <input type="text" ng-model="User.State" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    Postal Code:
+                                    <input type="text" ng-model="User.PostalCode" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    Country:
+                                     <select data-ng-model="User.Country" name="Country" class="form-control">
+                                         <option ng-repeat="cnt in Countries" value="{{cnt.Name}}">{{cnt.Name}}</option>
+                                     </select>
+                                </div>
+
+                                <div class="form-group tablewidth col-lg-12">
+                                    <label>Company </label>
+                                    <input type="text" ng-model="User.CompanyName" class="form-control">
+                                </div>
+                                <div class="form-group tablewidth col-lg-12">
+                                    <label>Cell Phone </label>
+                                    <input type="text"
+                                        name="User.Phone "
+                                        ng-model="User.Phone"
+                                        mask='(999) 999-9999'
+                                        class="form-control input-us-phone" placeholder="(xxx) xxx-xxxx">
+                                </div>
+                                <div class="form-group tablewidth col-lg-9">
+                                    <label>Office Phone</label>
+                                    <input type="text" ng-change="OfficeNameChanged()"
+                                        name="User.Office"
+                                        ng-model="User.Office"
+                                        mask='(999) 999-9999'
+                                        class="form-control input-us-phone validate[required] text-input" placeholder="(xxx) xxx-xxxx">
+                                </div>
+                                <div class="form-group tablewidth  col-sm-3">
+                                    <label>Ext</label>
+                                    <input type="text"
+                                        ng-model="User.EXT"
+                                        mask='999999' placeholder="ext xxxxxx"
+                                        class="form-control validate[required] text-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label>Unassigned Roles</label>
+                                <fieldset class="fieldset panel panel-default field-hight">
+                                    <table class="table no-bordered">
+
+                                        <thead class="header">
+                                            <tr>
+                                                <th>Name</th>
+                                                <th class="tableheader">Type</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                    <div class="table-responsive no-margin afftective clsscrollwindow">
+                                        <table class="table no-bordered">
+
+                                            <tr ng-repeat="Role in  Roles" ng-click="SelectRole(Role)">
+                                                <td ng-class="{ 'checked-context': Role.Checked , '': !Role.Checked }">{{Role.Name}}</td>
+                                                <td ng-class="{ 'checked-context': Role.Checked , '': !Role.Checked }">{{Role.Type}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-1" style="margin-top: 20px; padding-right: 0px;">
+                                <a href="javascript:" class=" glyphicon glyphicon-arrow-right" style="font-size: 40px;" ng-click="AssignRole()"></a>
+                                <div class="clear"></div>
+                                <a href="javascript:" class=" glyphicon glyphicon-arrow-left" style="margin-top: 5px; font-size: 40px;" ng-click="UnAssignRole()"></a>
+                            </div>
+                            <div class="col-md-5">
+                                <label>Assigned Roles</label>
+                                <fieldset class="fieldset panel panel-default field-hight">
+                                    <table class="table no-bordered">
+                                        <thead class="header">
+                                            <tr>
+                                                <th>Name</th>
+                                                <th class="tableheader">Type</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                    <div class="table-responsive no-margin afftective clsscrollwindow">
+                                        <table class="table no-bordered">
+                                            <tr ng-repeat="assignRole in AssignRoles" ng-click="UnSelectRoles(assignRole)">
+                                                <td ng-class="{ 'checked-context': assignRole.Checked , '': !assignRole.Checked }">{{assignRole.Name}}</td>
+                                                <td ng-class="{ 'checked-context': assignRole.Checked , '': !assignRole.Checked }">{{assignRole.Type}}</td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button class="btn btn-primary" id="btnClick" type="button" ng-click="CreateUser()" ng-show="UserId<=0">Create User</button>
+                                <button class="btn btn-primary" type="button" ng-click="CreateUser()" ng-show="UserId>0">Update User</button>
+                                <a class="btn btn-default" href="#/admin/user">Cancel</a>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<script type="text/javascript">
+    function AvoidSpace(event) {
+        var k = event ? event.which : window.event.keyCode;
+        if (k == 32) return false;
+    }
+
+    jQuery(document).ready(function () {
+        // binds form submission and fields to the validation engine
+        // binds form submission and fields to the validation engine
+        $("form").validationEngine();
+    });
+
+
+</script>

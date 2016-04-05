@@ -58,7 +58,7 @@
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="userlist in UsersList | filter: search ">
-                                            <td>{{userlist.FirstName}}  {{userlist.LastName}}  </td>
+                                            <td><a href="#/admin/user/userprofile/{{userlist.Id}}">{{userlist.FirstName}}  {{userlist.LastName}}</a></td>
                                             <td>{{userlist.UserName}} </td>
                                             <td>{{userlist.Email}} </td>
                                             <!--    <td>{{userlist.Address}} </td>-->

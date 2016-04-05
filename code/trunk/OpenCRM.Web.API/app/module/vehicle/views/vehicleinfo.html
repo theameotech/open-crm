@@ -1,4 +1,120 @@
-﻿<div class="content-wrapper">
+﻿ <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Auction
+            <small>Department</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Tables</a></li>
+            <li class="active">Auction Department</li>
+          </ol>
+        </section>
+
+     <!-- Application buttons -->
+     <section class="content-header">
+          <div class="row">
+            <div class="col-xs-12">
+
+              <div class="box">
+                <div class="box-body">
+                                    <a class="btn btn-app">
+                    <i class="fa fa-edit"></i> Edit
+                  </a>
+                  <a class="btn btn-app">
+                    <i class="fa fa-play"></i> Play
+                  </a>
+                  <a class="btn btn-app">
+                    <i class="fa fa-repeat"></i> Repeat
+                  </a>
+                  <a class="btn btn-app">
+                    <i class="fa fa-pause"></i> Pause
+                  </a>
+                  <a class="btn btn-app">
+                    <i class="fa fa-save"></i> Save
+                  </a>
+                  <a class="btn btn-app">
+                    <span class="badge bg-yellow">3</span>
+                    <i class="fa fa-bullhorn"></i> Notifications
+                  </a>
+                  <a class="btn btn-app">
+                    <span class="badge bg-green">300</span>
+                    <i class="fa fa-barcode"></i> Products
+                  </a>
+                  <a class="btn btn-app">
+                    <span class="badge bg-purple">891</span>
+                    <i class="fa fa-users"></i> Users
+                  </a>
+                  <a class="btn btn-app">
+                    <span class="badge bg-teal">67</span>
+                    <i class="fa fa-inbox"></i> Orders
+                  </a>
+                  <a class="btn btn-app">
+                    <span class="badge bg-aqua">12</span>
+                    <i class="fa fa-envelope"></i> Inbox
+                  </a>
+                  <a class="btn btn-app">                    
+                    <i class="fa fa-gg"></i> Add Auction
+                  </a>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+                </div></div></section>
+              
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+            <div class="col-xs-12">
+      
+
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Vehicle  List</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <table id="example1" class="table table-bordered table-striped" ng-init="GetAllvechicleinfobyauction()">
+                    <thead>
+                      <tr>
+                        <th>Year</th>
+                        <th>Make</th>
+                        <th>Model</th>
+                        <th>Odometer</th>
+                        <th>VIN</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                     <tr ng-repeat="vehicle in Vehicleauctioninfo | orderBy : '-LastUpdateTime'">
+                        <td>{{vehicle.Model }}</td>
+                        <td style="padding-left: 15px;"><a href="#/bidsinfo/{{vehicle.Id}}">{{vehicle.Name}}</a></td>
+                         <td>{{vehicle.Model }}</td>
+                        <td>{{vehicle.Odometer | number}}</td>
+                        <td>{{vehicle.Vin}}</td>
+                    </tr>
+                  
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th>Year</th>
+                        <th>Make</th>
+                        <th>Model</th>
+                        <th>Odometer</th>
+                        <th>VIN</th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+     
+
+
+
+
+<!--<div class="content-wrapper">
     <div block-ui="block-vehcle-form">
         <form name="vehcleform" novalidate>
             <div>
@@ -28,4 +144,4 @@
                 ng-model="$parent.CurrentPage" ng-change="PageChanged()"></uib-pagination>
         </form>
     </div>
-</div>
+</div>-->
