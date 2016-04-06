@@ -3,12 +3,12 @@
 
         var inboxService = {};
 
-        inboxService.sendMessage = function (messageModel) {
-            return $http.post(baseUrl + '/api/inbox/SendMessage', messageModel);
+        inboxService.sendEmail = function (inboxModel) {
+            return $http.post(baseUrl + '/api/inbox/SendEmail', inboxModel);
         };
 
-        inboxService.getEmails = function ( userId, companyId) {
-            return $http.get(baseUrl + '/api/inbox/GetEmails?userId='+ userId +'&companyId='+companyId);
+        inboxService.getEmails = function (userId, companyId) {
+            return $http.get(baseUrl + '/api/inbox/GetEmails?userId=' + userId + '&companyId=' + companyId);
         }
         return inboxService;
 

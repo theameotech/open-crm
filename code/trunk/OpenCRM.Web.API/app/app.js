@@ -17,19 +17,21 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
         $rootScope.globals = $cookieStore.get('globals') || ''
         $cookieStore.IsAdmin = $cookieStore.get('IsAdmin');
         $rootScope.IsAdmin = $cookieStore.get('IsAdmin');
-        //$cookieStore.userName = $cookieStore.get('UserName');
+        //  $cookieStore.UserName = $cookieStore.get('UserName');
         $cookieStore.FirstName = $cookieStore.get('FirstName');
         $cookieStore.LastName = $cookieStore.get('LastName');
         $cookieStore.UserId = $cookieStore.get('UserId');
         $cookieStore.CompanyId = $cookieStore.get('CompanyId');
         $cookieStore.CreateTime = $cookieStore.get('CreateTime');
+        $cookieStore.EmailId = $cookieStore.get('EmailId');
 
-        //$rootScope.userName = $cookieStore.userName;
+        // $rootScope.userName = $cookieStore.UserName;
         $rootScope.FirstName = $cookieStore.FirstName;
         $rootScope.LastName = $cookieStore.LastName;
         $rootScope.UserId = $cookieStore.UserId;
         $rootScope.CompanyId = $cookieStore.CompanyId;
         $rootScope.CreateTime = $cookieStore.CreateTime;
+        $rootScope.EmailId = $cookieStore.EmailId;
 
         $rootScope.Logout = function () {
             $rootScope.shownavbar = false;
@@ -58,7 +60,7 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
 
         //};
         $rootScope.passwordStrength = {
-           
+
         };
 
 
@@ -107,11 +109,10 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
                 });
         };
 
-        if ($rootScope.UserId > 0)
-        {
+        if ($rootScope.UserId > 0) {
             $rootScope.GetRoles();
         }
- 
+
 
         $rootScope.UsersList = [];
         $rootScope.GetAllUsers = function () {
@@ -314,15 +315,6 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
                  }
              }
          })
-         .when('/inbox', {
-             templateUrl: 'module/inbox/views/inbox.html',
-             controller: 'inbox-controller',
-             resolve: {
-                 setPageTitle: function ($rootScope) {
-                     $rootScope.PageTitle = "Inbox";
-                 }
-             }
-         })
 
         .when('/admin/user', {
             templateUrl: 'module/user/views/userlist.html',
@@ -351,17 +343,25 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
                  }
              }
          })
-        .when('/admin/user/userprofile/:userId', {
-            templateUrl: 'module/user/views/userprofile.html',
-            controller: 'user-controller',
+        .when('/inbox', {
+            templateUrl: 'module/inbox/views/inbox.html',
+            controller: 'inbox-controller',
             resolve: {
                 setPageTitle: function ($rootScope) {
-                    $rootScope.PageTitle = "User Profile";
+                    $rootScope.PageTitle = "inbox";
                 }
             }
         })
 
-
+        .when('/compose', {
+            templateUrl: 'module/inbox/views/compose.html',
+            controller: 'inbox-controller',
+            resolve: {
+                setPageTitle: function ($rootScope) {
+                    $rootScope.PageTitle = "Compose";
+                }
+            }
+        })
 
         .when('/sales', {
             templateUrl: 'module/sales/views/sales.html',
