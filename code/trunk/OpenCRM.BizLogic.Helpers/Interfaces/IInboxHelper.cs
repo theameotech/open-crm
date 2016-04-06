@@ -10,5 +10,7 @@ namespace OpenCRM.BizLogic.Helpers.Interfaces
   public  interface IInboxHelper
     {
       IList<Inbox> GetEmails(int userId, int companyId);
+
+      void SendEmail(Inbox inbox);
     }
 }

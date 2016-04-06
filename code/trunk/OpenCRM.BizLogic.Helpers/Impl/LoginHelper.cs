@@ -44,9 +44,9 @@ namespace OpenCRM.BizLogic.Helpers.Impl
 
                 if (dbUser != null)
                 {
-                        dbUser.AuthToken = token;
-                        _userRepo.Update(dbUser);
-                       
+                    dbUser.AuthToken = token;
+                    _userRepo.Update(dbUser);
+
                     return new LoginResult
                     {
                         Success = true,
@@ -55,7 +55,8 @@ namespace OpenCRM.BizLogic.Helpers.Impl
                         UserId = dbUser.Id,
                         CompanyId = dbUser.CompanyId,
                         FirstName = dbUser.FirstName,
-                        LastName = dbUser.LastName
+                        LastName = dbUser.LastName,
+                        EmailId = dbUser.Email
 
                     };
                 }

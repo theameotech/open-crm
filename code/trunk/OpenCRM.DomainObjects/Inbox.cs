@@ -25,8 +25,11 @@ namespace OpenCRM.DB.DomainObjects
         public virtual string EmailContent { get; set; }
         public virtual string EmailSender { get; set; }
         public virtual string EmailRecipient { get; set; }
-        public virtual string AttachmentName { get; set; }
-        public virtual string AttachmentType { get; set; }
+        public virtual byte[] AttachmentName { get; set; }
+         public virtual string AttachmentType { get; set; }
         public virtual string IPAddress { get; set; }
+        public virtual string ToUserName { get; set; }
+        public virtual string FromUserName { get; set; }
+
     }
 }

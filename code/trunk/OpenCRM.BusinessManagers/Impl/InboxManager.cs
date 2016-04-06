@@ -9,18 +9,23 @@ using OpenCRM.BizLogic.Helpers.Interfaces;
 
 namespace OpenCRM.BusinessManagers.Impl
 {
-  public  class InboxManager:IInboxManager
+    public class InboxManager : IInboxManager
     {
 
-     private IInboxHelper _inbocHelper;
-     public InboxManager(IInboxHelper inbocHelper)
-     {
-         _inbocHelper = inbocHelper;
-     }
+        private IInboxHelper _inbocHelper;
+        public InboxManager(IInboxHelper inbocHelper)
+        {
+            _inbocHelper = inbocHelper;
+        }
 
         public IList<Inbox> GetEmails(int userId, int companyId)
         {
             return _inbocHelper.GetEmails(userId, companyId);
+        }
+
+        public void SendEmail(Inbox inbox)
+        {
+            _inbocHelper.SendEmail(inbox);
         }
     }
 }

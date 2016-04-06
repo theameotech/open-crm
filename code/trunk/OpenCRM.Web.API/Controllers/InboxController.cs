@@ -29,6 +29,13 @@ namespace OpenCRM.Web.API.admin
             _inboxManager = inboxManager;
 
         }
+        [Route("SendEmail")]
+        public void SendEmail(Inbox inbox)
+        {
+            _inboxManager.SendEmail(inbox);
+
+        }
+
 
         [Route("GetEmails")]
         public IList<Inbox> GetEmails(int userId, int companyId) 
