@@ -130,8 +130,8 @@ namespace OpenCRM.Web.API
                 x.For<IVehicleManager>().Add<VehicleManager>();
                 x.For<ICompanyHelper>().Add<CompanyHelper>();
                 x.For<ICompanyManager>().Add<CompanyManager>();
-                x.For<IInboxManager>().Add<InboxManager>();
                 x.For<IInboxHelper>().Add<InboxHelper>();
+                x.For<IInboxManager>().Add<InboxManager>();
                 x.For<IInboxRepo>().Add<InboxRepo>();
             });
         }
