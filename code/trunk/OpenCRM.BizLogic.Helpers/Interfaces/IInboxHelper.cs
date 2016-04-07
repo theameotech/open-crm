@@ -12,5 +12,7 @@ namespace OpenCRM.BizLogic.Helpers.Interfaces
       IList<Inbox> GetEmails(int userId, int companyId);
 
       void SendEmail(Inbox inbox);
+
+      void FlagEmail(Inbox inbox);
     }
 }

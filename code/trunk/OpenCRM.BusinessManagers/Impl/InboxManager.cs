@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using OpenCRM.DB.DomainObjects;
 using OpenCRM.BusinessManagers.Interfaces;
 using OpenCRM.BizLogic.Helpers.Interfaces;
+using System.Transactions;
 
 namespace OpenCRM.BusinessManagers.Impl
 {
@@ -25,7 +26,22 @@ namespace OpenCRM.BusinessManagers.Impl
 
         public void SendEmail(Inbox inbox)
         {
-            _inbocHelper.SendEmail(inbox);
+            using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required))
+            {
+                _inbocHelper.SendEmail(inbox);
+                scope.Complete();
+            }
+        }
+
+        public void FlagEmail(Inbox inbox)
+        {
+
+            using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required))
+            {
+                _inbocHelper.FlagEmail(inbox);
+                scope.Complete();
+            }
+        
         }
     }
 }

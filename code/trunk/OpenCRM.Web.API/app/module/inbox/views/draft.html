@@ -25,10 +25,10 @@
                 </div>
                 <div class="box-body no-padding">
                   <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="#/inbox"><i class="fa fa-inbox"></i> Inbox <span class="label label-primary pull-right">{{counter}}</span></a></li>
+                    <li class="active"><a href="#/inbox"><i class="fa fa-inbox"></i> Inbox <span class="label label-primary pull-right">{{draftvalue}}</span></a></li>
                     <li><a href="#"><i class="fa fa-envelope-o"></i> Sent </a></li>
-                    <li><a href="#/draft"><i class="fa fa-file-text-o"></i> Drafts<span class="label label-primary pull-right">{{draftvalue}}</span></a></li>
-                    <li><a href="#"><i class="fa fa-filter"></i> Junk <span class="label label-warning pull-right">65</span></a></li>
+                    <li><a href="#/draft"><i class="fa fa-file-text-o"></i> Drafts<span class="label label-primary pull-right">{{counter}}</span></a></li>
+                  
                     <li><a href="#"><i class="fa fa-trash-o"></i> Trash</a></li>
                   </ul>
                 </div><!-- /.box-body -->
@@ -81,13 +81,13 @@
                   <div class="table-responsive mailbox-messages">
                     <table class="table table-hover table-striped">
                       <tbody>
-                        <tr ng-repeat="inbox in InboxList">
+                        <tr ng-repeat="draft in DraftList">
                           <td><input type="checkbox"></td>
-                          <td class="mailbox-star" ng-click="FlagMail(inbox)"><a href=""><i class="fa fa-star text-yellow"></i></a></td>
-                          <td class="mailbox-name"><a href="">{{inbox.EmailSender}}</a></td>
-                          <td class="mailbox-subject"><b>{{inbox.EmailSubject}}</b> - {{inbox.EmailContent}}</td>
-                          <td class="mailbox-attachment">{{inbox.AttachmentName}}</td>
-                          <td class="mailbox-date">{{inbox.CreateTime}}</td>
+                          <td class="mailbox-star" ><a href=""><i class="fa fa-star text-yellow"></i></a></td>
+                          <td class="mailbox-name"><a href="">{{draft.ToUserName}}</a></td>
+                          <td class="mailbox-subject"><b>{{draft.EmailSubject}}</b> - {{draft.EmailContent}}</td>
+                          <td class="mailbox-attachment">{{draft.AttachmentType}}</td>
+                          <td class="mailbox-date">{{draft.CreateTime}}</td>
                         </tr>
                       
                       </tbody>

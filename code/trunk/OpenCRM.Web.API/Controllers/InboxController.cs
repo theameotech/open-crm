@@ -43,6 +43,12 @@ namespace OpenCRM.Web.API.admin
              return _inboxManager.GetEmails(userId,companyId);
          }
 
+        [Route("FlagEmail")]
+        public void FlagEmail(Inbox inbox)
+        {
+            _inboxManager.FlagEmail(inbox);
+        }
+
 
     }
 }

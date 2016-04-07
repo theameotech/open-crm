@@ -352,6 +352,15 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
                 }
             }
         })
+        .when('/draft', {
+            templateUrl: 'module/inbox/views/draft.html',
+            controller: 'draft-controller',
+            resolve: {
+                setPageTitle: function ($rootScope) {
+                    $rootScope.PageTitle = "draft";
+                }
+            }
+        })
 
         .when('/compose', {
             templateUrl: 'module/inbox/views/compose.html',

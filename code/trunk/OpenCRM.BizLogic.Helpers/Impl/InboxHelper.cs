@@ -29,6 +29,8 @@ namespace OpenCRM.BizLogic.Helpers.Impl
 
         public void SendEmail(Inbox inbox)
         {
+
+
             Inbox inb = new Inbox();
             inb.CompanyID = inbox.CompanyID;
 
@@ -54,7 +56,16 @@ namespace OpenCRM.BizLogic.Helpers.Impl
             inb.IPAddress = Dns.GetHostEntry(Dns.GetHostName()).AddressList[0].ToString();
             inb.ServerDate = DateTime.Now;
             _inboxRepo.Add(inb);
+         
+        }
 
+
+        public void FlagEmail( Inbox inbox)
+        {
+            var userEmails = _inboxRepo.Get(x => x.StatusID == inbox.StatusID);
+
+            userEmails.IsFlagged = inbox.IsFlagged;
+            _inboxRepo.Update(userEmails);
         }
     }
 }

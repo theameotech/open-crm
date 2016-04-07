@@ -9,6 +9,7 @@ function ($scope, userService, inboxService, $rootScope, $routeParams, $interval
         UserID: $rootScope.UserId,
         IsRead: 0,
         IsDraft: 0,
+
         IsTrash: 0,
         IsReply: 0,
         IsFlagged: 0,
@@ -26,33 +27,30 @@ function ($scope, userService, inboxService, $rootScope, $routeParams, $interval
 
 
     $scope.uploadFile = function (input) {
-        $scope.UserPhoto="";
-        $scope.filetype="";
-       $scope.filetype=input.files[0].type;
-      
-       
+        $scope.UserPhoto = "";
+        $scope.filetype = "";
+        $scope.filetype = input.files[0].type;
+        $scope.inboxeModel.IsAttachment = 1;
+
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
                 $('#photo-id').attr(e.target.result);
 
                 var base64Image = e.target.result;
-              
-                if ($scope.filetype == "text/plain")
-                {
+
+                if ($scope.filetype == "text/plain") {
                     $scope.UserPhoto = base64Image.replace('data:text/plain;base64,', '');
                 }
-                else if ($scope.filetype == "text/html")
-                {
+                else if ($scope.filetype == "text/html") {
                     $scope.UserPhoto = base64Image.replace('data:text/html;base64,', '');
                 }
 
-                else if ($scope.filetype == "image/png")
-                {
+                else if ($scope.filetype == "image/png") {
                     $scope.UserPhoto = base64Image.replace('data:image/png;base64,', '');
                 }
-                 console.log($scope.UserPhoto);
-            }              
+                console.log($scope.UserPhoto);
+            }
             reader.readAsDataURL(input.files[0]);
         }
     };
@@ -61,37 +59,68 @@ function ($scope, userService, inboxService, $rootScope, $routeParams, $interval
     $scope.SendEmail = function () {
 
         $scope.inboxeModel.AttachmentName = $scope.UserPhoto;
-       // $scope.inboxeModel.AttachmentType = $scope.filetype;
-
-        console.log($scope.inboxeModel);
-      
+        $scope.inboxeModel.AttachmentType = $scope.filetype;
         inboxService.sendEmail($scope.inboxeModel)
                 .then(function (response) {
                     $scope.inboxeModel.EmailContent = "";
                     $scope.inboxeModel.EmailSubject = "";
                     $scope.inboxeModel.EmailRecipient = "";
                 })
-
     };
+
+
+    $scope.DraftEmail = function () {
+
+        $scope.inboxeModel.AttachmentName = $scope.UserPhoto;
+        $scope.inboxeModel.AttachmentType = $scope.filetype;
+        $scope.inboxeModel.IsDraft = 1;
+
+        inboxService.sendEmail($scope.inboxeModel)
+                .then(function (response) {
+                    $scope.emailStatusId = response.data;
+                    $scope.inboxeModel.EmailContent = "";
+                    $scope.inboxeModel.EmailSubject = "";
+                    $scope.inboxeModel.EmailRecipient = "";
+                })
+    };
+
 
     $scope.InboxList = [];
     $scope.GetAllEmails = function () {
-
+        $scope.counter = 0;
+        $scope.length = 0;
+        $scope.draftvalue = 0;
         inboxService.getEmails($scope.inboxeModel.UserID, $scope.inboxeModel.CompanyID)
             .then(function (response) {
+                $scope.length = response.data.length;
                 angular.forEach(response.data, function (item) {
-                    $scope.InboxList.push(item);
+                    if (item.IsDraft == false) {
+                        $scope.InboxList.push(item);
+                        $scope.counter++;
+                        console.log($scope.InboxList);
+                    }
 
-                    console.log($scope.InboxList);
                 });
+                $scope.draftvalue = $scope.length - $scope.counter;
+            });
+
+
+
+    };
+
+
+    $scope.FlagMail = function (inbox) {
+        $scope.updateIsFlag = {
+            StatusID: inbox.StatusID,
+            IsFlagged: 1
+        }
+        inboxService.flagMail($scope.updateIsFlag)
+            .then(function (response) {
             });
     };
 
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> c6eccb7b3cdebbf120e4cf465b17930eae446933
+
     $scope.GetAllEmails();
 }]);
 

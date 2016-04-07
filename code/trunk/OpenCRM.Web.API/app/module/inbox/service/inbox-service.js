@@ -10,6 +10,10 @@
         inboxService.getEmails = function (userId, companyId) {
             return $http.get(baseUrl + '/api/inbox/GetEmails?userId=' + userId + '&companyId=' + companyId);
         }
+
+        inboxService.flagMail = function (updateIsFlag) {
+            return $http.post(baseUrl + '/api/inbox/FlagEmail', updateIsFlag);
+        }
         return inboxService;
 
     }])
