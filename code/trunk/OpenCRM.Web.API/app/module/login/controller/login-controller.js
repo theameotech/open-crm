@@ -20,7 +20,8 @@ function ($scope, $rootScope, growl, loginService, $location, $http, $cookieStor
                          $cookieStore.put('LastName', response.data.LastName);
                          $cookieStore.put('UserId', response.data.UserId);
                          $cookieStore.put('CompanyId', response.data.CompanyId);
-                         $cookieStore.put('EmailId', response.data.EmailId);
+                         $cookieStore.put('CreateTime', response.data.CreateTime);
+
                          $rootScope.globals = response.data.Token;
                          $rootScope.IsAdmin = response.data.IsAdmin;
                          //$rootScope.userName = $scope.UserModel.UserName;
@@ -28,7 +29,7 @@ function ($scope, $rootScope, growl, loginService, $location, $http, $cookieStor
                          $rootScope.LastName = response.data.LastName;
                          $rootScope.UserId = response.data.UserId;
                          $rootScope.CompanyId = response.data.CompanyId;
-                         $rootScope.EmailId = response.data.EmailId;
+                         $rootScope.CreateTime = response.data.CreateTime;
                          $rootScope.Auth = true;
                          $rootScope.shownavbar = true;
                          $rootScope.showdasboard = false;

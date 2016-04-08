@@ -52,6 +52,7 @@
     <Compile Include="Impl\BuyerManager.cs" />
     <Compile Include="Impl\CompanyManager.cs" />
     <Compile Include="Impl\DealerShipManager.cs" />
+    <Compile Include="Impl\InboxManager.cs" />
     <Compile Include="Impl\LoginManager.cs" />
     <Compile Include="Impl\LookupManager.cs" />
     <Compile Include="Impl\MessageManager.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Interfaces\IBuyerManager.cs" />
     <Compile Include="Interfaces\ICompanyManager.cs" />
     <Compile Include="Interfaces\IDealerShipManager.cs" />
+    <Compile Include="Interfaces\IInboxManager.cs" />
     <Compile Include="Interfaces\ILoginManager.cs" />
     <Compile Include="Interfaces\ILookupManager.cs" />
     <Compile Include="Interfaces\IMessageManager.cs" />

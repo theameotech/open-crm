@@ -15,7 +15,7 @@
         <section class="content">
           <div class="row">
             <div class="col-md-3">
-              <a href="#/compose" class="btn btn-primary btn-block margin-bottom">Compose</a>
+              <a href="compose.html" class="btn btn-primary btn-block margin-bottom">Compose</a>
               <div class="box box-solid">
                 <div class="box-header with-border">
                   <h3 class="box-title">Folders</h3>
@@ -25,9 +25,9 @@
                 </div>
                 <div class="box-body no-padding">
                   <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="#/inbox"><i class="fa fa-inbox"></i> Inbox <span class="label label-primary pull-right">{{counter}}</span></a></li>
-                    <li><a href="#"><i class="fa fa-envelope-o"></i> Sent </a></li>
-                    <li><a href="#/draft"><i class="fa fa-file-text-o"></i> Drafts<span class="label label-primary pull-right">{{draftvalue}}</span></a></li>
+                    <li class="active"><a href="#"><i class="fa fa-inbox"></i> Inbox <span class="label label-primary pull-right">12</span></a></li>
+                    <li><a href="#"><i class="fa fa-envelope-o"></i> Sent</a></li>
+                    <li><a href="#"><i class="fa fa-file-text-o"></i> Drafts</a></li>
                     <li><a href="#"><i class="fa fa-filter"></i> Trash <span class="label label-warning pull-right">{{deletecounter}}</span></a></li>
                    
                   </ul>
@@ -84,7 +84,7 @@
                       <tbody>
                         <tr ng-repeat="inbox in InboxList">
                           <td><input type="checkbox" ng-click="CheckIsDelete(IsChecked,inbox.StatusID,$index)"  ng-model="IsChecked"  ></td>
-                          <td class="mailbox-star" ng-click="FlagMail(inbox)"><a href=""><i class="fa fa-star text-yellow"></i></a></td>
+                          <td class="mailbox-star"><a href=""><i class="fa fa-star text-yellow"></i></a></td>
                           <td class="mailbox-name"><a href="">{{inbox.ToUserName}}</a></td>
                           <td class="mailbox-subject"><b>{{inbox.EmailSubject}}</b> - {{inbox.EmailContent}}</td>
                           <td class="mailbox-attachment">{{inbox.AttachmentType}}</td>

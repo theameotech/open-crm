@@ -7,7 +7,7 @@ var app = angular.module('acApp')
         $scope.Vehicleauctioninfo = [];
         $scope.TotalItems = 0;
         $scope.CurrentPage = 1;
-        $scope.PageSize = 50;
+        $scope.PageSize = 20;
 
         $scope.PageChanged = function () {
             $scope.GetAllvechicleinfobyauction();

@@ -8,6 +8,11 @@
             + '&intervalType=' + intervalType + '&page=' + page + '&pageSize=' + pageSize);
     };
 
+
+    buyerService.getBuyerById= function (buyerId) {
+        return $http.get(baseUrl + '/api/buyers/GetBuyer?buyerId=' + buyerId);
+    };
+
     buyerService.searchBuyers = function (page, pageSize, modelmin, modelmax,
         odometermin, odometermax,maxDate,minDate, searchtext) {
 
@@ -21,12 +26,12 @@
             + '&minDate=' + minDate);
     };
 
-    buyerService.updatebuyer = function (currentBuyer) {
-        return $http.post(baseUrl + '/api/buyers/UpdateBuyer', currentBuyer);
+    buyerService.updatebuyer = function (BuyerContact) {
+        return $http.post(baseUrl + '/api/buyers/UpdateBuyer', BuyerContact);
     };
 
-    buyerService.addbuyer = function (currentBuyer) {
-        return $http.post(baseUrl + '/api/buyers/CreateBuyer', currentBuyer);
+    buyerService.addbuyer = function (BuyerContact) {
+        return $http.post(baseUrl + '/api/buyers/CreateBuyer', BuyerContact);
     };
 
     buyerService.getvehicleinfo = function (buyerid, searchtext, modelmin, modelmax,

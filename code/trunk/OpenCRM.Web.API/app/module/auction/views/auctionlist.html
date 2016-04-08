@@ -1,80 +1,113 @@
-﻿ <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-          <h1>
-            Auction
+﻿<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Auction
             <small>Department</small>
-          </h1>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
             <li><a href="#">Tables</a></li>
             <li class="active">Auction Department</li>
-          </ol>
-        </section>
+        </ol>
+    </section>
 
-     <!-- Application buttons -->
-     <section class="content-header">
-          <div class="row">
+    <!-- Application buttons -->
+    <section class="content-header">
+        <div class="row">
             <div class="col-xs-12">
 
-              <div class="box">
-                <div class="box-body">
-                                    <a class="btn btn-app">
-                    <i class="fa fa-edit"></i> Edit
-                  </a>
-                  <a class="btn btn-app">
-                    <i class="fa fa-play"></i> Play
-                  </a>
-                  <a class="btn btn-app">
-                    <i class="fa fa-repeat"></i> Repeat
-                  </a>
-                  <a class="btn btn-app">
-                    <i class="fa fa-pause"></i> Pause
-                  </a>
-                  <a class="btn btn-app">
-                    <i class="fa fa-save"></i> Save
-                  </a>
-                  <a class="btn btn-app">
-                    <span class="badge bg-yellow">3</span>
-                    <i class="fa fa-bullhorn"></i> Notifications
-                  </a>
-                  <a class="btn btn-app">
-                    <span class="badge bg-green">300</span>
-                    <i class="fa fa-barcode"></i> Products
-                  </a>
-                  <a class="btn btn-app">
-                    <span class="badge bg-purple">891</span>
-                    <i class="fa fa-users"></i> Users
-                  </a>
-                  <a class="btn btn-app">
-                    <span class="badge bg-teal">67</span>
-                    <i class="fa fa-inbox"></i> Orders
-                  </a>
-                  <a class="btn btn-app">
-                    <span class="badge bg-aqua">12</span>
-                    <i class="fa fa-envelope"></i> Inbox
-                  </a>
-                  <a class="btn btn-app" ng-click="AddAuction()">                    
-                    <i class="fa fa-gg"></i> Add Auction
-                  </a>
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-                </div></div></section>
-              
+                <div class="box">
+                    <div class="box-body">
+                        <!-- <a class="btn btn-app">
+                            <i class="fa fa-edit"></i>Edit
+                        </a>
+                        <a class="btn btn-app">
+                            <i class="fa fa-play"></i>Play
+                        </a>
+                        <a class="btn btn-app">
+                            <i class="fa fa-repeat"></i>Repeat
+                        </a>
+                        <a class="btn btn-app">
+                            <i class="fa fa-pause"></i>Pause
+                        </a>
+                        <a class="btn btn-app">
+                            <i class="fa fa-save"></i>Save
+                        </a>
+                        <a class="btn btn-app">
+                            <span class="badge bg-yellow">3</span>
+                            <i class="fa fa-bullhorn"></i>Notifications
+                        </a>
+                        <a class="btn btn-app">
+                            <span class="badge bg-green">300</span>
+                            <i class="fa fa-barcode"></i>Products
+                        </a>
+                        <a class="btn btn-app">
+                            <span class="badge bg-purple">891</span>
+                            <i class="fa fa-users"></i>Users
+                        </a>
+                        <a class="btn btn-app">
+                            <span class="badge bg-teal">67</span>
+                            <i class="fa fa-inbox"></i>Orders
+                        </a>
+                        <a class="btn btn-app">
+                            <span class="badge bg-aqua">12</span>
+                            <i class="fa fa-envelope"></i>Inbox
+                        </a>-->
+                        <a class="btn btn-app" ng-click="AddAuction()">
+                            <i class="fa fa-gg"></i>Add Auction
+                        </a>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+    </section>
 
-        <!-- Main content -->
-        <section class="content">
-          <div class="row">
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
             <div class="col-xs-12">
-      
 
-              <div class="box">
-                <div class="box-header">
-                  <h3 class="box-title">Auction List</h3>
-                </div><!-- /.box-header -->
-                <div class="box-body">
-                  <table id="example1" class="table table-bordered table-striped">
-                    <thead>
+
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Auction List</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div>
+                        <label class="label-margin">Show</label>
+                        
+                            <select ng-model="itemsPerPage" ng-change="OnpageChanged()">
+                                <option ng-repeat="item in Pages" ng-selected="itemsPerPage==item.val" value="{{item.val}}">{{item.Text}}</option>
+                            </select>
+                        
+                        <label>entries</label>
+                            </div>
+                        <input type="text" style="float: right; margin-top: -36px;" ng-model="search.Name" />
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Auction Name</th>
+                                    <th>Date</th>
+                                    <th>Platform(s)</th>
+                                    <th>Engine version</th>
+                                    <th>CSS grade</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="auction in phItems | orderBy : '-AuctionDate'|filter: search">
+                                    <td style="padding-left: 15px;"><a href="#/vehicleinfo/{{auction.Id}}">{{auction.Name}} ({{auction.AuctionDate| date}})</a></td>
+                                    <td>{{auction.AuctionDate| date}}</td>
+                                    <td>123</td>
+                                    <td>xyz</td>
+                                    <td>ABC</td>
+                                </tr>
+
+                            </tbody>
+                            <!--<tfoot>
                       <tr>
                         <th>Auction Name</th>
                         <th>Date</th>
@@ -82,37 +115,26 @@
                         <th>Engine version</th>
                         <th>CSS grade</th>
                       </tr>
-                    </thead>
-                    <tbody>
-                     <tr ng-repeat="auction in Auctions | orderBy : '-AuctionDate'">
-                    <td style="padding-left: 15px;"><a href="#/vehicleinfo/{{auction.Id}}">{{auction.Name}} ({{auction.AuctionDate| date}})</a></td>
-                    <td>{{auction.AuctionDate| date}}</td>
-                         <td>123</td>
-                         <td>xyz</td>
-                         <td>ABC</td>
-                </tr>
-                  
-                    </tbody>
-                    <tfoot>
-                      <tr>
-                        <th>Auction Name</th>
-                        <th>Date</th>
-                        <th>Platform(s)</th>
-                        <th>Engine version</th>
-                        <th>CSS grade</th>
-                      </tr>
-                    </tfoot>
-                  </table>
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </section><!-- /.content -->
-      </div><!-- /.content-wrapper -->
-     
+                    </tfoot>-->
+                        </table>
 
+                    </div>
 
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!--<uib-pagination total-items="TotalItems" items-per-page="itemsPerPage"
+            max-size="8" boundary-links="true" ng-model="currentPage" ng-change="OnpageChanged()"></uib-pagination>-->
+        <uib-pagination   total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage" ng-change="OnpageChanged()"></uib-pagination>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
 
+</div>
+<!-- /.content-wrapper -->
 
 <!--<div class="content-wrapper">
     <div>

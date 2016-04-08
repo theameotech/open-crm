@@ -3,16 +3,12 @@
 
         var inboxService = {};
 
-        inboxService.sendEmail = function (inboxModel) {
-            return $http.post(baseUrl + '/api/inbox/SendEmail', inboxModel);
+        inboxService.sendMessage = function (messageModel) {
+            return $http.post(baseUrl + '/api/inbox/SendMessage', messageModel);
         };
 
-        inboxService.getEmails = function (userId, companyId) {
-            return $http.get(baseUrl + '/api/inbox/GetEmails?userId=' + userId + '&companyId=' + companyId);
-        }
-
-        inboxService.flagMail = function (updateIsFlag) {
-            return $http.post(baseUrl + '/api/inbox/FlagEmail', updateIsFlag);
+        inboxService.getEmails = function ( userId, companyId) {
+            return $http.get(baseUrl + '/api/inbox/GetEmails?userId='+ userId +'&companyId='+companyId);
         }
 
         inboxService.deleteEmail = function (deletemail) {

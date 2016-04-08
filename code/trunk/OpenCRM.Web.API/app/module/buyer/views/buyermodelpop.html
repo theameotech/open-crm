@@ -9,25 +9,25 @@
                             <div class="panel-body">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Dealership</label>
-                                    <input type="text" required name="BuyerName" ng-model="BuyerContact.BuyerName" class="form-control" />
+                                    <input type="text" required name="BuyerName" ng-model="BuyerContact.Name" class="form-control" />
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">First Name</label>
-                                    <input type="text" required name="FirstName" ng-model="BuyerContact.FirstName" class="form-control" />
+                                    <input type="text" required name="FirstName" ng-model="BuyerContact.ContactFirstName" class="form-control" />
                                     <span class="field-validation-valid" style="color: red;"
                                         ng-show="buyerForm.FirstName.$invalid && !buyerForm.FirstName.$pristine">First Name is required.
                                     </span>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Last Name</label>
-                                    <input type="text" required name="LastName" ng-model="BuyerContact.LastName" class="form-control" />
+                                    <input type="text" required name="LastName" ng-model="BuyerContact.ContactLastName" class="form-control" />
                                     <span class="field-validation-valid" style="color: red;"
                                         ng-show="buyerForm.LastName.$invalid && !buyerForm.LastName.$pristine">Last Name is required.
                                     </span>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Email</label>
-                                    <input type="email" required name="Email" ng-model="BuyerContact.Email" class="form-control" />
+                                    <input type="email" required name="Email" ng-model="BuyerContact.BuyerEmail" class="form-control" />
                                     <span class="field-validation-valid" style="color: red;"
                                         ng-show="buyerForm.Email.$invalid && !buyerForm.Email.$pristine">Email is required.
                                     </span>
@@ -35,7 +35,7 @@
 
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Address</label>
-                                    <textarea required name="Address" ng-model="BuyerContact.Address" class="form-control"></textarea>
+                                    <textarea required name="Address" ng-model="BuyerContact.BuyerAddress" class="form-control"></textarea>
                                     <span class="field-validation-valid" style="color: red;"
                                         ng-show="buyerForm.Address.$invalid && !buyerForm.Address.$pristine">Address is required.
                                     </span>
@@ -54,7 +54,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" ng-disabled="buyerForm.$invalid " type="button" ng-click="OkButtonClicked()">OK</button>
-                <button class="btn btn-warning" type="button" ng-click="Close()">Cancel</button>
+                <a href="#/leads"><button class="btn btn-warning" type="button">Cancel</button></a>
             </div>
         </form>
     </div>

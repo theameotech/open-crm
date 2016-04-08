@@ -54,6 +54,7 @@
     <Compile Include="CompanyMap.cs" />
     <Compile Include="CountryMap.cs" />
     <Compile Include="DealerShipMap.cs" />
+    <Compile Include="InboxMap.cs" />
     <Compile Include="LogedInUsersMap.cs" />
     <Compile Include="MessageMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

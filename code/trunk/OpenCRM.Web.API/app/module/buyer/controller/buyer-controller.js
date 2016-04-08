@@ -1,8 +1,10 @@
 ﻿
 var app = angular.module('acApp').controller('buyer-controller',
-    ['$scope', '$rootScope', 'buyerService', '$uibModal', 'growl', '$location', 'blockUI', 'baseUrl', '$cookieStore',
-function ($scope, $rootScope, buyerService, $uibModal, growl, $location, blockUI, baseUrl, $cookieStore) {
-
+    ['$scope', '$rootScope', 'buyerService', '$uibModal', 'growl', '$location', 'blockUI', 'baseUrl', '$cookieStore', '$routeParams',
+function ($scope, $rootScope, buyerService, $uibModal, growl, $location, blockUI, baseUrl, $cookieStore, $routeParams) {
+    $scope.BuyerId = 0;
+    if ($routeParams.buyerId !== undefined)
+        $scope.BuyerId = $routeParams.buyerId;
     $scope.Intervals = [{ Name: 'Last 24 hrs', IntervalType: 'DAY' },
         { Name: 'Last One Week', IntervalType: 'WEEK' },
         { Name: 'Last One Month', IntervalType: 'MONTH' },
@@ -13,7 +15,7 @@ function ($scope, $rootScope, buyerService, $uibModal, growl, $location, blockUI
     $scope.TotalItems = 0;
     $scope.CurrentPage = 1;
     $scope.PageSize = 50;
-    $scope.CurrentBuyer = {};
+    //$scope.CurrentBuyer = {};
 
     $scope.PageChanged = function () {
         $scope.GetAllBuyers();
@@ -36,6 +38,21 @@ function ($scope, $rootScope, buyerService, $uibModal, growl, $location, blockUI
         var year = date.getFullYear();
         return day + ' ' + monthNames[monthIndex] + ' ' + year;
     }
+
+
+    $scope.GetBuyer = function () {
+        buyerService.getBuyerById($scope.BuyerId)
+            .then(function (response) {
+                $scope.BuyerContact = response.data;
+                console.log($scope.BuyerContact);
+            }
+            )};
+    if ($scope.BuyerId > 0) {
+        $scope.GetBuyer();
+    }
+   
+  
+
     $scope.GetAllBuyers = function (updatePagination) {
         var blockUIContainer = blockUI.instances.get('block-buyer-form');
         blockUIContainer.start();
@@ -96,25 +113,24 @@ function ($scope, $rootScope, buyerService, $uibModal, growl, $location, blockUI
     };
 
     $scope.OkButtonClicked = function () {
-        $scope.CurrentBuyer.ContactFirstName = angular.copy($scope.BuyerContact.FirstName);
-        $scope.CurrentBuyer.ContactLastName = angular.copy($scope.BuyerContact.LastName);
-        $scope.CurrentBuyer.BuyerEmail = angular.copy($scope.BuyerContact.Email);
-        $scope.CurrentBuyer.ContactPhone = angular.copy($scope.BuyerContact.Phone);
-        $scope.CurrentBuyer.BuyerAddress = angular.copy($scope.BuyerContact.Address);
-        $scope.CurrentBuyer.BuyerPhone = angular.copy($scope.BuyerContact.BuyerPhone);
-        $scope.CurrentBuyer.Name = angular.copy($scope.BuyerContact.BuyerName);
+        //$scope.CurrentBuyer.ContactFirstName = angular.copy($scope.BuyerContact.FirstName);
+        //$scope.CurrentBuyer.ContactLastName = angular.copy($scope.BuyerContact.LastName);
+        //$scope.CurrentBuyer.BuyerEmail = angular.copy($scope.BuyerContact.Email);
+        //$scope.CurrentBuyer.ContactPhone = angular.copy($scope.BuyerContact.Phone);
+        //$scope.CurrentBuyer.BuyerAddress = angular.copy($scope.BuyerContact.Address);
+        //$scope.CurrentBuyer.BuyerPhone = angular.copy($scope.BuyerContact.BuyerPhone);
+        //$scope.CurrentBuyer.Name = angular.copy($scope.BuyerContact.BuyerName);
 
-        if ($scope.CurrentBuyer.Id > 0) {
-            buyerService.updatebuyer($scope.CurrentBuyer)
+        if ($scope.BuyerContact.Id > 0) {
+            buyerService.updatebuyer($scope.BuyerContact)
                 .success(function (response) {
                     growl.success('Buyer has been updated!');
-                    modalInstance.close();
                 }, function () {
                     growl.error('Something went wrong, please try again later.');
                 });
         }
         else {
-            buyerService.addbuyer($scope.CurrentBuyer)
+            buyerService.addbuyer($scope.BuyerContact)
                .success(function (response) {
                    growl.success('Buyer has been added!');
                    modalInstance.close();
@@ -126,38 +142,38 @@ function ($scope, $rootScope, buyerService, $uibModal, growl, $location, blockUI
     };
 
     $scope.BuyerContact = {
-        FirstName: "",
-        LastName: "",
-        Email: "",
-        Phone: "",
-        Address: "",
+        Name:"",
+        ContactFirstName: "",
+        ContactLastName: "",
+        BuyerEmail: "",
+        BuyerAddress: "",
         BuyerPhone: ""
     };
 
-    $scope.OpenBuyerEditPopup = function (buyer) {
-        if (buyer !== undefined) {
-            $scope.CurrentBuyer = buyer;
-            $scope.BuyerContact.FirstName = buyer.ContactFirstName;
-            $scope.BuyerContact.LastName = buyer.ContactLastName;
-            $scope.BuyerContact.Phone = buyer.ContactPhone;
-            $scope.BuyerContact.Address = buyer.BuyerAddress;
-            $scope.BuyerContact.BuyerPhone = buyer.BuyerPhone;
-            $scope.BuyerContact.Email = buyer.BuyerEmail;
-            $scope.BuyerContact.BuyerName = buyer.Name;
-        }
-        modalInstance = $uibModal.open({
-            templateUrl: 'module/buyer/views/buyermodelpop.html',
-            scope: $scope,
-            size: 'md',
-            resolve: {
-                Context: function () {
-                    return {
+    //$scope.OpenBuyerEditPopup = function (buyer) {
+    //    if (buyer !== undefined) {
+    //        $scope.CurrentBuyer = buyer;
+    //        $scope.BuyerContact.FirstName = buyer.ContactFirstName;
+    //        $scope.BuyerContact.LastName = buyer.ContactLastName;
+    //        $scope.BuyerContact.Phone = buyer.ContactPhone;
+    //        $scope.BuyerContact.Address = buyer.BuyerAddress;
+    //        $scope.BuyerContact.BuyerPhone = buyer.BuyerPhone;
+    //        $scope.BuyerContact.Email = buyer.BuyerEmail;
+    //        $scope.BuyerContact.BuyerName = buyer.Name;
+    //    }
+    //    modalInstance = $uibModal.open({
+    //        templateUrl: 'module/buyer/views/buyermodelpop.html',
+    //        scope: $scope,
+    //        size: 'md',
+    //        resolve: {
+    //            Context: function () {
+    //                return {
 
-                    };
-                }
-            }
-        });
-    };
+    //                };
+    //            }
+    //        }
+    //    });
+    //};
 
     $scope.SearhParams = {
         OdoMeterMinValue: 0,
