@@ -167,7 +167,8 @@ namespace OpenCRM.DB.Repository
                                                   where 
                                                   CAST(v.model AS UNSIGNED) between {0} and {1}
                                                   and CAST(v.odometer AS UNSIGNED) between {2} and {3}
-                                                      and (v.model like '%{4}%' or v.odometer like '%{4}%' or v.vin like '%{4}%' or v.name like '%{4}%') 
+                                                      and (v.model like '%{4}%' or v.odometer like '%{4}%' or v.vin like '%{4}%' or v.name like '%{4}%' 
+                                                  or u.name like '%{4}%' or u.buyeraddress like '%{4}%') 
                                                  and UNIX_TIMESTAMP(v.createtime)
 												                BETWEEN UNIX_TIMESTAMP('{5}') AND UNIX_TIMESTAMP('{6}')
                                                       GROUP BY act.buyerid 
