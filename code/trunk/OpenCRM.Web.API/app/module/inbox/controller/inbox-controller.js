@@ -90,11 +90,17 @@ function ($scope, userService, inboxService, $rootScope, $routeParams, $interval
         $scope.counter = 0;
         $scope.length = 0;
         $scope.draftvalue = 0;
+        $scope.deletecounter = 0;
         inboxService.getEmails($scope.inboxeModel.UserID, $scope.inboxeModel.CompanyID)
             .then(function (response) {
                 $scope.length = response.data.length;
                 angular.forEach(response.data, function (item) {
-                    if (item.IsDraft == false) {
+                    if (item.IsTrash == true) {
+                        $scope.deletecounter++;
+
+                    }
+                    if (item.IsDraft == false && item.IsTrash == false) {
+                        
                         $scope.InboxList.push(item);
                         $scope.counter++;
                         console.log($scope.InboxList);
@@ -109,6 +115,7 @@ function ($scope, userService, inboxService, $rootScope, $routeParams, $interval
     };
 
 
+
     $scope.FlagMail = function (inbox) {
         $scope.updateIsFlag = {
             StatusID: inbox.StatusID,
@@ -118,6 +125,37 @@ function ($scope, userService, inboxService, $rootScope, $routeParams, $interval
             .then(function (response) {
             });
     };
+
+    $scope.DeleteItems = [];
+
+    $scope.CheckIsDelete = function (IsChecked, id, index) {
+
+
+        if (IsChecked == true) {
+            $scope.DeleteItems.push(id);
+            console.log($scope.DeleteItems);
+
+        }
+        else {
+
+            $scope.DeleteItems.splice(index, 1);
+            console.log($scope.DeleteItems);
+        }
+
+
+    }
+    $scope.deletevalue = {};
+
+    $scope.DeleteEmails = function () {
+
+
+
+        console.log($scope.deletevalue);
+
+        inboxService.deleteEmail($scope.DeleteItems)
+            .then(function (response) {
+            });
+    }
 
 
 

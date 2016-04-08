@@ -41,7 +41,18 @@ namespace OpenCRM.BusinessManagers.Impl
                 _inbocHelper.FlagEmail(inbox);
                 scope.Complete();
             }
-        
+
+        }
+
+        public void DeleteEmails(string[] inbox)
+        {
+
+
+            using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required))
+            {
+                _inbocHelper.DeleteEmails(inbox);
+                scope.Complete();
+            }
         }
     }
 }

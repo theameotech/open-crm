@@ -1,4 +1,5 @@
-﻿using OpenCRM.DB.DomainObjects;
+﻿using OpenCRM.Common.DTO;
+using OpenCRM.DB.DomainObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,7 @@ namespace OpenCRM.BizLogic.Helpers.Interfaces
       void SendEmail(Inbox inbox);
 
       void FlagEmail(Inbox inbox);
+
+      void DeleteEmails(string[] inbox);
     }
 }

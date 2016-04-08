@@ -14,6 +14,11 @@
         inboxService.flagMail = function (updateIsFlag) {
             return $http.post(baseUrl + '/api/inbox/FlagEmail', updateIsFlag);
         }
+
+        inboxService.deleteEmail = function (deletemail) {
+            console.log(deletemail);
+            return $http.post(baseUrl + '/api/inbox/DeleteEmails', deletemail);
+        }
         return inboxService;
 
     }])
