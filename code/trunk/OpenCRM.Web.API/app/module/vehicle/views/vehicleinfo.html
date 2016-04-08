@@ -13,13 +13,13 @@
         </section>
 
      <!-- Application buttons -->
-     <section class="content-header">
+   <!--  <section class="content-header">
           <div class="row">
             <div class="col-xs-12">
 
               <div class="box">
-                <div class="box-body">
-                                    <a class="btn btn-app">
+                <div class="box-body">-->
+                    <!--                <a class="btn btn-app">
                     <i class="fa fa-edit"></i> Edit
                   </a>
                   <a class="btn btn-app">
@@ -53,13 +53,13 @@
                   <a class="btn btn-app">
                     <span class="badge bg-aqua">12</span>
                     <i class="fa fa-envelope"></i> Inbox
-                  </a>
-                  <a class="btn btn-app">                    
+                  </a>-->
+                 <!-- <a class="btn btn-app">                    
                     <i class="fa fa-gg"></i> Add Auction
-                  </a>
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-                </div></div></section>
+                  </a>-->
+          <!--      </div>--><!-- /.box-body -->
+             <!-- </div>--><!-- /.box -->
+                <!--</div></div></section>-->
               
 
         <!-- Main content -->
@@ -71,8 +71,10 @@
               <div class="box">
                 <div class="box-header">
                   <h3 class="box-title">Vehicle  List</h3>
+                      <input type="text" style="float: right;" ng-model="search.Name" />
                 </div><!-- /.box-header -->
                 <div class="box-body">
+                   
                   <table id="example1" class="table table-bordered table-striped" ng-init="GetAllvechicleinfobyauction()">
                     <thead>
                       <tr>
@@ -84,7 +86,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                     <tr ng-repeat="vehicle in Vehicleauctioninfo | orderBy : '-LastUpdateTime'">
+                     <tr ng-repeat="vehicle in Vehicleauctioninfo | orderBy : '-LastUpdateTime' |filter: search">
                         <td>{{vehicle.Model }}</td>
                         <td style="padding-left: 15px;"><a href="#/bidsinfo/{{vehicle.Id}}">{{vehicle.Name}}</a></td>
                          <td>{{vehicle.Model }}</td>
@@ -93,7 +95,7 @@
                     </tr>
                   
                     </tbody>
-                    <tfoot>
+                    <!--<tfoot>
                       <tr>
                         <th>Year</th>
                         <th>Make</th>
@@ -101,18 +103,19 @@
                         <th>Odometer</th>
                         <th>VIN</th>
                       </tr>
-                    </tfoot>
+                    </tfoot>-->
                   </table>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div><!-- /.col -->
           </div><!-- /.row -->
         </section><!-- /.content -->
+    <!--   <uib-pagination total-items="TotalItems" items-per-page="PageSize" max-size="8" boundary-links="true"
+             ng-model="CurrentPage" ng-change="PageChanged()"></uib-pagination>-->
+
+     <uib-pagination   total-items="TotalItems" items-per-page="PageSize" ng-model="CurrentPage" ng-change="PageChanged()"></uib-pagination>
       </div><!-- /.content-wrapper -->
      
-
-
-
 
 <!--<div class="content-wrapper">
     <div block-ui="block-vehcle-form">

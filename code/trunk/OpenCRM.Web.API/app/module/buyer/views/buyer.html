@@ -1,5 +1,4 @@
-﻿
-<div class="content-wrapper">
+﻿<div class="content-wrapper">
     <div block-ui="block-buyer-form">
         <form name="buyerform" novalidate>
             <!--  <div class="col-lg-3">
@@ -10,69 +9,61 @@
             <div>
                 <img id="mySpinner" src="app/images/spinner.gif" ng-show="loading" />
             </div>
-            <div style="float: right">
-                <button class="btn btn-primary" ng-click="OpenBuyerEditPopup()">Add Buyer</button>
-            </div>
+
             <div style="clear: both;"></div>
 
-            <div class="panel panel-default" style="margin-top: 10px;">
-                <h4 style="padding-left: 15px;">Search By Vehicle</h4>
-                <div class="row" style="padding-left: 15px;">
-                    <div class="col-md-2">
-                        <div class="form-group" style="margin-top: 10px;">
-                            <label>Search Text</label>
-                            <!--<span class="glyphicon glyphicon-search"></span>-->
-                            <input type="text" class="form-control" ng-model="$parent.SearchText" placeholder="Search Here..." />
-                        </div>
-                    </div>
+            <section class="content-header">
+                <div class="row">
+                    <div class="col-xs-12">
 
-
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label>Odometer Range</label>
-                            <div range-slider model-min="SearhParams.OdoMeterMinValue" model-max="SearhParams.OdoMeterMaxValue"
-                                min="SearhRange.OdoMeterMinValue" max="SearhRange.OdoMeterMaxValue"
-                                show-values="true">
+                        <div class="box">
+                            <div class="box-body">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Search Text</label>
+                                        <input type="text" class="form-control" ng-model="$parent.SearchText" placeholder="Search Here..." />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Date Range</label>
+                                        <div style="margin-top: 10px;">
+                                            <input type="text" id="Text2" date-range-picker
+                                                class="form-control" ng-model="DateHelper.SelectedDate" style="z-index: 0;" />
+                                            <span class="input-group-btn"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label></label>
+                                        <button class="btn btn-primary" ng-click="OnFilterButtonClicked()">Filter</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Odometer Range</label>
+                                        <input type="text" ion-range ng-model="Range"
+                                            min-val="SearhRange.OdoMeterMinValue"
+                                            max-val="SearhRange.OdoMeterMaxValue" from-val="SearhRange.OdoMeterMinValue" to-val="SearhRange.OdoMeterMaxValue"
+                                            model-min="SearhParams.OdoMeterMinValue" model-max="SearhParams.OdoMeterMaxValue" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Model Year Range</label>
+                                        <input type="text" ion-range ng-model="Range"
+                                            min-val="SearhRange.ModelMinValue"
+                                            max-val="SearhRange.ModelMaxValue" from-val="SearhRange.ModelMinValue" to-val="SearhRange.ModelMaxValue"
+                                            model-min="SearhParams.ModelMinValue" model-max="SearhParams.ModelMaxValue" />
+                                    </div>
+                                </div>
+                                 <div style="float: right">
+                                <!--<button class="btn btn-primary" ng-click="OpenBuyerEditPopup()">Add Buyer</button>-->
+                                <a href="#/leadsInfo">
+                                    <button class="btn btn-primary">Add Buyer</button></a>
                             </div>
-                        </div>
-                    </div>
-
-
-
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label>Model Range</label>
-                            <div range-slider model-min="SearhParams.ModelMinValue" model-max="SearhParams.ModelMaxValue"
-                                min="SearhRange.ModelMinValue" max="SearhRange.ModelMaxValue"
-                                show-values="true">
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label>Date Range</label>
-                            <div style="margin-top: 10px;">
-                                <input type="text" id="LastUpdateDate" date-range-picker
-                                    class="form-control" ng-model="DateHelper.SelectedDate" style="z-index: 0;" />
-                                <span class="input-group-btn"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-2">
-                        <div class="form-group" style="padding-top: 35px; margin-left: 20px;">
-                            <label></label>
-                            <button class="btn btn-primary" ng-click="OnFilterButtonClicked()">Filter</button>
-
+                            <!-- /.box -->
+                           
                         </div>
 
                     </div>
-                </div>
-
-
-            </div>
-
+            </section>
 
             <div class="col-md-12" ng-show="ShowRecords" style="text-align: right; margin-top: -30px;">
                 <br />
@@ -88,101 +79,138 @@
 
             <div style="clear: both;"></div>
 
-            <div ng-show="showMessage" style="margin-left: 414px;">
-                <h3>Click on filter button to Continue....</h3>
-            </div>
-            <div ng-show="ShowRecords" style="width: 100%; padding: 5px; margin-top: 10px;">
-
-                <div style="width: 20%;" class="headerCol">
-                    Dealership
-                </div>
-                <div class="headerCol" style="width: 10%;">
-                    First Name
-                </div>
-                <div class="headerCol" style="width: 10%;">
-                    Last Name
-                </div>
-                <div class="headerCol" style="width: 20%;">
-                    Email
-                </div>
-                <div class="headerCol" style="width: 20%;">
-                    Address
-                </div>
-                <div class="headerCol" style="width: 10%;">
-                    Phone
-                </div>
-                <div class="headerCol" style="width: 10%;">
-                    Action
-                </div>
+            <section class="content">
+                <div class="row">
+                    <div class="col-xs-12">
 
 
-                <div style="clear: both;"></div>
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">Buyer List</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+
+                                <div ng-show="showMessage" style="margin-left: 414px;">
+                                    <h3>Click on filter button to Continue....</h3>
+                                </div>
+                                <div ng-show="ShowRecords" style="width: 100%; padding: 5px; margin-top: 10px;">
+
+                                    <div style="width: 20%;" class="headerCol">
+                                        Dealership
+                                    </div>
+                                    <div class="headerCol" style="width: 10%;">
+                                        First Name
+                                    </div>
+                                    <div class="headerCol" style="width: 10%;">
+                                        Last Name
+                                    </div>
+                                    <div class="headerCol" style="width: 20%;">
+                                        Email
+                                    </div>
+                                    <div class="headerCol" style="width: 20%;">
+                                        Address
+                                    </div>
+                                    <div class="headerCol" style="width: 10%;">
+                                        Phone
+                                    </div>
+                                    <div class="headerCol" style="width: 10%;">
+                                        Action
+                                    </div>
 
 
-                <div ng-repeat="buyer in MostActiveBuyers | orderBy : '-CreateTime'" ng-class="{'backHighlighted': buyer.HasVehicleInfodata}">
+                                    <div style="clear: both;"></div>
 
-                    <div style="width: 20%;" class="datCol">
-                        <a href="javascript:void(0)" uib-tooltip="Click to expand vehicle info" ng-click="getBuyerInfo(buyer)">{{buyer.Name}}</a>
-                        <img src="images/spinner.gif" ng-show="buyer.Loading" style="height: 15px; width: 15px;" />
 
+                                    <div ng-repeat="buyer in MostActiveBuyers | orderBy : '-CreateTime'" ng-class="{'backHighlighted': buyer.HasVehicleInfodata}">
+
+                                        <div style="width: 20%;" class="datCol">
+                                            <a href="javascript:void(0)" uib-tooltip="Click to expand vehicle info" ng-click="getBuyerInfo(buyer)">{{buyer.Name}}</a>
+                                            <img src="images/spinner.gif" ng-show="buyer.Loading" style="height: 15px; width: 15px;" />
+
+                                        </div>
+                                        <div class="datCol" style="width: 10%;">
+                                            {{buyer.ContactFirstName }} 
+                                        </div>
+
+                                        <div class="datCol" style="width: 10%;">
+                                            {{ buyer.ContactLastName}}
+                                        </div>
+
+                                        <div class="datCol" style="width: 20%;">
+                                            {{buyer.BuyerEmail}}
+
+                                        </div>
+                                        <div class="datCol" style="width: 20%;">
+                                            {{buyer.BuyerAddress}}
+                                        </div>
+                                        <div class="datCol" style="width: 10%;">
+                                            {{buyer.BuyerPhone}}
+                                        </div>
+
+                                        <div class="datCol" style="width: 10%;">
+                                            <!--<button class="btn btn-primary" ng-click="OpenBuyerEditPopup(buyer)">Edit</button>-->
+                                            <a href="#/leadsInfo/{{buyer.Id}}">
+                                                <button class="btn btn-primary">Edit</button></a>
+                                        </div>
+
+                                        <div style="clear: both;"></div>
+
+                                        <div ng-show="buyer.HasVehicleInfodata">
+                                            <h4>Total bids from buyer : {{totalrecords}}</h4>
+                                            <table class="table" style="background-color: white !important;">
+                                                <tr>
+                                                    <th>Year</th>
+                                                    <th>Make</th>
+                                                    <th>Model</th>
+                                                    <th>Vehicle Odometer</th>
+                                                    <th>Vehicle VIN</th>
+                                                    <th>Amount</th>
+                                                    <th>Bid Type</th>
+                                                    <th>Auction Date</th>
+                                                </tr>
+                                                <tr ng-repeat="vehicle in buyer.Vehiclebuyerinfo | orderBy : '-AuctionDate'">
+                                                    <td>{{vehicle.Model}}</td>
+                                                    <td>{{vehicle.Name }}</td>
+                                                    <td>&nbsp</td>
+                                                    <td>{{vehicle.Odometer | number}}</td>
+                                                    <td>{{vehicle.Vin}}</td>
+                                                    <td>{{vehicle.Amount}}</td>
+                                                    <td>{{vehicle.Type}}</td>
+                                                    <td>{{vehicle.AuctionDate | date}}</td>
+                                                </tr>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="datCol" style="width: 10%;">
-                        {{buyer.ContactFirstName }} 
-                    </div>
-
-                    <div class="datCol" style="width: 10%;">
-                        {{ buyer.ContactLastName}}
-                    </div>
-
-                    <div class="datCol" style="width: 20%;">
-                        {{buyer.BuyerEmail}}
-
-                    </div>
-                    <div class="datCol" style="width: 20%;">
-                        {{buyer.BuyerAddress}}
-                    </div>
-                    <div class="datCol" style="width: 10%;">
-                        {{buyer.BuyerPhone}}
-                    </div>
-
-                    <div class="datCol" style="width: 10%;">
-                        <button class="btn btn-primary" ng-click="OpenBuyerEditPopup(buyer)">Edit</button>
-                    </div>
-
                     <div style="clear: both;"></div>
-
-                    <div ng-show="buyer.HasVehicleInfodata">
-                        <h4>Total bids from buyer : {{totalrecords}}</h4>
-                        <table class="table" style="background-color: white !important;">
-                            <tr>
-                                <th>Year</th>
-                                <th>Make, Model</th>
-                                <th>Vehicle Odometer</th>
-                                <th>Vehicle VIN</th>
-                                <th>Amount</th>
-                                <th>Bid Type</th>
-                                <th>Auction Date</th>
-                            </tr>
-                            <tr ng-repeat="vehicle in buyer.Vehiclebuyerinfo | orderBy : '-AuctionDate'">
-                                <td>{{vehicle.Model}}</td>
-                                <td>{{vehicle.Name }}</td>
-                                <td>{{vehicle.Odometer | number}}</td>
-                                <td>{{vehicle.Vin}}</td>
-                                <td>{{vehicle.Amount}}</td>
-                                <td>{{vehicle.Type}}</td>
-                                <td>{{vehicle.AuctionDate | date}}</td>
-                            </tr>
-                        </table>
-
-                    </div>
                 </div>
 
-                <div style="clear: both;"></div>
-            </div>
-
-            <uib-pagination total-items="TotalItems" items-per-page="PageSize" ng-show="ShowRecords"
-                max-size="8" boundary-links="true" ng-model="$parent.CurrentPage" ng-change="PageChanged()"></uib-pagination>
-
+                <uib-pagination total-items="TotalItems" items-per-page="PageSize" ng-show="ShowRecords"
+                    max-size="8" boundary-links="true" ng-model="$parent.CurrentPage" ng-change="PageChanged()"></uib-pagination>
         </form>
     </div>
 </div>
+
+<!-- <script>
+         $(function () {
+             /* ION SLIDER */
+             $("#range_1").ionRangeSlider({
+                 min: 0,
+                 max: 5000,
+                 from: 1000,
+                 to: 4000,
+                 type: 'double',
+                 step: 1,
+                 prefix: "$",
+                 prettify: false,
+                 hasGrid: true
+             });
+
+
+         });
+    </script>-->

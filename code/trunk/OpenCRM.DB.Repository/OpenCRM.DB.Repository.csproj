@@ -54,11 +54,13 @@
     <Compile Include="Impl\CompanyRepo.cs" />
     <Compile Include="Impl\BidsRepo.cs" />
     <Compile Include="Impl\CountryRepo.cs" />
+    <Compile Include="Impl\InboxRepocs.cs" />
     <Compile Include="Impl\VehicleRepo.cs" />
     <Compile Include="Impl\DealerShipRepo.cs" />
     <Compile Include="Impl\MessageRepo.cs" />
     <Compile Include="Interfaces\ICountryRepo.cs" />
     <Compile Include="Interfaces\IDealerRepo.cs" />
+    <Compile Include="Interfaces\IInboxRepo.cs" />
     <Compile Include="Interfaces\IVehicleRepo.cs" />
     <Compile Include="Interfaces\IBidsRepo.cs" />
     <Compile Include="Interfaces\IAuctionRepo.cs" />

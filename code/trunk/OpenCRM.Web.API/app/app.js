@@ -17,21 +17,19 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
         $rootScope.globals = $cookieStore.get('globals') || ''
         $cookieStore.IsAdmin = $cookieStore.get('IsAdmin');
         $rootScope.IsAdmin = $cookieStore.get('IsAdmin');
-        //  $cookieStore.UserName = $cookieStore.get('UserName');
+        //$cookieStore.userName = $cookieStore.get('UserName');
         $cookieStore.FirstName = $cookieStore.get('FirstName');
         $cookieStore.LastName = $cookieStore.get('LastName');
         $cookieStore.UserId = $cookieStore.get('UserId');
         $cookieStore.CompanyId = $cookieStore.get('CompanyId');
         $cookieStore.CreateTime = $cookieStore.get('CreateTime');
-        $cookieStore.EmailId = $cookieStore.get('EmailId');
 
-        // $rootScope.userName = $cookieStore.UserName;
+        //$rootScope.userName = $cookieStore.userName;
         $rootScope.FirstName = $cookieStore.FirstName;
         $rootScope.LastName = $cookieStore.LastName;
         $rootScope.UserId = $cookieStore.UserId;
         $rootScope.CompanyId = $cookieStore.CompanyId;
         $rootScope.CreateTime = $cookieStore.CreateTime;
-        $rootScope.EmailId = $cookieStore.EmailId;
 
         $rootScope.Logout = function () {
             $rootScope.shownavbar = false;
@@ -60,7 +58,7 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
 
         //};
         $rootScope.passwordStrength = {
-
+           
         };
 
 
@@ -109,10 +107,11 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
                 });
         };
 
-        if ($rootScope.UserId > 0) {
+        if ($rootScope.UserId > 0)
+        {
             $rootScope.GetRoles();
         }
-
+ 
 
         $rootScope.UsersList = [];
         $rootScope.GetAllUsers = function () {
@@ -279,6 +278,27 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
                  }
              }
          })
+
+        .when('/leadsInfo', {
+            templateUrl: 'module/buyer/views/buyermodelpop.html',
+            controller: 'buyer-controller',
+            resolve: {
+                setPageTitle: function ($rootScope) {
+                    $rootScope.PageTitle = "Leads Info";
+                }
+            }
+        })
+
+
+        .when('/leadsInfo/:buyerId', {
+            templateUrl: 'module/buyer/views/buyermodelpop.html',
+            controller: 'buyer-controller',
+            resolve: {
+                setPageTitle: function ($rootScope) {
+                    $rootScope.PageTitle = "Leads Info";
+                }
+            }
+        })
            .when('/vehicleinfo/:id', {
                templateUrl: 'module/vehicle/views/vehicleinfo.html',
                controller: 'vehicle-controller',
@@ -315,6 +335,15 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
                  }
              }
          })
+         .when('/inbox', {
+             templateUrl: 'module/inbox/views/inbox.html',
+             controller: 'inbox-controller',
+             resolve: {
+                 setPageTitle: function ($rootScope) {
+                     $rootScope.PageTitle = "Inbox";
+                 }
+             }
+         })
 
         .when('/admin/user', {
             templateUrl: 'module/user/views/userlist.html',
@@ -343,34 +372,7 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
                  }
              }
          })
-        .when('/inbox', {
-            templateUrl: 'module/inbox/views/inbox.html',
-            controller: 'inbox-controller',
-            resolve: {
-                setPageTitle: function ($rootScope) {
-                    $rootScope.PageTitle = "inbox";
-                }
-            }
-        })
-        .when('/draft', {
-            templateUrl: 'module/inbox/views/draft.html',
-            controller: 'draft-controller',
-            resolve: {
-                setPageTitle: function ($rootScope) {
-                    $rootScope.PageTitle = "draft";
-                }
-            }
-        })
 
-        .when('/compose', {
-            templateUrl: 'module/inbox/views/compose.html',
-            controller: 'inbox-controller',
-            resolve: {
-                setPageTitle: function ($rootScope) {
-                    $rootScope.PageTitle = "Compose";
-                }
-            }
-        })
 
         .when('/sales', {
             templateUrl: 'module/sales/views/sales.html',
