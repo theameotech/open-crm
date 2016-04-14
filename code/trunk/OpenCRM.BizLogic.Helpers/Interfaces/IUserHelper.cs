@@ -20,6 +20,6 @@ namespace OpenCRM.BizLogic.Helpers.Interfaces
       IList<Roles> GetUserRole(int userId);
 
       void DeleteUser(int userId);
-     
+      void UpdatePassword(User user);
     }
 }

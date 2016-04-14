@@ -11,6 +11,7 @@ namespace OpenCRM.BizLogic.Helpers.Interfaces
  public  interface ICompanyHelper
     {
      HttpResult AddCompany(Company company);
+    Company GetCompanieById(int userId);
 
     }
 }

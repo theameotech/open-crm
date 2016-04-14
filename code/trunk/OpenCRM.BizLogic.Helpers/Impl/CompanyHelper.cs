@@ -2,9 +2,11 @@
 using OpenCRM.Common.DTO;
 using OpenCRM.DB.DomainObjects;
 using OpenCRM.DB.Repository;
+using SendGrid;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,9 +15,11 @@ namespace OpenCRM.BizLogic.Helpers.Impl
    public class CompanyHelper:ICompanyHelper
     {
        private ICompanyRepo _companyRepo;
-       public CompanyHelper(ICompanyRepo companyRepo) 
+       private IUserRepo _userRepo;
+       public CompanyHelper(ICompanyRepo companyRepo, IUserRepo userRepo) 
        {
            _companyRepo = companyRepo;
+           _userRepo = userRepo;
        }
        public HttpResult AddCompany(Company company)
         {
@@ -59,9 +63,28 @@ namespace OpenCRM.BizLogic.Helpers.Impl
             compny.CompanyState = company.CompanyState;
             compny.CompanyZipCode = company.CompanyZipCode;
             compny.CompanyCountry = company.CompanyCountry;
+            SendGridMessage myMessage = new SendGridMessage();
+            myMessage.AddTo(compny.BusinessEmail);
+            myMessage.From = new MailAddress("Support@openCrm.com", "OpenCRM Supprot");
+            myMessage.Subject = "Testing the SendGrid Library";
+            myMessage.Text = "Hi Welcome to OpenCRM";
+            // Create a Web transport, using API Key
+            var transportWeb = new SendGrid.Web("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");
+            transportWeb.DeliverAsync(myMessage);
             _companyRepo.Add(compny);
 
             return new HttpResult("Created Successfully!", true);
         }
+
+
+
+
+
+       public Company GetCompanieById(int userId)
+       {
+           var user = _userRepo.Get(x => x.Id == userId);
+           var company = _companyRepo.Get(x => x.CompanyID == user.CompanyId);
+           return company;
+       }
     }
 }

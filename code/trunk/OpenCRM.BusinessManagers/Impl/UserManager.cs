@@ -71,5 +71,22 @@ namespace OpenCRM.BusinessManagers.Impl
                 }
             }
         }
+
+
+      public  void UpdatePassword(User user)
+        {
+            using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required))
+            {
+                try
+                {
+                    _userHelper.UpdatePassword(user);
+                    scope.Complete();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
     }
 }

@@ -1,133 +1,230 @@
-﻿
-    <div>
-        <h2 class="text-center">Company Signup</h2>
-
-        <form id="registerform" class="form-register">
-            <div class="col-2">
-                <label>
-                    Company Name
-      <input ng-model="CompanyModel.CompanyName" class="validate[required] text-input" placeholder="Company Name">
-                </label>
-            </div>
-            <div class="col-2">
-                <label>
-                    Company Type
-      <input ng-model="CompanyModel.CompanyType" class="validate[required] text-input" placeholder="Company Type" id="company" name="company" tabindex="2">
-                </label>
-            </div>
-
-            <div class="col-3">
-                <label>
-                    Address
-      <input ng-model="CompanyModel.CompanyAddress" class="validate[required] text-input" placeholder="Address" id="phone" name="phone" tabindex="3">
-                </label>
-            </div>
-            <div class="col-3">
-                <label>
-                    City
-      <input ng-model="CompanyModel.CompanyCity" class="validate[required] text-input" placeholder="City" tabindex="4">
-                </label>
-            </div>
-            <div class="col-3">
-                <label>
-                    State
-                <input ng-model="CompanyModel.CompanyState" class="validate[required] text-input" type="State" placeholder="State">
-                </label>
-
-            </div>
-
-            <div class="col-4">
-                <label>
-                    Country
-                  <select data-ng-model="CompanyModel.CompanyCountry" name="CompanyCountry" class="form-control">
-                      <option ng-repeat="cnt in Countries" value="{{cnt.Name}}">{{cnt.Name}}</option>
-                  </select>
-                </label>
-            </div>
-            <div class="col-4">
-                <label>
-                    Zip Code
-      <input ng-model="CompanyModel.CompanyZipCode" class="validate[required] text-input" placeholder="  Zip Code" id="experience" name="experience" tabindex="7">
-                </label>
-            </div>
-            <div class="col-4">
-                <label>
-                    Phone Number
-             <input ng-model="CompanyModel.CompanyPhone" class="validate[required] text-input" placeholder="Phone Number" id="Text2" name="experience" tabindex="7" mask='(999) 999-9999'
-                 placeholder="(xxx) xxx-xxxx"><!--<input type="checkbox" class="js-switch"></input>-->
-                </label>
-            </div>
-            <div class="col-4 switch">
-                <label>
-                    Business Email
-            <input type="email" ng-model="CompanyModel.BusinessEmail" placeholder=" Business Email" class="validate[required] text-input"><!--<input type="checkbox" class="js-switch"></input>-->
-                </label>
-            </div>
-            <div class="col-4 switch">
-                <label>
-                    Company Admin Username
-            <input ng-model="CompanyModel.CompanyAdmin" placeholder="Company Admin Username" class="validate[required] text-input"><!--<input type="checkbox" class="js-switch"></input>-->
-                </label>
-            </div>
-            <div class="col-4 switch">
-               <!-- <div  ng-style="passwordStrength" style="color:#fff;font-size:13px;"><b>{{status}}</b></div>-->
-                <label  ng-style="passwordStrength">
-                    Password
-            <input type="password" ng-model="CompanyModel.AdminPassword" ng-change="analyze(CompanyModel.AdminPassword)" placeholder="Password" class="validate[required] text-input"><!--<input type="checkbox" class="js-switch"></input>-->
-                    
-                </label>
-            </div>
-            <div class="col-4 switch">
-                <label>
-                    Confirm Password
-            <input type="password"
-                name="ConfirmPassword"
-                ng-blur="Confirmpassword()"
-                ng-keyup="ConfirmpasswordChanged()"
-                ng-model="CompanyModel.ConfirmPassword"
-                placeholder="Confirm Password"
-                class="validate[required] text-input" />
-                    <div ng-show="ConfirmepasswordStatus" style="color: red;">
-                        <span>password does not match</span>
+﻿<!--   <div class="col-md-8">
+        <div class="company-register-body">
+            <form id="registerform">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            <label>Company Name</label>
+                            <input class="form-control validate[required] text-input" ng-model="CompanyModel.CompanyName" placeholder="Company Name">
+                        </div>
+                        <!--<div class="form-group has-feedback">
+                        <label>Company Type</label>
+                        <input type="text" class="form-control validate[required] text-input" ng-model="CompanyModel.CompanyType" placeholder="Company Type" id="Passwod">
+                    </div>-->
+<!--   <div class="form-group has-feedback">
+                            <label>Address</label>
+                            <input class="form-control validate[required] text-input" ng-model="CompanyModel.CompanyAddress" placeholder="Address">
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label>City</label>
+                            <input type="text" class="form-control validate[required] text-input" ng-model="CompanyModel.CompanyCity" placeholder="City">
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label>State</label>
+                            <input type="text" class="form-control validate[required] text-input" ng-model="CompanyModel.CompanyState" placeholder="state">
+                        </div>-->
+<!--   <div class="form-group has-feedback">
+                        <label>Country</label>
+                        <select data-ng-model="CompanyModel.CompanyCountry" name="CompanyCountry" class="form-control">
+                            <option ng-repeat="cnt in Countries" value="{{cnt.Name}}">{{cnt.Name}}</option>
+                        </select>
+                    </div>-->
+<!--  <div class="form-group has-feedback">
+                            <label>ZipCode</label>
+                            <input type="text" class="form-control validate[required] text-input" ng-model="CompanyModel.CompanyZipCode" placeholder="ZipCode">
+                        </div>
                     </div>
-                </label>
+
+
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            <label>Phone Number</label>
+                            <input ng-model="CompanyModel.CompanyPhone" class=" form-control validate[required] text-input" placeholder="Phone Number" id="Text1" name="experience" tabindex="7" mask='(999) 999-9999'
+                                placeholder="(xxx) xxx-xxxx">
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label>Bussiness Email</label>
+                            <input type="email" class="form-control validate[required] text-input" ng-model="CompanyModel.BusinessEmail" placeholder="Bussiness Email" id="Password2">
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label>Company Admin Username</label>
+                            <input type="text" class="form-control validate[required] text-input" ng-model="CompanyModel.CompanyAdmin" placeholder="Admin">
+                        </div>
+                        <div class="form-group has-feedback" ng-style="passwordStrength" style="color: #fff; font-size: 13px;">
+                            <b>{{status}}</b>
+                            <label ng-style="passwordStrength">Password</label>
+                            <input type="password" class="form-control validate[required] text-input" ng-change="analyze(CompanyModel.AdminPassword)" ng-model="$parent.CompanyModel.AdminPassword" placeholder="Password">
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label>Comfirm Password</label>
+                            <input type="password"
+                                name="ConfirmPassword"
+                                ng-blur="Confirmpassword()"
+                                ng-keyup="ConfirmpasswordChanged()"
+                                ng-model="CompanyModel.ConfirmPassword"
+                                placeholder="Confirm Password"
+                                class="form-control validate[required] text-input" />
+                            <div ng-show="ConfirmepasswordStatus" style="color: red;">
+                                <span>password does not match</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </form>
+            <div class="sign-footer">
+                <div class="form-group1">
+                    <div class="callout callout-info no-margin">
+                        <p class="text-muted">To confirm and activate your new account, we will need to send the activation code to your e-mail.</p>
+                    </div>
+                </div>
+                <div class="form-group1 col-sm-6">
+                    <div class="ckbox ckbox-theme">
+                        <input id="Checkbox1" value="1" type="checkbox">
+                        <label for="term-of-service" class="rounded">I agree with <a href="#">Term Of Service</a></label>
+                    </div>
+                    <div class="ckbox ckbox-theme">
+                        <input id="Checkbox2" value="1" type="checkbox">
+                        <label for="newsletter" class="rounded">Send me newsletter</label>
+                    </div>
+                </div>
+                <div class="form-group1 col-sm-6">
+                    <input ng-model="valu" type="text" style="width: 4em; text-align: center;">
+                    +
+ <span>{{sval}}</span> = 
+ <span>{{fval}}</span>
+                </div>
+                <div class="col-sm-12">
+                <div class="form-group1 col-sm-6">
+                    <button type="submit" class="btn btn-theme btn-lg btn-block no-margin rounded log-btnregister" ng-click="CreateCompany()">Sign Up</button>
+                </div>
+                <div class="form-group1 col-sm-6">
+                    <button type="submit" class="btn btn-theme btn-lg btn-block no-margin rounded log-btnregister" ng-click="">Cancel</button>
+                </div>
+                    </div>
+            </div>
+            <div class="col-sm-12">
+            <p class="text-muted text-center sign-link">Already have an account? <a href="#/login">Sign in here</a></p></div>
+        </div>
+    </div>-->
+
+<div class="register-box">
+    <div class="register-logo">
+        <a href="#"><b>Open</b>CRM</a>
+    </div>
+
+    <div class="register-box-body" style="height: 540px;background: #fff; margin-bottom:20px;">
+        <p class="login-box-msg">Signup New Company</p>
+        <form id="registerform" class="col-md-12">
+            <div class="col-md-6">
+                <div class="form-group has-feedback">
+                    <input class="form-control validate[required] text-input" ng-model="CompanyModel.CompanyName" placeholder="Company Name">
+                </div>
+               <!-- <div class="form-group has-feedback">
+                   <input type="text" class="form-control validate[required] text-input" ng-model="CompanyModel.CompanyType" placeholder="Company Type" id="Passwod">
+                </div>-->
+                <div class="form-group has-feedback">
+                    <input class="form-control validate[required] text-input" ng-model="CompanyModel.CompanyAddress" placeholder="Address">
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control validate[required] text-input" ng-model="CompanyModel.CompanyCity" placeholder="City">
+                </div>
+                  <div class="form-group has-feedback">
+                  <input type="text" class="form-control validate[required] text-input" ng-model="CompanyModel.CompanyState" placeholder="state">
+                </div>
+
+               <!--    <div class="form-group has-feedback">
+                  <select data-ng-model="CompanyModel.CompanyCountry" name="CompanyCountry" class="form-control">
+                            <option ng-repeat="cnt in Countries" value="{{cnt.Name}}">{{cnt.Name}}</option>
+                        </select>
+                </div>-->
+                   <div class="form-group has-feedback">
+                 <input type="text" class="form-control validate[required] text-input" ng-model="CompanyModel.CompanyZipCode" placeholder="ZipCode">
+                </div>
+
+
+                <div class="form-group col-md-12">
+                    <span class="col-md-6">
+                    <input ng-model="valu" type="text" class="form-control">
+                        </span>
+                    <span class="col-md-6">
+                    +
+ <span>{{sval}}</span> = 
+ <span>{{fval}}</span>
+                        </span>
+                </div>
+
+
+
+            </div>
+            <div class="col-md-6">
+                <div class="form-group has-feedback">
+                     <input ng-model="CompanyModel.CompanyPhone" class=" form-control validate[required] text-input" placeholder="Phone Number" id="Text1" name="experience" tabindex="7" mask='(999) 999-9999' placeholder="(xxx) xxx-xxxx">
+                </div>
+                <div class="form-group has-feedback">
+                     <input type="email" class="form-control validate[required] text-input" ng-model="CompanyModel.BusinessEmail" placeholder="Bussiness Email" id="Password2">
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control validate[required] text-input" ng-model="CompanyModel.CompanyAdmin" placeholder="Admin">
+                </div>
+                <div class="form-group has-feedback" ng-style="passwordStrength" style="color: #fff; font-size: 13px;">
+                    <b>{{status}}</b>
+                    <input type="password" class="form-control validate[required] text-input" ng-change="analyze(CompanyModel.AdminPassword)" ng-model="CompanyModel.AdminPassword" placeholder="Password">
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password"
+                                name="ConfirmPassword"
+                                ng-blur="Confirmpassword()"
+                                ng-keyup="ConfirmpasswordChanged()"
+                                ng-model="CompanyModel.ConfirmPassword"
+                                placeholder="Confirm Password"
+                                class="form-control validate[required] text-input" />
+                            <div ng-show="ConfirmepasswordStatus" style="color: red;">
+                                <span>password does not match</span>
+                            </div>
+                </div>
+
+
+
             </div>
 
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="ckbox ckbox-theme">
+                        <input id="Checkbox1" value="1" type="checkbox">
+                        <label for="term-of-service" class="rounded">I agree with <a href="#">Term Of Service</a></label>
+                    </div>
+                    <div class="ckbox ckbox-theme">
+                        <input id="Checkbox2" value="1" type="checkbox">
+                        <label for="newsletter" class="rounded">Send me newsletter</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <p class="text-muted">To confirm and activate your new account, we will need to send the activation code to your e-mail.</p>
+                </div>
+            </div>
+
+         
+                <div class="col-sm-12">
+                    <div class="form-group col-sm-6">
+                        <button type="submit" class="btn btn-block btn-primary" ng-click="CreateCompany()">Sign Up</button>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <button type="submit" class="btn btn-block btn-primary" ng-click=" cancel()">Cancel</button>
+                    </div>
+                </div>
+          
+            <div class="col-sm-12">
+                <p class="text-muted text-center sign-link">Already have an account? <a href="#/login">Sign in here</a></p>
+            </div>
         </form>
 
     </div>
-    <div class="sign-footer">
-        <div class="form-group1">
-            <div class="callout callout-info no-margin">
-                <p class="text-muted">To confirm and activate your new account, we will need to send the activation code to your e-mail.</p>
-            </div>
-        </div>
-        <div class="form-group1">
-            <div class="ckbox ckbox-theme">
-                <input id="term-of-service" value="1" type="checkbox">
-                <label for="term-of-service" class="rounded">I agree with <a href="#">Term Of Service</a></label>
-            </div>
-            <div class="ckbox ckbox-theme">
-                <input id="newsletter" value="1" type="checkbox">
-                <label for="newsletter" class="rounded">Send me newsletter</label>
-            </div>
-        </div>
-        <br>
-        <br>
-        <input ng-model="valu"    type="text" style="width: 4em; text-align: center;">
-        +
- <span>{{sval}}</span> = 
- <span>{{fval}}</span>
+<!-- /.form-box -->
+</div>
+<!-- /.register-box -->
 
-        <div class="form-group1">
-            <button type="submit" class="btn btn-theme btn-lg btn-block no-margin rounded log-btnregister" ng-click="CreateCompany()">Sign Up</button>
-        </div>
-        <div class="form-group1" style="margin-top: -66px; margin-left: 677px; margin-right: -645px; width: 97%;">
-            <button type="submit" class="btn btn-theme btn-lg btn-block no-margin rounded log-btnregister" ng-click="">Cancel</button>
-        </div>
-    </div>
-
-<p class="text-muted text-center sign-link">Already have an account? <a href="#/login">Sign in here</a></p>
 <script type="text/javascript">
     jQuery(document).ready(function () {
         // binds form submission and fields to the validation engine
@@ -135,14 +232,14 @@
         $("#registerform").validationEngine();
     });
 
-
+    $(function () {
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%' // optional
+        });
+    });
 </script>
 
-<!--<script type="text/javascript">
-    var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
 
-    elems.forEach(function (html) {
-        var switchery = new Switchery(html);
-    });
-</script>-->
 

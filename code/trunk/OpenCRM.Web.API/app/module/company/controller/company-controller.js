@@ -1,6 +1,6 @@
 ﻿var app = angular.module('acApp').controller('company-controller',
-    ['$scope', 'growl', 'companyService', 'userService','$location',
-function ($scope, growl, companyService, userService, $location) {
+    ['$scope', 'growl', 'companyService', 'userService', '$location', '$rootScope',
+function ($scope, growl, companyService, userService, $location, $rootScope) {
     $scope.ConfirmepasswordStatus = false;
     $scope.CompanyModel = {
         CompanyName: "",
@@ -14,7 +14,7 @@ function ($scope, growl, companyService, userService, $location) {
         CompanyState: "",
         CompanyZipCode: "",
         CompanyCountry: "",
-        ConfirmPassword:""
+        ConfirmPassword: ""
     };
 
     $scope.Confirmpassword = function () {
@@ -45,13 +45,12 @@ function ($scope, growl, companyService, userService, $location) {
         var entervalue = $scope.valu;
 
         if ($.fn.validateForceFully($("#registerform")) == true) {
-         
+
 
             if ((parseInt(entervalue) + parseInt(s)) === parseInt(f)) {
 
                 companyService.addCompany($scope.CompanyModel)
                         .then(function (response) {
-                            console.log(response);
                             if (response.data.Success) {
                                 growl.success(response.data.Message);
                             }
@@ -64,7 +63,7 @@ function ($scope, growl, companyService, userService, $location) {
 
             }
             else {
-                console.log("user invalid hai");
+                console.log(" invalid user ");
             }
 
             //if ($.fn.validateForceFully($("#registerform")) == true) {
@@ -80,7 +79,22 @@ function ($scope, growl, companyService, userService, $location) {
             });
     };
 
-    $scope.GetCountries();
+    $scope.cancel = function () {
+        $location.path('login')
+    };
+    $scope.Company = {};
+    $scope.GetCompanyById = function () {
+        companyService.getCompanyById($rootScope.UserId)
+        .then(function (response) {
+            $scope.Company = response.data.CompanyName;
+        })
+    }
+    if ($rootScope.UserId > 0)
+    {
+        $scope.GetCompanyById();
+    }
+
+    //$scope.GetCountries();
 
     $scope.Test();
 }]);

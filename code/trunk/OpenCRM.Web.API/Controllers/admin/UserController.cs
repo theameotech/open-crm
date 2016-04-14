@@ -55,6 +55,11 @@ namespace OpenCRM.Web.API.admin
         {
             _userManager.DeleteUser(userId);
         }
+         [Route("UpdatePassword")]
+        public void UpdatePassword(User users)
+        {
+             _userManager.UpdatePassword(users);
+        }
 
     }
 }

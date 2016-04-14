@@ -2,9 +2,11 @@
 using OpenCRM.Common.DTO;
 using OpenCRM.DB.DomainObjects;
 using OpenCRM.DB.Repository;
+using SendGrid;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -168,12 +170,30 @@ namespace OpenCRM.BizLogic.Helpers.Impl
 
         public void DeleteUser(int userId)
         {
-           
-                    var user = _userRepo.Get(x => x.Id == userId);
-                    user.Deleted = true;
-                    _userRepo.Update(user);
-              
-            
+
+            var user = _userRepo.Get(x => x.Id == userId);
+            user.Deleted = true;
+            _userRepo.Update(user);
+
+
+        }
+
+
+        public void UpdatePassword(User user)
+        {
+            var username = _userRepo.Get(x => x.UserName == user.UserName);
+            username.Password = user.Password;
+            SendGridMessage myMessage = new SendGridMessage();
+            myMessage.AddTo(username.Email);
+            myMessage.From = new MailAddress("Support@openCrm.com", "OpenCRM Supprot");
+            myMessage.Subject = "Testing the SendGrid Library";
+            myMessage.Text = "Hi your new Password is : "+user.Password+" please login with this password";
+            // Create a Web transport, using API Key
+            var transportWeb = new SendGrid.Web("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");
+            transportWeb.DeliverAsync(myMessage);
+
+            _userRepo.Update(username);
         }
     }
+
 }

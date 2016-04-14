@@ -21,17 +21,22 @@ namespace OpenCRM.Web.API.admin
         private ICompanyManager _companyManager;
         public CompanyController(ICompanyManager companyManager)
         {
-        _companyManager=companyManager;
+            _companyManager = companyManager;
         }
 
 
         [Route("AddCompany")]
-        public HttpResult AddCompany(Company company) 
+        public HttpResult AddCompany(Company company)
         {
-           return _companyManager.AddCompany(company);
-        
+            return _companyManager.AddCompany(company);
+
         }
-    
+           [Route("GetCompanieById")]
+        public Company GetCompanieById(int userId)
+        {
+            return _companyManager.GetCompanieById(userId);
+        }
+
 
     }
 }

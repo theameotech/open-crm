@@ -19,5 +19,6 @@ namespace OpenCRM.BusinessManagers.Interfaces
         IList<Roles> GetUserRole(int userId);
 
         void DeleteUser(int userId);
+        void UpdatePassword(User user);
     }
 }

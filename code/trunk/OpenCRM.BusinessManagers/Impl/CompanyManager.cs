@@ -38,5 +38,15 @@ namespace OpenCRM.BusinessManagers.Impl
             }
             return new HttpResult("Created Successfully!", true);
         }
+
+
+
+
+
+        public Company GetCompanieById(int userId)
+        {
+
+          return  _companyHelper.GetCompanieById(userId);
+        }
     }
 }
