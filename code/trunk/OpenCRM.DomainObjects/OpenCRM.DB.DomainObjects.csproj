@@ -40,12 +40,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDomainObject.cs" />
-    <Compile Include="AccountViewModels.cs" />
     <Compile Include="AlreadyExistException.cs" />
     <Compile Include="Auction.cs" />
     <Compile Include="Bids.cs" />
     <Compile Include="Buyers.cs" />
     <Compile Include="Company.cs" />
+    <Compile Include="DoList.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="DealerShip.cs" />
     <Compile Include="Inbox.cs" />
