@@ -664,3 +664,20 @@ button {
     padding: 15px;
     margin-left:0px;
 }
+
+.company-register-body {
+    background: #fff none repeat scroll 0 0;
+    border-top: 0 none;
+    color: #666;
+    height: 600px;
+    margin: 7% auto;
+    padding: 20px;
+}
+.register-box {
+   margin: auto;
+}
+.register-box-body {
+    height: 540px;
+    background: #fff;
+    margin-bottom: 20px;
+}
