@@ -38,17 +38,22 @@ namespace OpenCRM.Web.API.admin
 
 
         [Route("GetEmails")]
-        public IList<Inbox> GetEmails(int userId, int companyId) 
-         {
-             return _inboxManager.GetEmails(userId,companyId);
-         }
+        public IList<Inbox> GetEmails(int userId, int companyId)
+        {
+            return _inboxManager.GetEmails(userId, companyId);
+        }
 
         [Route("FlagEmail")]
         public void FlagEmail(Inbox inbox)
         {
             _inboxManager.FlagEmail(inbox);
         }
+        [HttpPost]
+        [Route("DeleteEmails")]
+        public void DeleteEmails(string[] inbox)
+        {
+            _inboxManager.DeleteEmails(inbox);
 
-
+        }
     }
 }

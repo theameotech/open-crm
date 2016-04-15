@@ -10,6 +10,11 @@
         inboxService.getEmails = function ( userId, companyId) {
             return $http.get(baseUrl + '/api/inbox/GetEmails?userId='+ userId +'&companyId='+companyId);
         }
+
+        inboxService.deleteEmail = function (deletemail) {
+            console.log(deletemail);
+            return $http.post(baseUrl + '/api/inbox/DeleteEmails', deletemail);
+        }
         return inboxService;
 
     }])

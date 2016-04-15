@@ -13,6 +13,7 @@ namespace OpenCRM.BusinessManagers.Interfaces
        IList<Inbox> GetEmails(int userId, int companyId);
        void SendEmail(Inbox inbox);
        void FlagEmail(Inbox inbox);
+       void DeleteEmails(string[] inbox);
     }
 
 }
