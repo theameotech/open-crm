@@ -13,7 +13,6 @@ function ($scope, $rootScope, growl, loginService, $location, $http, $cookieStor
             loginService.login($scope.UserModel)
                  .then(function (response) {
                      if (response.data.Success) {
-                         $rootScope.GetAllUsers();
                          $cookieStore.put('globals', response.data.Token);
                          $cookieStore.put('IsAdmin', response.data.IsAdmin);
                          //$cookieStore.put('UserName', $scope.UserModel.UserName);
@@ -21,8 +20,7 @@ function ($scope, $rootScope, growl, loginService, $location, $http, $cookieStor
                          $cookieStore.put('LastName', response.data.LastName);
                          $cookieStore.put('UserId', response.data.UserId);
                          $cookieStore.put('CompanyId', response.data.CompanyId);
-                         $cookieStore.put('CreateTime', response.data.CreateTime);
-                        
+                         $cookieStore.put('EmailId', response.data.EmailId);
                          $rootScope.globals = response.data.Token;
                          $rootScope.IsAdmin = response.data.IsAdmin;
                          //$rootScope.userName = $scope.UserModel.UserName;
@@ -30,11 +28,10 @@ function ($scope, $rootScope, growl, loginService, $location, $http, $cookieStor
                          $rootScope.LastName = response.data.LastName;
                          $rootScope.UserId = response.data.UserId;
                          $rootScope.CompanyId = response.data.CompanyId;
-                         $rootScope.CreateTime = response.data.CreateTime;
+                         $rootScope.EmailId = response.data.EmailId;
                          $rootScope.Auth = true;
                          $rootScope.shownavbar = true;
                          $rootScope.showdasboard = false;
-                         $rootScope.GetRoles();
                          $http.defaults.headers.common['Authorization'] = response.data.Token;
                          $rootScope.$broadcast('on-login', {});
                          $location.path('dashboard');

@@ -36,6 +36,8 @@ namespace OpenCRM.DB.Mapping
             Map(x => x.AttachmentType).Not.Nullable();
             Map(x => x.CreateTime).Not.Nullable();
             Map(x => x.LastUpdateTime);
+            Map(x => x.ToUserName).Not.Nullable();
+            Map(x => x.FromUserName).Not.Nullable();
         }
 
 

@@ -24,12 +24,15 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
         $cookieStore.CompanyId = $cookieStore.get('CompanyId');
         $cookieStore.CreateTime = $cookieStore.get('CreateTime');
 
+        $cookieStore.EmailId = $cookieStore.get('EmailId');
+
         //$rootScope.userName = $cookieStore.userName;
         $rootScope.FirstName = $cookieStore.FirstName;
         $rootScope.LastName = $cookieStore.LastName;
         $rootScope.UserId = $cookieStore.UserId;
         $rootScope.CompanyId = $cookieStore.CompanyId;
         $rootScope.CreateTime = $cookieStore.CreateTime;
+        $rootScope.EmailId = $cookieStore.EmailId;
 
         $rootScope.Logout = function () {
             $rootScope.shownavbar = false;
@@ -43,10 +46,8 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
             });
         };
 
-
         var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
         var mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
-
 
         //$rootScope.passwordStrength = {
         //    "float": "left",
@@ -58,9 +59,8 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
 
         //};
         $rootScope.passwordStrength = {
-           
-        };
 
+        };
 
         $rootScope.analyze = function (value) {
             if (strongRegex.test(value)) {
@@ -75,8 +75,6 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
                 $rootScope.status = "Weak";
             }
         };
-
-
 
         $rootScope.DateHelper = {
             SelectedDate: { startDate: new Date(), endDate: new Date() },
@@ -98,7 +96,6 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
             $location.path("login");
         }
 
-
         $rootScope.AssignRoles = [];
         $rootScope.GetRoles = function () {
             userService.getUserRoles($rootScope.UserId)
@@ -107,27 +104,21 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
                 });
         };
 
-        if ($rootScope.UserId > 0)
-        {
-            $rootScope.GetRoles();
-        }
- 
-
         $rootScope.UsersList = [];
         $rootScope.GetAllUsers = function () {
             userService.getUser()
                 .then(function (response) {
                     $rootScope.UsersList = response.data;
-
                 });
         };
-        $rootScope.GetAllUsers();
 
-
+        if ($rootScope.UserId > 0) {
+            $rootScope.GetRoles();
+            $rootScope.GetAllUsers();
+        }
 
 
         function loadSearchParam() {
-
             buyerService.getSearchParams()
                       .success(function (response) {
                           $rootScope.DateHelper.SelectedDate.startDate = response.MinDate;
@@ -139,7 +130,6 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
         $rootScope.$on('on-login', function () {
             loadSearchParam();
         });
-
         $rootScope.$on('$routeChangeStart', function (event, next, current) {
             var restrictedPage = $.inArray($location.path(), ['/login', '/forgotpassword', '/registercompany',
                 '/leadregister', '/sellerregister', '/Leadlogin', '/companylogin', '/sellerlogin']) === -1;
@@ -151,9 +141,6 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
             }
         });
     }]);
-
-
-
 
 app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($routeProvider, blockUIConfig, growlProvider) {
 
@@ -181,6 +168,16 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
                 }
             }
         })
+
+       .when('/forgotpassword', {
+           templateUrl: 'module/login/views/forgot-password.html',
+           controller: 'forgotpassword-controller',
+           resolve: {
+               setPageTitle: function ($rootScope) {
+                   $rootScope.PageTitle = "Login";
+               }
+           }
+       })
         .when('/auction', {
             templateUrl: 'module/auction/views/auction.html',
             controller: 'auctionController',
@@ -345,6 +342,25 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
              }
          })
 
+          .when('/draft', {
+              templateUrl: 'module/inbox/views/draft.html',
+              controller: 'draft-controller',
+              resolve: {
+                  setPageTitle: function ($rootScope) {
+                      $rootScope.PageTitle = "draft";
+                  }
+              }
+          })
+
+         .when('/compose', {
+             templateUrl: 'module/inbox/views/compose.html',
+             controller: 'inbox-controller',
+             resolve: {
+                 setPageTitle: function ($rootScope) {
+                     $rootScope.PageTitle = "Compose";
+                 }
+             }
+         })
         .when('/admin/user', {
             templateUrl: 'module/user/views/userlist.html',
             controller: 'userprofile-controller',
