@@ -11,7 +11,7 @@
         };
 
         companyService.blockCompany = function (companyId) {
-            alert(companyId);
+            
             return $http.get(baseUrl + '/api/company/BlockCompany?companyId=' + companyId);
         };
 
