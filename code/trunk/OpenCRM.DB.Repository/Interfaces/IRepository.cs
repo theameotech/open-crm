@@ -12,6 +12,8 @@ namespace OpenCRM.DB.Repository
 
         IList<T> FetchAll();
 
+        IList<T> GetAll();
+
         void Update(T entity);
 
         T Get(Expression<Func<T, bool>> expression);

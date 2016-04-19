@@ -48,5 +48,23 @@ namespace OpenCRM.BusinessManagers.Impl
 
           return  _companyHelper.GetCompanieById(userId);
         }
+
+
+        public IList<Company> GetAllCompany()
+        {
+            return _companyHelper.GetAllCompany();
+        }
+
+
+        public void BlockCompany(int companyId)
+        {
+
+            using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required))
+            {
+                _companyHelper.BlockCompany(companyId);
+                scope.Complete();
+            }
+            
+        }
     }
 }

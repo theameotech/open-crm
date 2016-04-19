@@ -18,27 +18,29 @@ namespace OpenCRM.BusinessManagers.Impl
         {
             _userHelper = userHelper;
         }
-        public CreateUser AddUser(UserDTO users)
+        public HttpResult AddUser(UserDTO users)
         {
             using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required))
             {
                 try
                 {
-                    return _userHelper.AddUser(users);
+                     _userHelper.AddUser(users);
+                     scope.Complete();
                 }
                 catch (AlreadyExistException aex)
                 {
-                    return new CreateUser(aex.Message, false);
+                    return new HttpResult(aex.Message, false);
 
                 }
 
 
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    scope.Complete();
+                    return new HttpResult(ex.Message, false);
+                  
                 }
             }
-            return new CreateUser("Created Successfully!", true);
+            return new HttpResult("Created Successfully!", true);
         }
 
         public User GetUser(int userId)

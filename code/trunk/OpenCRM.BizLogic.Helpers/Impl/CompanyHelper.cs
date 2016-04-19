@@ -63,6 +63,8 @@ namespace OpenCRM.BizLogic.Helpers.Impl
             compny.CompanyState = company.CompanyState;
             compny.CompanyZipCode = company.CompanyZipCode;
             compny.CompanyCountry = company.CompanyCountry;
+            company.ServerDate = DateTime.Now;
+            company.SystemDate = DateTime.Now;
             SendGridMessage myMessage = new SendGridMessage();
             myMessage.AddTo(compny.BusinessEmail);
             myMessage.From = new MailAddress("Support@openCrm.com", "OpenCRM Supprot");
@@ -83,8 +85,32 @@ namespace OpenCRM.BizLogic.Helpers.Impl
        public Company GetCompanieById(int userId)
        {
            var user = _userRepo.Get(x => x.Id == userId);
-           var company = _companyRepo.Get(x => x.CompanyID == user.CompanyId);
+           var company = _companyRepo.Get(x => x.CompanyID == user.CompanyID);
            return company;
+       }
+
+
+       public IList<Company> GetAllCompany()
+       {
+           return _companyRepo.GetAll();
+       }
+
+
+       public void BlockCompany(int companyId)
+       {
+           var company = _companyRepo.Get(x => x.CompanyID == companyId);
+
+           company.IsBlock = true;
+
+           _companyRepo.Update(company);
+           var comapnyUser = _userRepo.FetchAll(x => x.CompanyID == companyId).ToList();
+
+           foreach (var item in comapnyUser)
+           {
+               item.Isblock = true;
+               _userRepo.Update(item);
+           }
+          
        }
     }
 }

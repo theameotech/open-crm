@@ -37,6 +37,18 @@ namespace OpenCRM.Web.API.admin
             return _companyManager.GetCompanieById(userId);
         }
 
+           [Route("GetAllCompany")]
+           public IList<Company> GetAllCompany()
+           {
+               return _companyManager.GetAllCompany();
 
+           }
+
+        [HttpGet]
+           [Route("BlockCompany")]
+           public void BlockCompany(int companyId)
+           {
+               _companyManager.BlockCompany(companyId);
+           }
     }
 }

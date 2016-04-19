@@ -28,9 +28,9 @@ namespace OpenCRM.Web.API.admin
         }
 
         [Route("AddUser")]
-        public CreateUser AddUser(UserDTO users) 
+        public HttpResult AddUser(UserDTO users) 
         {
-           return _userManager.AddUser(users);
+         return _userManager.AddUser(users);
         }
         [Route("GetUser")]
         public User GetUser(int userId)

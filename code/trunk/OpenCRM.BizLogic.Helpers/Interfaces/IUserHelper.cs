@@ -11,7 +11,7 @@ namespace OpenCRM.BizLogic.Helpers.Interfaces
   public interface IUserHelper
     {
 
-      CreateUser AddUser(UserDTO users);
+      HttpResult AddUser(UserDTO users);
 
       User GetUser(int userId);
 

@@ -1,7 +1,7 @@
 ﻿
 var app = angular.module('acApp').controller('dashboard-controller',
-    ['$scope', 'userService', 'messageService', 'inboxService', '$rootScope',
-function ($scope, userService, messageService, inboxService, $rootScope) {
+    ['$scope', 'userService', 'messageService', 'inboxService', 'companyService', '$rootScope',
+function ($scope, userService, messageService, inboxService, companyService, $rootScope) {
 
 
 
@@ -10,7 +10,6 @@ function ($scope, userService, messageService, inboxService, $rootScope) {
         UserID: $rootScope.UserId,
         IsRead: 0,
         IsDraft: 0,
-
         IsTrash: 0,
         IsReply: 0,
         IsFlagged: 0,
@@ -28,7 +27,6 @@ function ($scope, userService, messageService, inboxService, $rootScope) {
 
 
     $scope.SendEmail = function () {
-      
         inboxService.sendEmail($scope.inboxeModel)
                 .then(function (response) {
                     $scope.inboxeModel.EmailContent = "";
@@ -46,9 +44,34 @@ $scope.GetAllUsers = function () {
     userService.getUser()
         .then(function (response) {
             $scope.UsersList = response.data;
+
+            $scope.GetAllCompany();
      
         });
 };
+
+$scope.GetAllCompanyList = [];
+
+$scope.GetAllCompany = function () {
+    companyService.getAllCompany()
+        .then(function (response) {
+            $scope.GetAllCompanyList = response.data;
+          
+
+        });
+
+};
+
+
+$scope.BlockCompany = function (id) {
+
+    companyService.blockCompany(id)
+    .then(function (response) {
+
+    })
+
+};
+
 $scope.GetAllUsers();
 }]);
 

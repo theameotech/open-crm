@@ -584,7 +584,7 @@
                                 <div class="form-group">
                                     <label>Email</label>
                                     <input type="email" name="Email"
-                                        ng-model="User.Email" placeholder="username@domain.com" class="form-control validate[required] text-input" />
+                                        ng-model="User.UserEmail" placeholder="username@domain.com" class="form-control validate[required] text-input" />
                                 </div>
 
                             </div>
@@ -595,27 +595,31 @@
                                 </div>
                                 <div class="col-lg-6">
                                     Street Address 1:
-                                     <input type="text" ng-model="User.StreetAddress1" class="form-control" />
+                                     <input type="text" ng-model="User.UserAddress" class="form-control" />
                                 </div>
                                 <div class="col-lg-6">
                                     Street Address 2:
-                                    <input type="text" ng-model="User.StreetAddress2" class="form-control">
+                                    <input type="text" ng-model="User.UserAlternateAddress" class="form-control">
                                 </div>
                                 <div class="col-lg-6">
                                     City:
-                                    <input type="text" ng-model="User.City" class="form-control">
+                                    <input type="text" ng-model="User.UserCity" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                     State:
-                                    <input type="text" ng-model="User.State" class="form-control">
+                                    <input type="text" ng-model="User.UserState" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                     Postal Code:
-                                    <input type="text" ng-model="User.PostalCode" class="form-control">
+                                    <input type="text" ng-model="User.UserZipCode" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                   Gender:
+                                    <input type="text" ng-model="User.Gender" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                     Country:
-                                     <select data-ng-model="User.Country" name="Country" class="form-control">
+                                     <select data-ng-model="User.UserCountry" name="Country" class="form-control">
                                          <option ng-repeat="cnt in Countries" value="{{cnt.Name}}">{{cnt.Name}}</option>
                                      </select>
                                 </div>
@@ -628,7 +632,8 @@
                                     <label>Cell Phone </label>
                                     <input type="text"
                                         name="User.Phone "
-                                        ng-model="User.Phone"
+                                        ng-model="User.UserPhone
+                                        "
                                         mask='(999) 999-9999'
                                         class="form-control input-us-phone" placeholder="(xxx) xxx-xxxx">
                                 </div>
@@ -643,7 +648,7 @@
                                 <div class="form-group tablewidth  col-sm-3">
                                     <label>Ext</label>
                                     <input type="text"
-                                        ng-model="User.EXT"
+                                        ng-model="User.UserOfficePhoneExt"
                                         mask='999999' placeholder="ext xxxxxx"
                                         class="form-control validate[required] text-input">
                                 </div>

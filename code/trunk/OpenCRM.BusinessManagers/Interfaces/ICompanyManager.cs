@@ -12,5 +12,9 @@ namespace OpenCRM.BusinessManagers.Interfaces
     {
       HttpResult AddCompany(Company company);
       Company GetCompanieById(int userId);
+
+      IList<Company> GetAllCompany();
+
+      void BlockCompany(int companyId);
     }
 }

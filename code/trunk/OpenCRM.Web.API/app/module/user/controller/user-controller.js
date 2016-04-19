@@ -9,23 +9,27 @@ function ($scope, baseUrl, $location, $routeParams, userService, growl) {
     $scope.Message = "";
     $scope.ComparepasswordStatus = false;
     $scope.CurrentUser = {};
+
+
     $scope.User = {
-        UserName: "",
-        Password: "",
-        Email: "",
-        Phone: "",
-        FirstName: "",
-        LastName: "",
-        Office: "",
-        StreetAddress1: "",
-        StreetAddress2: "",
-        City: "",
-        State: "",
-        PostalCode: "",
-        Country: "",
-        ConfirmPassword: "",
-        EXT: "",
-        CompanyName: ""
+      UserName : "",
+    UserPassword : "",
+    UserEmail : "",
+    UserPhone : "",
+    FirstName : "",
+    LastName : "",
+    UserOfficePhoneExt : "",
+    UserAddress : "",
+    UserAlternateAddress : "",
+    UserCity : "",
+    UserCountry : "",
+    UserState : "",
+    UserZipCode : "",
+    Isblock : 0,
+    IsVerify : 0,
+    IsActive : 0,
+    Gender : "",
+    UserPrivilege :""
 
 
     };
@@ -64,7 +68,7 @@ function ($scope, baseUrl, $location, $routeParams, userService, growl) {
 
 
     $scope.CreateUser = function () {
-        if ($.fn.validateForceFully($("#formID")) == true) {
+    //    if ($.fn.validateForceFully($("#formID")) == true) {
             userModel.User = $scope.User;
             userModel.User.Id = $scope.UserId;
             userModel.Roles = $scope.AssignRoles;
@@ -87,7 +91,7 @@ function ($scope, baseUrl, $location, $routeParams, userService, growl) {
                 }, function (err) {
                     $scope.Error = "We are unable to create user at this time, Please try again later.";
                 });
-        }
+       // }
     };
 
     $scope.GetRoles = function () {

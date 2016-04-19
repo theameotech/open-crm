@@ -38,7 +38,7 @@ namespace OpenCRM.BizLogic.Helpers.Impl
             try
             {
                 var dbUser = _userRepo.Get(x => x.UserName == user.UserName
-                    && x.Password == user.Password);
+                    && x.UserPassword == user.UserPassword);
 
                 string token = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
 
@@ -53,11 +53,12 @@ namespace OpenCRM.BizLogic.Helpers.Impl
                         Token = token,
                         IsAdmin = IsAdmin(user.UserName),
                         UserId = dbUser.Id,
-                        CompanyId = dbUser.CompanyId,
+                        CompanyId = dbUser.CompanyID,
                         FirstName = dbUser.FirstName,
                         LastName = dbUser.LastName,
-                        EmailId = dbUser.Email,
-                        CreateTime=dbUser.CreateTime
+                        EmailId = dbUser.UserEmail,
+                        CreateTime = dbUser.CreateTime,
+                        Isblock = dbUser.Isblock
 
                     };
                 }

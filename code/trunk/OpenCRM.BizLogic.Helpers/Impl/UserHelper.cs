@@ -29,7 +29,7 @@ namespace OpenCRM.BizLogic.Helpers.Impl
             _companyRepo = companyRepo;
         }
 
-        public CreateUser AddUser(UserDTO users)
+        public HttpResult AddUser(UserDTO users)
         {
 
 
@@ -40,9 +40,9 @@ namespace OpenCRM.BizLogic.Helpers.Impl
                     throw new AlreadyExistException(string.Format("{0} already exist.", users.User.UserName));
                 }
 
-                if (_userRepo.IsExist(x => x.Email == users.User.Email && x.Id != users.User.Id && x.Deleted == false))
+                if (_userRepo.IsExist(x => x.UserEmail == users.User.UserEmail && x.Id != users.User.Id && x.Deleted == false))
                 {
-                    throw new AlreadyExistException(string.Format("{0} already exist.", users.User.Email));
+                    throw new AlreadyExistException(string.Format("{0} already exist.", users.User.UserEmail));
                 }
 
             }
@@ -52,9 +52,9 @@ namespace OpenCRM.BizLogic.Helpers.Impl
                 {
                     throw new AlreadyExistException(string.Format("{0} already exist.", users.User.UserName));
                 }
-                if (_userRepo.IsExist(x => x.Email == users.User.Email && x.Deleted == false))
+                if (_userRepo.IsExist(x => x.UserEmail == users.User.UserEmail && x.Deleted == false))
                 {
-                    throw new AlreadyExistException(string.Format("{0} already exist.", users.User.Email));
+                    throw new AlreadyExistException(string.Format("{0} already exist.", users.User.UserEmail));
                 }
 
 
@@ -63,28 +63,32 @@ namespace OpenCRM.BizLogic.Helpers.Impl
             {
                 var user = _userRepo.Get(x => x.Id == users.User.Id);
                 user.UserName = users.User.UserName;
-                user.Password = users.User.Password;
-                user.Email = users.User.Email;
-                user.Phone = users.User.Phone;
+                user.UserPassword = users.User.UserPassword;
+                user.UserEmail = users.User.UserEmail;
+                user.UserPhone = users.User.UserPhone;
                 user.FirstName = users.User.FirstName;
                 user.LastName = users.User.LastName;
-                user.Office = users.User.Office;
-                user.StreetAddress1 = users.User.StreetAddress1;
-                user.StreetAddress2 = users.User.StreetAddress2;
-                user.City = users.User.City;
-                user.State = users.User.State;
-                user.Country = users.User.Country;
-                user.PostalCode = users.User.PostalCode;
-                user.EXT = users.User.EXT;
+                user.UserOfficePhoneExt = users.User.UserOfficePhoneExt;
+                user.UserAddress = users.User.UserAddress;
+                user.UserAlternateAddress = users.User.UserAlternateAddress;
+                user.UserCity = users.User.UserCity;
+                user.UserCountry = users.User.UserCountry;
+                user.UserState = users.User.UserState;
+                user.UserZipCode = users.User.UserZipCode;
+                user.Isblock = users.User.Isblock;
+                user.IsVerify = users.User.IsVerify;
+                user.IsActive = users.User.IsActive;
+                user.Gender = users.User.Gender;
+                user.UserPrivilege = users.User.UserPrivilege;
 
-                if (user.CompanyId > 0)
+                if (user.CompanyID > 0)
                 {
-                    _companyRepo.Delete(_companyRepo.Get(x => x.CompanyID == user.CompanyId));
+                    _companyRepo.Delete(_companyRepo.Get(x => x.CompanyID == user.CompanyID));
                 }
                 Company cmpny = new Company();
                 cmpny.CompanyName = users.CompanyName;
                 _companyRepo.Add(cmpny);
-                user.CompanyId = cmpny.CompanyID;
+                user.CompanyID = cmpny.CompanyID;
 
                 var userRoles = _userrolesRepo.FetchAll(x => x.UserId == user.Id);
                 foreach (var roles in userRoles)
@@ -111,23 +115,30 @@ namespace OpenCRM.BizLogic.Helpers.Impl
 
                 User user = new User();
                 user.UserName = users.User.UserName;
-                user.Password = users.User.Password;
-                user.Email = users.User.Email;
-                user.Phone = users.User.Phone;
+                user.UserPassword = users.User.UserPassword;
+                user.UserEmail = users.User.UserEmail;
+                user.UserPhone = users.User.UserPhone;
                 user.FirstName = users.User.FirstName;
                 user.LastName = users.User.LastName;
-                user.Office = users.User.Office;
-                user.StreetAddress1 = users.User.StreetAddress1;
-                user.StreetAddress2 = users.User.StreetAddress2;
-                user.City = users.User.City;
-                user.State = users.User.State;
-                user.Country = users.User.Country;
-                user.PostalCode = users.User.PostalCode;
-                user.EXT = users.User.EXT;
+                user.UserOfficePhoneExt = users.User.UserOfficePhoneExt;
+                user.UserAddress = users.User.UserAddress;
+                user.UserAlternateAddress = users.User.UserAlternateAddress;
+                user.UserCity = users.User.UserCity;
+                user.UserCountry = users.User.UserCountry;
+                user.UserState = users.User.UserState;
+                user.UserZipCode = users.User.UserZipCode;
+                user.Isblock = users.User.Isblock;
+                user.IsVerify = users.User.IsVerify;
+                user.IsActive = users.User.IsActive;
+                user.Gender = users.User.Gender;
+                user.UserPrivilege = "Master";
+
+
+
                 Company cmpny = new Company();
                 cmpny.CompanyName = users.CompanyName;
                 _companyRepo.Add(cmpny);
-                user.CompanyId = cmpny.CompanyID;
+                user.CompanyID = cmpny.CompanyID;
                 _userRepo.Add(user);
 
                 foreach (var roles in users.Roles)
@@ -141,7 +152,7 @@ namespace OpenCRM.BizLogic.Helpers.Impl
 
 
             }
-            return new CreateUser("Created Successfully!", true);
+            return new HttpResult("Created Successfully!", true);
         }
 
 
@@ -182,12 +193,12 @@ namespace OpenCRM.BizLogic.Helpers.Impl
         public void UpdatePassword(User user)
         {
             var username = _userRepo.Get(x => x.UserName == user.UserName);
-            username.Password = user.Password;
+            username.UserPassword = user.UserPassword;
             SendGridMessage myMessage = new SendGridMessage();
-            myMessage.AddTo(username.Email);
+            myMessage.AddTo(username.UserEmail);
             myMessage.From = new MailAddress("Support@openCrm.com", "OpenCRM Supprot");
             myMessage.Subject = "Testing the SendGrid Library";
-            myMessage.Text = "Hi your new Password is : "+user.Password+" please login with this password";
+            myMessage.Text = "Hi your new Password is : " + user.UserPassword + " please login with this password";
             // Create a Web transport, using API Key
             var transportWeb = new SendGrid.Web("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");
             transportWeb.DeliverAsync(myMessage);

@@ -10,6 +10,16 @@
             return $http.get(baseUrl + '/api/company/GetCompanieById?userId='+userId);
         };
 
+        companyService.blockCompany = function (companyId) {
+            alert(companyId);
+            return $http.get(baseUrl + '/api/company/BlockCompany?companyId=' + companyId);
+        };
+
+
+        companyService.getAllCompany = function (userId) {
+            return $http.get(baseUrl + '/api/company/GetAllCompany');
+        };
+
         return companyService;
 
     }])

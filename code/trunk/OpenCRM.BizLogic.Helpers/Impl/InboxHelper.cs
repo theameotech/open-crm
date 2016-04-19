@@ -50,7 +50,7 @@ namespace OpenCRM.BizLogic.Helpers.Impl
             inb.AttachmentName = inbox.AttachmentName;
             inb.AttachmentType = inbox.AttachmentType;
             inb.SystemDate = inbox.SystemDate;
-            var user = _userRepo.Get(x => x.Email == inbox.EmailRecipient);
+            var user = _userRepo.Get(x => x.UserEmail == inbox.EmailRecipient);
             inb.ToUserName = user.FirstName;
             inb.EmailID = user.Id;
             inb.FromUserName = inbox.FromUserName;

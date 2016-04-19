@@ -37,6 +37,11 @@ namespace OpenCRM.DB.Repository
             return _session.Query<T>().ToList();
         }
 
+
+        public IList<T> GetAll()
+        {
+            return _session.Query<T>().ToList();
+        }
         public T Get(Expression<Func<T, bool>> expression)
         {
             return _session.Query<T>().FirstOrDefault(expression);

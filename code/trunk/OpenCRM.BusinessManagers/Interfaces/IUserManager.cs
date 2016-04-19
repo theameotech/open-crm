@@ -10,7 +10,7 @@ namespace OpenCRM.BusinessManagers.Interfaces
 {
   public  interface IUserManager
     {
-        CreateUser AddUser(UserDTO users);
+      HttpResult AddUser(UserDTO users);
 
         User GetUser(int userId);
 
