@@ -16,5 +16,7 @@ namespace OpenCRM.BusinessManagers.Interfaces
       IList<Company> GetAllCompany();
 
       void BlockCompany(int companyId);
+
+      void UnblockCompany(int companyId);
     }
 }

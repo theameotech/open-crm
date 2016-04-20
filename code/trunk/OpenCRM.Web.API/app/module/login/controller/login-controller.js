@@ -7,6 +7,7 @@ function ($scope, $rootScope, growl, loginService, $location, $http, $cookieStor
         UserName: "",
         UserPassword: ""
     }
+  
 
     $scope.Login = function () {
         if ($.fn.validateForceFully($("#LoginID")) == true) {
@@ -24,6 +25,7 @@ function ($scope, $rootScope, growl, loginService, $location, $http, $cookieStor
                              $cookieStore.put('UserId', response.data.UserId);
                              $cookieStore.put('CompanyId', response.data.CompanyId);
                              $cookieStore.put('EmailId', response.data.EmailId);
+                             $cookieStore.put('UserPrivilege', response.data.UserPrivilege);
                              $rootScope.globals = response.data.Token;
                              $rootScope.IsAdmin = response.data.IsAdmin;
                              //$rootScope.userName = $scope.UserModel.UserName;
@@ -32,11 +34,14 @@ function ($scope, $rootScope, growl, loginService, $location, $http, $cookieStor
                              $rootScope.UserId = response.data.UserId;
                              $rootScope.CompanyId = response.data.CompanyId;
                              $rootScope.EmailId = response.data.EmailId;
+                             $rootScope.UserPrivilege = response.data.UserPrivilege;
+
                              $rootScope.Auth = true;
                              $rootScope.shownavbar = true;
                              $rootScope.showdasboard = false;
                              $http.defaults.headers.common['Authorization'] = response.data.Token;
                              $rootScope.$broadcast('on-login', {});
+                            
                              $location.path('dashboard');
                          }
                          else {

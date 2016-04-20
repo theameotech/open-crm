@@ -112,5 +112,22 @@ namespace OpenCRM.BizLogic.Helpers.Impl
            }
           
        }
+
+
+       public void UnblockCompany(int companyId)
+       {
+           var company = _companyRepo.Get(x => x.CompanyID == companyId);
+
+           company.IsBlock = false;
+
+           _companyRepo.Update(company);
+           var comapnyUser = _userRepo.FetchAll(x => x.CompanyID == companyId).ToList();
+
+           foreach (var item in comapnyUser)
+           {
+               item.Isblock = false;
+               _userRepo.Update(item);
+           }
+       }
     }
 }

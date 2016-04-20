@@ -16,5 +16,7 @@ namespace OpenCRM.BizLogic.Helpers.Interfaces
     IList<Company> GetAllCompany();
 
      void BlockCompany(int companyId);
+
+     void UnblockCompany(int companyId);
     }
 }

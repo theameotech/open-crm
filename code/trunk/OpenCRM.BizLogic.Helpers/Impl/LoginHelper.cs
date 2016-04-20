@@ -58,8 +58,8 @@ namespace OpenCRM.BizLogic.Helpers.Impl
                         LastName = dbUser.LastName,
                         EmailId = dbUser.UserEmail,
                         CreateTime = dbUser.CreateTime,
-                        Isblock = dbUser.Isblock
-
+                        Isblock = dbUser.Isblock,
+                        UserPrivilege = dbUser.UserPrivilege
                     };
                 }
                 return new LoginResult
