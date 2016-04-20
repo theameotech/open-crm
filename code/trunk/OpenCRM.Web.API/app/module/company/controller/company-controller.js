@@ -2,6 +2,7 @@
     ['$scope', 'growl', 'companyService', 'userService', '$location', '$rootScope',
 function ($scope, growl, companyService, userService, $location, $rootScope) {
     $scope.ConfirmepasswordStatus = false;
+   
     $scope.CompanyModel = {
         CompanyName: "",
         BusinessEmail: "",
@@ -16,6 +17,8 @@ function ($scope, growl, companyService, userService, $location, $rootScope) {
         CompanyCountry: "",
         ConfirmPassword: ""
     };
+
+   
 
     $scope.Confirmpassword = function () {
         if ($scope.CompanyModel.AdminPassword !== $scope.CompanyModel.ConfirmPassword) {
@@ -93,6 +96,8 @@ function ($scope, growl, companyService, userService, $location, $rootScope) {
     {
         $scope.GetCompanyById();
     }
+
+
 
     //$scope.GetCountries();
 

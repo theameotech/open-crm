@@ -14,13 +14,22 @@
     <!-- Main content -->
     <section class="content">
         <!-- Small boxes (Stat box) -->
-        <div class="row">
+        <div class="row" ng-show="Ismaster">
 
             <div class="col-md-12">
             <div class="col-lg-3 col-xs-6" ng-repeat="company in GetAllCompanyList">
                 <!-- small box -->
                 <div class="small-box bg-aqua">
-                    <button class="btn btn-primary" ng-click="BlockCompany(company.CompanyID)">Block</button>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button class="btn btn-danger" ng-click="BlockCompany(company.CompanyID)">Block</button>
+                        </div>
+                            <div class="col-md-6">
+                           <button class="btn btn-success" ng-click="BlockCompany(company.CompanyID)">UnBlock</button>
+                        </div>
+                     
+                    </div>
+                 
                     <div class="inner">
                         <h3>150</h3>
                         <p>{{company.CompanyName}}</p>
@@ -28,7 +37,7 @@
                     <div class="icon">
                         <i class="ion ion-bag"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="#/companyinfo/{{company.CompanyID}}" class="small-box-footer" >More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->

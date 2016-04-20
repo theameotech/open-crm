@@ -11,10 +11,16 @@
         };
 
         companyService.blockCompany = function (companyId) {
-            alert(companyId);
+            
             return $http.get(baseUrl + '/api/company/BlockCompany?companyId=' + companyId);
         };
 
+
+
+        companyService.unblockCompany = function (companyId) {
+
+            return $http.get(baseUrl + '/api/company/UnblockCompany?companyId=' + companyId);
+        };
 
         companyService.getAllCompany = function (userId) {
             return $http.get(baseUrl + '/api/company/GetAllCompany');

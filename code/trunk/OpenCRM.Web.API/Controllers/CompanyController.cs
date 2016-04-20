@@ -31,24 +31,30 @@ namespace OpenCRM.Web.API.admin
             return _companyManager.AddCompany(company);
 
         }
-           [Route("GetCompanieById")]
+        [Route("GetCompanieById")]
         public Company GetCompanieById(int userId)
         {
             return _companyManager.GetCompanieById(userId);
         }
 
-           [Route("GetAllCompany")]
-           public IList<Company> GetAllCompany()
-           {
-               return _companyManager.GetAllCompany();
+        [Route("GetAllCompany")]
+        public IList<Company> GetAllCompany()
+        {
+            return _companyManager.GetAllCompany();
 
-           }
+        }
 
         [HttpGet]
-           [Route("BlockCompany")]
-           public void BlockCompany(int companyId)
-           {
-               _companyManager.BlockCompany(companyId);
-           }
+        [Route("BlockCompany")]
+        public void BlockCompany(int companyId)
+        {
+            _companyManager.BlockCompany(companyId);
+        }
+        [HttpGet]
+        [Route("UnblockCompany")]
+        public void UnblockCompany(int companyId)
+        {
+            _companyManager.UnblockCompany(companyId);
+        }
     }
 }

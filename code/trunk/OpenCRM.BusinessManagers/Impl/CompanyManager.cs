@@ -66,5 +66,11 @@ namespace OpenCRM.BusinessManagers.Impl
             }
             
         }
+
+
+        public void UnblockCompany(int companyId)
+        {
+            _companyHelper.UnblockCompany(companyId);
+        }
     }
 }

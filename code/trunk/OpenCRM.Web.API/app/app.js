@@ -26,6 +26,8 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
 
         $cookieStore.EmailId = $cookieStore.get('EmailId');
 
+        $cookieStore.UserPrivilege = $cookieStore.get('UserPrivilege');
+
         //$rootScope.userName = $cookieStore.userName;
         $rootScope.FirstName = $cookieStore.FirstName;
         $rootScope.LastName = $cookieStore.LastName;
@@ -34,6 +36,7 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
         $rootScope.CreateTime = $cookieStore.CreateTime;
         $rootScope.EmailId = $cookieStore.EmailId;
 
+        $rootScope.UserPrivilege = $cookieStore.UserPrivilege;
         $rootScope.Logout = function () {
             $rootScope.shownavbar = false;
             $rootScope.TabBar = false;
@@ -356,6 +359,16 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
                   }
               }
           })
+
+         .when('/companyinfo/:CompanyID', {
+             templateUrl: 'module/company/views/companyinfo.html',
+             controller: 'company-controller',
+             resolve: {
+                 setPageTitle: function ($rootScope) {
+                     $rootScope.PageTitle = "Company Info";
+                 }
+             }
+         })
          .when('/auctionlist', {
              templateUrl: 'module/auction/views/auctionlist.html',
              controller: 'auction-show-controller',

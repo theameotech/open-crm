@@ -3,7 +3,11 @@ var app = angular.module('acApp').controller('dashboard-controller',
     ['$scope', 'userService', 'messageService', 'inboxService', 'companyService', '$rootScope', '$routeParams', '$uibModal','doListService',
 function ($scope, userService, messageService, inboxService, companyService, $rootScope, $routeParams, $uibModal, doListService) {
 
+    $rootScope.Ismaster = false;
 
+    if ($rootScope.UserPrivilege == "Master") {
+        $rootScope.Ismaster = true;
+    }
 
     $scope.DoListId = 0;
     if ($routeParams.dolistId !== undefined)
@@ -46,6 +50,8 @@ function ($scope, userService, messageService, inboxService, companyService, $ro
         SystemDate: new Date()
     };
 
+   
+   
 
     $scope.SendEmail = function () {
         inboxService.sendEmail($scope.inboxeModel)
@@ -65,8 +71,8 @@ $scope.GetAllUsers = function () {
     userService.getUser()
         .then(function (response) {
             $scope.UsersList = response.data;
-
             $scope.GetAllCompany();
+           
      
         });
 };
@@ -184,6 +190,16 @@ if ($scope.DoListId > 0) {
     $scope.GetDoList();
 }
 
+
+
+$scope.UnblockCompany = function (id) {
+
+    companyService.unblockCompany(id)
+    .then(function (response) {
+
+    })
+
+};
 
 $scope.GetAllUsers();
 }]);
