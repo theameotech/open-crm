@@ -159,6 +159,39 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
                 }
             }
         })
+
+          .when('/dolist', {
+              templateUrl: 'module/dashboard/views/DoList.html',
+              controller: 'dashboard-controller',
+              resolve: {
+                  setPageTitle: function ($rootScope) {
+                      $rootScope.PageTitle = "ToDo list";
+                  }
+              }
+          })
+
+          .when('/Editdolist', {
+              templateUrl: 'module/dashboard/views/DoList.html',
+              controller: 'dashboard-controller',
+              resolve: {
+                  setPageTitle: function ($rootScope) {
+                      $rootScope.PageTitle = "Dashboard";
+                  }
+              }
+          })
+
+
+          .when('/Editdolist/:dolistId', {
+              templateUrl: 'module/dashboard/views/DoList.html',
+              controller: 'dashboard-controller',
+              resolve: {
+                  setPageTitle: function ($rootScope) {
+                      $rootScope.PageTitle = "Dashboard";
+                  }
+              }
+          })
+
+
         .when('/login', {
             templateUrl: 'module/login/views/login.html',
             controller: 'login-controller',

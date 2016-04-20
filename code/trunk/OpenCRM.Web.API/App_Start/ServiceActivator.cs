@@ -133,6 +133,9 @@ namespace OpenCRM.Web.API
                 x.For<IInboxHelper>().Add<InboxHelper>();
                 x.For<IInboxManager>().Add<InboxManager>();
                 x.For<IInboxRepo>().Add<InboxRepo>();
+                x.For<IDoListHelper>().Add<DoListHelper>();
+                x.For<IDoListManager>().Add<DoListManager>();
+                x.For<IDoListRepo>().Add<DoListRepo>();
             });
         }
     }

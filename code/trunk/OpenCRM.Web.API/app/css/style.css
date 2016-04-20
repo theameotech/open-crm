@@ -653,16 +653,15 @@ button {
 }
 
 .nav-style {
- float:right;
+    float: right;
 }
 
 .footer-Login {
-
     background: #fff none repeat scroll 0 0;
     border-top: 1px solid #d2d6de;
     color: #444;
     padding: 15px;
-    margin-left:0px;
+    margin-left: 0px;
 }
 
 .company-register-body {
@@ -673,11 +672,22 @@ button {
     margin: 7% auto;
     padding: 20px;
 }
+
 .register-box {
-   margin: auto;
+    margin: auto;
 }
+
 .register-box-body {
     height: 540px;
     background: #fff;
     margin-bottom: 20px;
+}
+
+.a-color {
+    color: black;
+}
+
+.cancel-btn {
+    margin-right: -10px;
+    margin-top: -8px;
 }

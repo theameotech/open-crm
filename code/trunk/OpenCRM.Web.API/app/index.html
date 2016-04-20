@@ -83,6 +83,8 @@
     <script src="module/buyer/controller/buyer-controller.js"></script>
     <script src="module/buyer/service/buyer-service.js"></script>
     <script src="module/bids/controller/bids-controller.js"></script>
+    <script src="module/dashboard/filter/common-filters.js"></script>
+    <script src="module/dashboard/service/dolist-service.js"></script>
     <script src="module/auction/controller/auction-controller.js"></script>
     <script src="module/auction/controller/auction-show-controller.js"></script>
     <script src="module/auction/service/auction-service.js"></script>
@@ -348,7 +350,7 @@
                                     <p>
                                         {{FirstName}} {{LastName}}
                                        
-                                        <small>Member since  {{CreateTime | date}}</small>
+                                        <small>Member since &nbsp {{CreateTime | date}}</small>
                                     </p>
                                     <div ng-repeat="roles in AssignRoles">
                                         <small style="color: #fff;">{{roles.Name}}</small>
@@ -478,6 +480,11 @@
                     <li>
                         <a href="#/leads">
                             <i class="fa fa-th"></i><span>Leads</span> <small class="label pull-right bg-green">new</small>
+                        </a>
+                    </li>
+                     <li>
+                        <a href="#/dolist">
+                            <i class="fa fa-th"></i><span>ToDoList</span> <small class="label pull-right bg-green">{{counter}}</small>
                         </a>
                     </li>
                 </ul>

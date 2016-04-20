@@ -1,8 +1,29 @@
 ﻿
 var app = angular.module('acApp').controller('dashboard-controller',
-    ['$scope', 'userService', 'messageService', 'inboxService', 'companyService', '$rootScope',
-function ($scope, userService, messageService, inboxService, companyService, $rootScope) {
+    ['$scope', 'userService', 'messageService', 'inboxService', 'companyService', '$rootScope', '$routeParams', '$uibModal','doListService',
+function ($scope, userService, messageService, inboxService, companyService, $rootScope, $routeParams, $uibModal, doListService) {
 
+
+
+    $scope.DoListId = 0;
+    if ($routeParams.dolistId !== undefined)
+        $scope.DoListId = $routeParams.dolistId;
+
+
+
+    $scope.Dolistmodel = {
+        UserID: $rootScope.UserId,
+        CompanyID: $rootScope.CompanyId,
+        ListPriority: "",
+        ListMessage: "",
+        ListCategory: "",
+        IsRead: 0,
+        IsDelete: 0,
+        IsActive: 0,
+        IsAcheived: 0,
+        IsCompleted:0
+
+    };
 
 
     $scope.inboxeModel = {
@@ -71,6 +92,98 @@ $scope.BlockCompany = function (id) {
     })
 
 };
+$scope.GetDoList = function () {
+    doListService.getListById($scope.DoListId)
+        .then(function (response) {
+            $scope.Dolistmodel = response.data;
+
+        });
+};
+$scope.CreateDolist = function () {
+    doListService.adddolist($scope.Dolistmodel)
+        .then(function (response) {
+            if (response.data.Success) {
+                $location.path('dashboard');
+            }
+            else {
+                $scope.Error = response.data.Message;
+            }
+        }, function (err) {
+            $scope.Error = "We are unable to create ToDo List at this time, Please try again later.";
+        });
+}
+$scope.Messagelist = [];
+$scope.DoList = [];
+$scope.GetAlllist = function () {
+    $scope.Messagelist = [];
+    $scope.DoList = [];
+    $rootScope.counter = 0;
+    var date = new Date().toJSON().slice(0, 10);
+    doListService.getdoList()
+        .then(function (response) {
+            $scope.DoList = response.data;
+            angular.forEach($scope.DoList, function (item) {
+                var currentdate = item.CreateDate.slice(0, 10);
+                if (currentdate == date) {
+                    $rootScope.counter++;
+                    $scope.Messagelist.push(item);
+                }
+            });
+        });
+};
+
+$scope.DeleteDoList = function (Id) {
+    if (confirm("Are you sure?")) {
+        doListService.deletedoList(Id)
+          .then(function (response) {
+              $scope.GetAlllist();
+          })
+    }
+};
+
+
+$scope.IsRead = function (Id) {
+    $scope.showlistmassage = {};
+    $scope.Priority = {};
+    $scope.ListCreateDate = {};
+    doListService.IsRead(Id)
+          .then(function (response) {
+              $scope.showlistmassage = response.data.ListMessage;
+              $scope.Priority = response.data.ListPriority;
+              $scope.ListCreateDate = response.data.CreateDate;
+
+          })
+    modalInstance = $uibModal.open({
+        templateUrl: 'module/dashboard/views/ToDoList.html',
+        scope: $scope,
+        size: 'sm',
+        resolve: {
+            Context: function () {
+                return {
+
+                };
+            }
+        }
+    });
+};
+
+$scope.CompleteTask = function (Id) {
+    doListService.CompleteTask(Id)
+          .then(function (response) {
+                  $scope.GetAlllist();
+              
+          })
+};
+
+$scope.cancel = function () {
+    modalInstance.dismiss('cancel');
+};
+$scope.GetAlllist();
+    //$scope.GetAllUsers();
+if ($scope.DoListId > 0) {
+    $scope.GetDoList();
+}
+
 
 $scope.GetAllUsers();
 }]);

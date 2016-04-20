@@ -73,6 +73,7 @@
     <Compile Include="Impl\BuyerHelper.cs" />
     <Compile Include="Impl\CompanyHelper.cs" />
     <Compile Include="Impl\DealerShipHelper.cs" />
+    <Compile Include="Impl\DoListHelper.cs" />
     <Compile Include="Impl\InboxHelper.cs" />
     <Compile Include="Impl\LoginHelper.cs" />
     <Compile Include="Impl\LookupHelper.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Interfaces\IBuyerHelper.cs" />
     <Compile Include="Interfaces\ICompanyHelper.cs" />
     <Compile Include="Interfaces\IDealerShipHelper.cs" />
+    <Compile Include="Interfaces\IDoListhelper.cs" />
     <Compile Include="Interfaces\IInboxHelper.cs" />
     <Compile Include="Interfaces\ILookupHelper.cs" />
     <Compile Include="Interfaces\ILoginHelper.cs" />
