@@ -184,5 +184,11 @@ namespace OpenCRM.BizLogic.Helpers.Impl
                 };
             }
         }
+
+
+        public IList<User> GetCompanyUser(int companyId)
+        {
+            return _userRepo.FetchAll(x => x.CompanyID == companyId);
+        }
     }
 }

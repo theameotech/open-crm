@@ -86,13 +86,21 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
 
         if ($rootScope.globals != "") {
             $http.defaults.headers.common['Authorization'] = $rootScope.globals; // jshint ignore:line
+
+            if ($rootScope.UserPrivilege === "Master") {
+                $rootScope.Auth = false;
+                $rootScope.Authaside = false;
+                $rootScope.MasterSideBar = true;
+            }
             $rootScope.Auth = true;
             $rootScope.shownavbar = true;
+            $rootScope.Authaside = true;
             $rootScope.TabBar = true;
             if ($.inArray($location.path(), ['/login', '/forgotpassword', '/companylogin', 'dashboard', '/admin/user/createuser']) !== -1)
                 $location.path("dashboard");
 
             loadSearchParam();
+            
         }
         else {
             if ($location.path() === "/companylogin") {
@@ -175,6 +183,18 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
                 }
             }
         })
+
+
+ .when('/createmasteruser', {
+     templateUrl: 'module/dashboard/views/createmasteruser.html',
+     controller: 'dashboard-controller',
+     resolve: {
+         setPageTitle: function ($rootScope) {
+             $rootScope.PageTitle = "Dashboard";
+         }
+     }
+ })
+
 
           .when('/dolist', {
               templateUrl: 'module/dashboard/views/DoList.html',

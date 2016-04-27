@@ -3,11 +3,19 @@ var app = angular.module('acApp').controller('dashboard-controller',
     ['$scope', 'userService', 'messageService', 'inboxService', 'companyService', '$rootScope', '$routeParams', '$uibModal','doListService',
 function ($scope, userService, messageService, inboxService, companyService, $rootScope, $routeParams, $uibModal, doListService) {
 
+  
+
     $rootScope.Ismaster = false;
+    $scope.Isblock = false;
+    $rootScope.Authaside = true;
 
     if ($rootScope.UserPrivilege == "Master") {
         $rootScope.Ismaster = true;
+        $rootScope.MasterSideBar = true;
+        $rootScope.Authaside = false;
     }
+
+    
 
     $scope.DoListId = 0;
     if ($routeParams.dolistId !== undefined)
@@ -50,8 +58,34 @@ function ($scope, userService, messageService, inboxService, companyService, $ro
         SystemDate: new Date()
     };
 
+    $scope.User = {
+        UserName: "",
+        UserPassword: "",
+        UserEmail: "",
+        UserPhone: "",
+        FirstName: "",
+        LastName: "",
+        UserOfficePhoneExt: "",
+        UserAddress: "",
+        UserAlternateAddress: "",
+        UserCity: "",
+        UserCountry: "",
+        UserState: "",
+        UserZipCode: "",
+        Isblock: 0,
+        IsVerify: 0,
+        IsActive: 0,
+        Gender: "",
+        UserPrivilege: "Master"
+    };
    
-   
+    var userModel = {
+        User: {},
+        Roles: [],
+        CompanyName: ""
+    };
+
+
 
     $scope.SendEmail = function () {
         inboxService.sendEmail($scope.inboxeModel)
@@ -63,7 +97,30 @@ function ($scope, userService, messageService, inboxService, companyService, $ro
     };
 
 
+    $scope.CreateMasterUser = function () {
+        //    if ($.fn.validateForceFully($("#formID")) == true) {
+        userModel.User = $scope.User;
 
+        userModel.CompanyName = $scope.User.CompanyName;
+        userService.createUser(userModel)
+            .then(function (response) {
+                if (response.data.Success) {
+                    if ($scope.UserId > 0) {
+                        growl.success('all updates has been saved.');
+                    }
+                    else {
+                        growl.success('new user has been created.');
+                    }
+                    // $location.path("admin/user");
+                }
+                else {
+                    $scope.Error = response.data.Message;
+                }
+            }, function (err) {
+                $scope.Error = "We are unable to create user at this time, Please try again later.";
+            });
+        // }
+    };
 
 
 $scope.UsersList = [];

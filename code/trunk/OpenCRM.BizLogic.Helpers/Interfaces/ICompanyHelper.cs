@@ -21,5 +21,6 @@ namespace OpenCRM.BizLogic.Helpers.Interfaces
      Company GetCompanyByCompanyId(int companyId);
      LoginResult login(Company company);
      Company IsVerify(int companyId);
+     IList<User> GetCompanyUser(int companyId);
     }
 }

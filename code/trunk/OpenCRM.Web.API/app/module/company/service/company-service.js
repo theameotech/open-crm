@@ -37,6 +37,10 @@
             return $http.get(baseUrl + '/api/company/IsVerify?companyId=' + companyId);
         }
 
+        companyService.getCompanyUser = function (companyId) {
+            return $http.get(baseUrl + '/api/company/GetCompanyUser?companyId=' + companyId);
+        };
+
         return companyService;
 
     }])

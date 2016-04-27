@@ -72,5 +72,10 @@ namespace OpenCRM.Web.API.admin
         {
             return _companyManager.IsVerify(companyId);
         }
+        [Route("GetCompanyUser")]
+        public IList<User> GetCompanyUser(int companyId)
+        {
+            return _companyManager.GetCompanyUser(companyId);
+        }
     }
 }

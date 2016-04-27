@@ -138,5 +138,9 @@ namespace OpenCRM.BusinessManagers.Impl
 
 
         }
+        public IList<User> GetCompanyUser(int companyId)
+        {
+            return _companyHelper.GetCompanyUser(companyId);
+        }
     }
 }

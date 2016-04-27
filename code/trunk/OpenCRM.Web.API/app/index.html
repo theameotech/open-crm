@@ -371,7 +371,7 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#/admin/user/userprofile/{{UserId}}" class="btn btn-default btn-flat">Profile</a>
+                                        <a href="#/admin/user/createuser/{{UserId}}" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="" ng-click="Logout()" class="btn btn-default btn-flat">Sign out</a>
@@ -416,7 +416,9 @@
                 </ul>
             </nav>
         </header>
-        <aside class="main-sidebar" ng-show="Auth">
+
+
+        <aside class="main-sidebar" ng-show="Authaside">
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar" style="height: auto;">
                 <!-- Sidebar user panel -->
@@ -491,6 +493,80 @@
             </section>
             <!-- /.sidebar -->
         </aside>
+
+
+        <aside class="main-sidebar" ng-show="MasterSideBar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar" style="height: auto;">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img alt="User Image" class="img-circle" src="dist/img/user2-160x160.jpg">
+                    </div>
+                    <div class="pull-left info">
+                        <p>{{FirstName}} {{LastName}}</p>
+                        <a href=""><i class="fa fa-circle text-success"></i>Online</a>
+                    </div>
+                </div>
+                <!-- search form -->
+                <form class="sidebar-form" method="get" action="#">
+                    <div class="input-group">
+                        <input type="text" placeholder="Search..." class="form-control" name="q">
+                        <span class="input-group-btn">
+                            <button class="btn btn-flat" id="Button1" name="search" type="submit"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </form>
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu">
+                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="treeview">
+                        <a href="">
+                            <i class="fa fa-dashboard"></i><span>DashBoard</span> <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu" style="display: none;">
+                            <li class=""><a href="#/dashboard"><i class="fa fa-circle-o"></i>DashBoard</a></li>
+                           
+                            <li><a href="#/createmasteruser"><i class="fa fa-circle-o"></i>Create Master User</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="javascript:void(0)">
+                            <i class="fa fa-dashboard"></i><span>Departments</span> <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu" style="display: none;">
+                            <li class=""><a href="#/accounting"><i class="fa fa-circle-o"></i>Accounting</a></li>
+                            <li class=""><a href="#/marketing"><i class="fa fa-circle-o"></i>Marketing</a></li>
+                            <li><a href="#/sales"><i class="fa fa-circle-o"></i>Sales</a></li>
+
+                            <li><a href="#/finance"><i class="fa fa-circle-o"></i>Finance</a></li>
+                            <li class=""><a href="#/arbitration"><i class="fa fa-circle-o"></i>Arbitration</a></li>
+                            <li><a href="#/transportation"><i class="fa fa-circle-o"></i>Transportation</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#/inbox">
+                            <i class="fa fa-envelope"></i><span>Mailbox</span>
+                            <small class="label pull-right bg-yellow">12</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#/auctionlist">
+                            <i class="fa fa-th"></i><span>Auctions</span> <small class="label pull-right bg-green">new</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#/leads">
+                            <i class="fa fa-th"></i><span>Leads</span> <small class="label pull-right bg-green">new</small>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+
+
         <div id="divsap">
             <div growl></div>
             <ng-view></ng-view>

@@ -1,0 +1,133 @@
+﻿<div class="content-wrapper">
+    <div class="general-wrapper">
+        <section class="content">
+            <div class="box new-user col-lg-11 overloadbox" style="margin-top: 26px;">
+                <div class="container containerOverride container-realtive-pos user-create-form">
+                    <form id="formID" name="userform">
+                        <div class="row">
+                            
+                            <div class="col-md-6">
+                                <div class="form-group col-lg-6" style="margin-left: -15px;">
+                                    <label>First Name</label>
+                                    <input type="text" name="FirstName" ng-model="User.FirstName"
+                                        class="form-control validate[required] text-input" />
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>Last Name</label>
+                                    <input type="text" name="lastName"
+                                        ng-model="User.LastName" class="form-control validate[required] text-input" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Username</label>
+                                    <input type="text" name="usernmame"
+                                        ng-model="User.UserName" id="txtEmpName" onkeypress="return AvoidSpace(event)" class="form-control validate[required] text-input" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" name="password"
+                                        ng-model="User.UserPassword
+                                        " class="form-control validate[required] text-input" />
+                                </div>
+                             
+                                <div class="form-group">
+                                    <label>Confirm Password</label>
+                                    <input type="password"
+                                        name="ConfirmPassword"
+                                        ng-blur="Comparepassword()"
+                                        ng-keyup="ComparepasswordChanged()"
+                                        ng-model="User.ConfirmPassword"
+                                        class="form-control validate[required] text-input" />
+                                    <div ng-show="ComparepasswordStatus" style="color: red;">
+                                        <span>password does not match</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" name="Email"
+                                        ng-model="User.UserEmail" placeholder="username@domain.com" class="form-control validate[required] text-input" />
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+                                <div>
+                                    <label>Address:</label>
+                                </div>
+                                <div class="col-lg-6">
+                                    Street Address 1:
+                                     <input type="text" ng-model="User.UserAddress" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    Street Address 2:
+                                    <input type="text" ng-model="User.UserAlternateAddress" class="form-control">
+                                </div>
+                                <div class="col-lg-6">
+                                    City:
+                                    <input type="text" ng-model="User.UserCity" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    State:
+                                    <input type="text" ng-model="User.UserState" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    Postal Code:
+                                    <input type="text" ng-model="User.UserZipCode" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                   Gender:
+                                    <input type="text" ng-model="User.Gender" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    Country:
+                                     <select data-ng-model="User.UserCountry" name="Country" class="form-control">
+                                         <option ng-repeat="cnt in Countries" value="{{cnt.Name}}">{{cnt.Name}}</option>
+                                     </select>
+                                </div>
+
+                                <div class="form-group tablewidth col-lg-12">
+                                    <label>Company </label>
+                                    <input type="text" ng-model="User.CompanyName" class="form-control">
+                                </div>
+                                <div class="form-group tablewidth col-lg-12">
+                                    <label>Cell Phone </label>
+                                    <input type="text"
+                                        name="User.Phone "
+                                        ng-model="User.UserPhone
+                                        "
+                                        mask='(999) 999-9999'
+                                        class="form-control input-us-phone" placeholder="(xxx) xxx-xxxx">
+                                </div>
+                                <div class="form-group tablewidth col-lg-9">
+                                    <label>Office Phone</label>
+                                    <input type="text" ng-change="OfficeNameChanged()"
+                                        name="User.Office"
+                                        ng-model="User.Office"
+                                        mask='(999) 999-9999'
+                                        class="form-control input-us-phone validate[required] text-input" placeholder="(xxx) xxx-xxxx">
+                                </div>
+                                <div class="form-group tablewidth  col-sm-3">
+                                    <label>Ext</label>
+                                    <input type="text"
+                                        ng-model="User.UserOfficePhoneExt"
+                                        mask='999999' placeholder="ext xxxxxx"
+                                        class="form-control validate[required] text-input">
+                                </div>
+                            </div>
+                        </div>
+                      
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button class="btn btn-primary" id="btnClick" type="button" ng-click="CreateMasterUser()">Create User</button>
+                               
+                                <a class="btn btn-default" href="#/admin/user">Cancel</a>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

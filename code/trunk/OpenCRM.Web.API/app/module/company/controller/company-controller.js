@@ -1,6 +1,6 @@
 ﻿var app = angular.module('acApp').controller('company-controller',
-    ['$scope', 'growl', 'companyService', 'userService', '$location', '$rootScope', '$cookieStore', '$http',
-function ($scope, growl, companyService, userService, $location, $rootScope, $cookieStore, $http) {
+    ['$scope', 'growl', 'companyService', 'userService', '$location', '$rootScope', '$cookieStore', '$http','$routeParams',
+function ($scope, growl, companyService, userService, $location, $rootScope, $cookieStore, $http, $routeParams) {
     $scope.ConfirmepasswordStatus = false;
 
     $scope.ShowSighnUpForm = false;
@@ -192,6 +192,31 @@ function ($scope, growl, companyService, userService, $location, $rootScope, $co
     };
 
 
+    $scope.GetCompanyByCompanyId = function () {
+
+        $scope.CompanyName = {};
+        $scope.CompanyAddress = {};
+        $scope.CompanyState = {};
+        companyService.getCompanyByCompanyId($routeParams.CompanyID)
+        .then(function (response) {
+            $scope.GetCompanyUser(response.data.CompanyID);
+            $scope.CompanyName = response.data.CompanyName;
+            $scope.CompanyAddress = response.data.CompanyAddress;
+            $scope.CompanyState = response.data.CompanyState;
+
+
+        })
+    }
+
+
+
+    $scope.GetCompanyUser = function (companyId) {
+        $scope.GetCompanyUserList = [];
+        companyService.getCompanyUser(companyId)
+        .then(function (response) {
+            $scope.GetCompanyUserList = response.data;
+        })
+    };
     $scope.IsRead = function () {
         $scope.CompanyId = $scope.User.CompanyId;
         companyService.IsVerify($scope.CompanyId)
@@ -200,9 +225,10 @@ function ($scope, growl, companyService, userService, $location, $rootScope, $co
               })
     }
    
-        $scope.GetCountries();
 
-    //$scope.GetCountries();
+    $scope.GetCompanyByCompanyId();
+
+   $scope.GetCountries();
 
     $scope.Test();
 }]);
