@@ -1,8 +1,9 @@
 ﻿
 var app = angular.module('acApp').controller('user-controller',
-    ['$scope', 'baseUrl', '$location', '$routeParams', 'userService', 'growl',
-function ($scope, baseUrl, $location, $routeParams, userService, growl) {
+    ['$scope', 'baseUrl', '$location', '$routeParams', 'userService', 'growl','companyService','$rootScope',
+function ($scope, baseUrl, $location, $routeParams, userService, growl, companyService, $rootScope) {
     $scope.UserId = 0;
+    $scope.CompanyID = 0;
     if ($routeParams.userId !== undefined)
         $scope.UserId = $routeParams.userId;
     $scope.Error = "";
@@ -12,27 +13,27 @@ function ($scope, baseUrl, $location, $routeParams, userService, growl) {
 
 
     $scope.User = {
-      UserName : "",
-    UserPassword : "",
-    UserEmail : "",
-    UserPhone : "",
-    FirstName : "",
-    LastName : "",
-    UserOfficePhoneExt : "",
-    UserAddress : "",
-    UserAlternateAddress : "",
-    UserCity : "",
-    UserCountry : "",
-    UserState : "",
-    UserZipCode : "",
-    Isblock : 0,
-    IsVerify : 0,
-    IsActive : 0,
-    Gender : "",
-    UserPrivilege :""
-
-
-    };
+        UserName : "",
+        UserPassword : "",
+        UserEmail : "",
+        UserPhone : "",
+        FirstName : "",
+        LastName : "",
+        UserOfficePhoneExt : "",
+        UserAddress : "",
+        UserAlternateAddress : "",
+        UserCity : "",
+        UserCountry : "",
+        UserState : "",
+        UserZipCode : "",
+        Isblock : 0,
+        IsVerify : 0,
+        IsActive : 0,
+        Gender : "",
+        UserPrivilege: "",
+        ConfirmPassword: "",
+        CompanyName:""
+        };
 
     $scope.Roles = [];
     $scope.AssignRoles = [];
@@ -68,30 +69,30 @@ function ($scope, baseUrl, $location, $routeParams, userService, growl) {
 
 
     $scope.CreateUser = function () {
-    //    if ($.fn.validateForceFully($("#formID")) == true) {
-            userModel.User = $scope.User;
-            userModel.User.Id = $scope.UserId;
-            userModel.Roles = $scope.AssignRoles;
-            userModel.CompanyName = $scope.User.CompanyName;
-            userService.createUser(userModel)
-                .then(function (response) {
-                    if (response.data.Success) {
-                        if ($scope.UserId > 0) {
-                            growl.success('all updates has been saved.');
-                        }
-                        else {
-                            growl.success('new user has been created.');
-                        }
-
-                        $location.path("admin/user");
+        //if ($.fn.validateForceFully($("#formID")) == true) {
+        userModel.User = $scope.User;
+        userModel.User.Id = $scope.UserId;
+        userModel.Roles = $scope.AssignRoles;
+        userModel.CompanyName = $scope.User.CompanyName;
+        userService.createUser(userModel)
+            .then(function (response) {
+                if (response.data.Success) {
+                    if ($scope.UserId > 0) {
+                        growl.success('all updates has been saved.');
                     }
                     else {
-                        $scope.Error = response.data.Message;
+                        growl.success('new user has been created.');
                     }
-                }, function (err) {
-                    $scope.Error = "We are unable to create user at this time, Please try again later.";
-                });
-       // }
+
+                    $location.path("admin/user");
+                }
+                else {
+                    $scope.Error = response.data.Message;
+                }
+            }, function (err) {
+                $scope.Error = "We are unable to create user at this time, Please try again later.";
+            });
+        // }
     };
 
     $scope.GetRoles = function () {
@@ -130,6 +131,7 @@ function ($scope, baseUrl, $location, $routeParams, userService, growl) {
             if (item.Checked == true) {
                 item.Checked = false;
                 $scope.AssignRoles.push(item);
+
             };
         });
 
@@ -159,7 +161,7 @@ function ($scope, baseUrl, $location, $routeParams, userService, growl) {
 
 
     $scope.Comparepassword = function () {
-        if ($scope.User.Password !== $scope.User.ConfirmPassword) {
+        if ($scope.User.UserPassword !== $scope.User.ConfirmPassword) {
             $scope.ComparepasswordStatus = true;
         }
         else {
@@ -170,6 +172,30 @@ function ($scope, baseUrl, $location, $routeParams, userService, growl) {
         $scope.ComparepasswordStatus = false;
     };
 
+    $scope.Company = {};
+    $scope.GetCompanyById = function () {
+        companyService.getCompanyById($rootScope.UserId)
+        .then(function (response) {
+            $scope.User.CompanyName = response.data.CompanyName;
+
+        })
+    }
+    if ($rootScope.UserId > 0) {
+        $scope.GetCompanyById();
+    }
+
+
+
+
+    //$scope.GetCompanyByCompanyId = function () {
+    //    $scope.CompanyID = $routeParams.CompanyID;
+    //    companyService.getCompanyByCompanyId($scope.CompanyID)
+    //    .then(function (response) {
+    //        $scope.User.UserName = response.data.CompanyAdmin;
+    //        $scope.User.UserPassword = response.data.AdminPassword;
+    //    })
+    //}
+    //$scope.GetCompanyByCompanyId();
     $scope.GetCountries();
     $scope.GetRoles();
 

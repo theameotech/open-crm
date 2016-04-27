@@ -46,7 +46,7 @@ namespace OpenCRM.BusinessManagers.Impl
         public Company GetCompanieById(int userId)
         {
 
-          return  _companyHelper.GetCompanieById(userId);
+            return _companyHelper.GetCompanieById(userId);
         }
 
 
@@ -58,19 +58,85 @@ namespace OpenCRM.BusinessManagers.Impl
 
         public void BlockCompany(int companyId)
         {
-
             using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required))
             {
-                _companyHelper.BlockCompany(companyId);
-                scope.Complete();
+                try
+                {
+                    _companyHelper.BlockCompany(companyId);
+                    scope.Complete();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
-            
         }
 
 
         public void UnblockCompany(int companyId)
         {
-            _companyHelper.UnblockCompany(companyId);
+            using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required))
+            {
+                try
+                {
+                    _companyHelper.UnblockCompany(companyId);
+                    scope.Complete();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+
+        public Company GetCompanyByCompanyId(int companyId)
+        {
+            return _companyHelper.GetCompanyByCompanyId(companyId);
+        }
+
+
+        public LoginResult login(Company company)
+        {
+            var newResult = new LoginResult();
+            using (TransactionScope scope = new TransactionScope())
+            {
+                try
+                {
+
+                    newResult = _companyHelper.login(company);
+                    scope.Complete();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                return newResult;
+            }
+        }
+
+
+
+
+        public Company IsVerify(int companyId)
+        {
+            var newCompanyResult = new Company();
+            using (TransactionScope scope = new TransactionScope())
+            {
+                try
+                {
+
+                    newCompanyResult = _companyHelper.IsVerify(companyId);
+                    scope.Complete();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                return newCompanyResult;
+            }
+
+
         }
     }
 }

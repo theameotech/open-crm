@@ -1,11 +1,11 @@
-﻿<html ng-app='acApp'>
+﻿<html ng-app='acApp' style="overflow-x:hidden;">
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>{{PageTitle}}</title>
     <script src="angular/jquery.min.js"></script>
     <script src="angular/angular.js"></script>
     <script src="angular/angular-route.js"></script>
-  <!--  <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>-->
+    <!--  <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="angular/js-css/moment.min.js"></script>
     <link href="plugins/ionslider/ion.rangeSlider.css" rel="stylesheet" />
@@ -482,7 +482,7 @@
                             <i class="fa fa-th"></i><span>Leads</span> <small class="label pull-right bg-green">new</small>
                         </a>
                     </li>
-                     <li>
+                    <li>
                         <a href="#/dolist">
                             <i class="fa fa-th"></i><span>ToDoList</span> <small class="label pull-right bg-green">{{counter}}</small>
                         </a>
@@ -510,7 +510,7 @@
         <aside class="control-sidebar control-sidebar-dark" ng-show="Auth">
             <h2 class="chat-header"><a class="chat-close" href="#"><i class="entypo-cancel"></i></a><i class="entypo-users"></i>
                 Chat
-                <span class="badge badge-success is-hidden">0</span> </h2>
+                <span class="badge badge-success is-hidden">{{TotalCount}}</span> </h2>
             <div ng-repeat="users in UsersList">
                 <div ng-if="users.Id !=UserId"><a href="#/chat/{{users.Id}}" style="margin-left: 15px; color: #fff;">{{users.FirstName}} {{users.LastName}}</a></div>
             </div>

@@ -22,9 +22,20 @@
             return $http.get(baseUrl + '/api/company/UnblockCompany?companyId=' + companyId);
         };
 
-        companyService.getAllCompany = function (userId) {
+        companyService.getAllCompany = function () {
             return $http.get(baseUrl + '/api/company/GetAllCompany');
         };
+        companyService.getCompanyByCompanyId = function (companyId) {
+            return $http.get(baseUrl + '/api/company/GetCompanyByCompanyId?companyId=' + companyId);
+        };
+
+        companyService.login = function (userModel) {
+            return $http.post(baseUrl + '/api/company/login', userModel);
+        };
+
+        companyService.IsVerify = function (companyId) {
+            return $http.get(baseUrl + '/api/company/IsVerify?companyId=' + companyId);
+        }
 
         return companyService;
 

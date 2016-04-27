@@ -82,21 +82,32 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
         $rootScope.DateHelper = {
             SelectedDate: { startDate: new Date(), endDate: new Date() },
         };
-
+       
 
         if ($rootScope.globals != "") {
             $http.defaults.headers.common['Authorization'] = $rootScope.globals; // jshint ignore:line
             $rootScope.Auth = true;
             $rootScope.shownavbar = true;
             $rootScope.TabBar = true;
-            if ($.inArray($location.path(), ['/login', '/forgotpassword']) !== -1)
+            if ($.inArray($location.path(), ['/login', '/forgotpassword', '/companylogin', 'dashboard', '/admin/user/createuser']) !== -1)
                 $location.path("dashboard");
 
             loadSearchParam();
         }
         else {
-            $rootScope.shownavbar = false;
-            $location.path("login");
+            if ($location.path() === "/companylogin") {
+                $rootScope.ShowSingnUpButton = false;
+                $location.path("companylogin");
+               
+            }
+            else {
+                $rootScope.shownavbar = false;
+                $rootScope.ShowSingnUpButton = true;
+                $location.path("login");
+               
+            }
+          
+            
         }
 
         $rootScope.AssignRoles = [];
@@ -112,6 +123,7 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
             userService.getUser()
                 .then(function (response) {
                     $rootScope.UsersList = response.data;
+                    $rootScope.TotalCount = response.data.length-1;
                 });
         };
 
@@ -141,6 +153,7 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
                 $rootScope.Auth = false;
                 $rootScope.shownavbar = true;
                 $location.path('login');
+
             }
         });
     }]);
@@ -172,6 +185,7 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
                   }
               }
           })
+       
 
           .when('/Editdolist', {
               templateUrl: 'module/dashboard/views/DoList.html',
@@ -204,7 +218,16 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
                 }
             }
         })
-
+       .when('/companylogin', {
+           templateUrl: 'module/company/views/companylogin.html',
+           controller: 'company-controller',
+           resolve: {
+               setPageTitle: function ($rootScope) {
+                   $rootScope.PageTitle = "Login";
+               }
+           }
+       })
+    
        .when('/forgotpassword', {
            templateUrl: 'module/login/views/forgot-password.html',
            controller: 'forgotpassword-controller',
@@ -239,20 +262,11 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
             controller: 'company-controller',
             resolve: {
                 setPageTitle: function ($rootScope) {
-                    $rootScope.PageTitle = "Register User";
+                    $rootScope.PageTitle = "Company Signup";
                 }
             }
         })
 
-           .when('/companylogin', {
-               templateUrl: 'module/register/views/loginregister.html',
-               controller: 'register-controller',
-               resolve: {
-                   setPageTitle: function ($rootScope) {
-                       $rootScope.PageTitle = " Login";
-                   }
-               }
-           })
          .when('/leadregister', {
              templateUrl: 'module/leadregister/views/leadregister.html',
              controller: 'leadregister-controller',
@@ -263,15 +277,7 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
              }
          })
 
-         .when('/Leadlogin', {
-             templateUrl: 'module/leadregister/views/loginlead.html',
-             controller: 'leadregister-controller',
-             resolve: {
-                 setPageTitle: function ($rootScope) {
-                     $rootScope.PageTitle = "login ";
-                 }
-             }
-         })
+     
          .when('/sellerregister', {
              templateUrl: 'module/sellerregister/views/sellerregister.html',
              controller: 'sellerregister-controller',
@@ -282,15 +288,7 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
              }
          })
 
-         .when('/sellerlogin', {
-             templateUrl: 'module/sellerregister/views/sellerregister.html',
-             controller: 'sellerregister-controller',
-             resolve: {
-                 setPageTitle: function ($rootScope) {
-                     $rootScope.PageTitle = "Login";
-                 }
-             }
-         })
+      
 
         .when('/Company', {
             templateUrl: 'module/company/views/company.html',
@@ -435,7 +433,16 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
              }
          })
 
-
+          .when('/admin/user/createuser/:companyId', {
+              templateUrl: 'module/user/views/createuser.html',
+              controller: 'user-controller',
+              resolve: {
+                  setPageTitle: function ($rootScope) {
+                      $rootScope.PageTitle = "Edit User";
+                  }
+              }
+          })
+      
         .when('/sales', {
             templateUrl: 'module/sales/views/sales.html',
             controller: 'auction-show-controller',

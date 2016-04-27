@@ -70,6 +70,7 @@ namespace OpenCRM.BizLogic.Helpers.Impl
                 user.LastName = users.User.LastName;
                 user.UserOfficePhoneExt = users.User.UserOfficePhoneExt;
                 user.UserAddress = users.User.UserAddress;
+                user.UserOfficPhone = users.User.UserOfficPhone;
                 user.UserAlternateAddress = users.User.UserAlternateAddress;
                 user.UserCity = users.User.UserCity;
                 user.UserCountry = users.User.UserCountry;
@@ -79,16 +80,23 @@ namespace OpenCRM.BizLogic.Helpers.Impl
                 user.IsVerify = users.User.IsVerify;
                 user.IsActive = users.User.IsActive;
                 user.Gender = users.User.Gender;
-                user.UserPrivilege = users.User.UserPrivilege;
-
-                if (user.CompanyID > 0)
+                if (users.Roles.Count > 0)
                 {
-                    _companyRepo.Delete(_companyRepo.Get(x => x.CompanyID == user.CompanyID));
+                    user.UserPrivilege = users.Roles.ToArray()[0].Name.ToString();
                 }
-                Company cmpny = new Company();
-                cmpny.CompanyName = users.CompanyName;
-                _companyRepo.Add(cmpny);
-                user.CompanyID = cmpny.CompanyID;
+                else
+                {
+                    user.UserPrivilege = users.User.UserPrivilege;
+                }
+
+                //if (user.CompanyID > 0)
+                //{
+                //    _companyRepo.Delete(_companyRepo.Get(x => x.CompanyID == user.CompanyID));
+                //}
+                //Company cmpny = new Company();
+                //cmpny.CompanyName = users.CompanyName;
+                //_companyRepo.Add(cmpny);
+                user.CompanyID = users.User.CompanyID;
 
                 var userRoles = _userrolesRepo.FetchAll(x => x.UserId == user.Id);
                 foreach (var roles in userRoles)
@@ -131,15 +139,30 @@ namespace OpenCRM.BizLogic.Helpers.Impl
                 user.IsVerify = users.User.IsVerify;
                 user.IsActive = users.User.IsActive;
                 user.Gender = users.User.Gender;
-                user.UserPrivilege = "Master";
-
-
-
-                Company cmpny = new Company();
-                cmpny.CompanyName = users.CompanyName;
-                _companyRepo.Add(cmpny);
-                user.CompanyID = cmpny.CompanyID;
+                if (users.Roles.Count > 0)
+                {
+                    user.UserPrivilege = users.Roles.ToArray()[0].Name.ToString();
+                }
+                else
+                {
+                    user.UserPrivilege = users.User.UserPrivilege;
+                }
+                //Company cmpny = new Company();
+                //cmpny.CompanyName = users.CompanyName;
+                //_companyRepo.Add(cmpny);
+                user.CompanyID = users.User.CompanyID;
                 _userRepo.Add(user);
+                SendGridMessage myMessage = new SendGridMessage();
+                myMessage.AddTo(user.UserEmail);
+                myMessage.From = new MailAddress("Support@openCrm.com", "OpenCRM Supprot");
+                myMessage.Subject = "Testing the SendGrid Library";
+                myMessage.Text = "Welcom to OpenCrm your changes has been Saved Please Start Your  Session with your Credentials ";
+                // Create a Web transport, using API Key
+                var transportWeb = new SendGrid.Web("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");
+                transportWeb.DeliverAsync(myMessage);
+
+
+
 
                 foreach (var roles in users.Roles)
                 {

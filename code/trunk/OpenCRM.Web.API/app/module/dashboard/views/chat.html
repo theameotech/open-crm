@@ -1,11 +1,11 @@
-﻿<div class="content-wrapper">
+﻿<!--<div class="content-wrapper">
     <div class="container">
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-5" style="margin-top: 35px; margin-left: 50px;">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <span class="glyphicon glyphicon-comment"></span>Chat
-                    <div class="btn-group pull-right">
+                    <div class="btn-group pull-right" style="margin-top: -7px;">
                         <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-chevron-down"></span>
                         </button>
@@ -24,7 +24,7 @@
                     <div class="panel-body" style="overflow-y: scroll; max-height: 400px;">
                         <div ng-repeat="message in MessageList">
 
-                            <div class="chat-body clearfix" ng-show="message.UserID == UserId" style="float: left; clear: both;">
+                            <div class="chat-body clearfix" ng-show="message.UserID == UserId" style="float: right; clear: both;">
                                 <div class="header">
 
                                     <strong class="primary-font"><span>
@@ -37,7 +37,7 @@
                                 </p>
                             </div>
 
-                            <div class="chat-body clearfix" ng-show="message.UserID != UserId" style="float: right; clear: both;">
+                            <div class="chat-body clearfix" ng-show="message.UserID != UserId" style="float: left; clear: both;">
                                 <div class="header">
 
                                     <strong class="primary-font"><span>
@@ -53,15 +53,111 @@
                     </div>
                     <div class="panel-footer">
                         <div class="input-group">
-                            <input id="Text1" class="form-control input-sm" ng-model="messageModel.MessageBody" placeholder="Type your message here..." ng-keypress="SendMessage($event)" type="text">
-                            <span class="input-group-btn">
-                                <button class="btn btn-warning btn-sm" ng-click="SendMessageOnButtonClick()" id="Button1">
-                                    Send</button>
-                            </span>
+                            <input id="Text1" class="form-control input-sm" ng-model="messageModel.MessageBody" placeholder="Type your message here..." ng-keypress="SendMessage($event)" type="text" style="width: 323px;">
                         </div>
+                        <span class="input-group-btn">
+                            <button class="btn btn-warning btn-sm" ng-click="SendMessageOnButtonClick()" id="Button1" style="width: 86px; margin-left: 341px; margin-top: -33px;">
+                                Send</button>
+                        </span>
                     </div>
 
                 </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+
+<div class="content-wrapper">
+    <div class="container">
+        <div class="row " style="padding-top: 40px;">
+            <!--    <h3 class="text-center" >BOOTSTRAP CHAT EXAMPLE </h3>-->
+            <br />
+            <br />
+            <div class="col-md-8">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        RECENT CHAT HISTORY
+                    </div>
+                    <div class="panel-body">
+                            <!--    <div class="media-body">-->
+
+                                   <!-- <div class="media">
+                                        <a class="pull-left" href="#">
+                                            <img class="media-object img-circle " src="assets/img/user.png" />
+                                        </a>-->
+                                        <div class="" ng-repeat="message in MessageList">
+                                            <div class="chat-body clearfix" ng-show="message.UserID == UserId" style="float: right; clear: both;">
+                                                <div class="header">
+
+                                                    <strong class="primary-font"><span>
+<!--   <img src="http://placehold.it/50/fa6f57/fff&amp;text=me" class="img-circle">--><img src="images/image-user.png" class="img-circle"style="width:30px" />
+                                                    </span>{{ message.UserName}}</strong>
+
+                                                </div>
+                                                <p>
+                                                    {{message.MessageBody}}
+                                                </p>
+                                            </div>
+
+                                            <div class="chat-body clearfix" ng-show="message.UserID != UserId" style="float: left; clear: both;">
+                                                <div class="header">
+
+                                                    <strong class="primary-font"><span>
+                                                        <!--<img src="http://placehold.it/50/fa6f57/fff&amp;text=me" class="img-circle">--><img src="images/image-user.png" class="img-circle"style="width:30px" />
+                                                    </span>{{message.UserName}}</strong>
+                                                </div>
+                                                <p>
+                                                    {{message.MessageBody}}
+                                                </p>
+                                            </div>
+                                      <!--      <br />-->
+                                            <!--<small class="text-muted">Alex Deo | 23rd June at 5:00pm</small>-->
+                                      <!--      <hr />-->
+                                        </div>
+                                    </div>
+
+                              <!--  </div>-->
+                  <!--  </div>-->
+                    <div class="panel-footer">
+                        <div class="input-group">
+                             <input id="Text1" class="form-control input-sm" ng-model="messageModel.MessageBody" placeholder="Type your message here..." ng-keypress="SendMessage($event)" type="text" style="width: 606px;">
+                            <span class="input-group-btn">
+                                <button class="btn btn-info" type="button" ng-click="SendMessageOnButtonClick()" style="width:90px;">SEND</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           <!-- <div class="col-md-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        ONLINE USERS
+                    </div>
+                    <div class="panel-body">
+                        <ul class="media-list">
+
+                            <li class="media">
+
+                                <div class="media-body">
+
+                                    <div class="media" ng-repeat="users in UsersList">
+                                        <a class="pull-left" href="" ng-if="users.Id !=UserId">
+                                           <img src="images/image-user.png" class="img-circle"style="width:28px" />
+                                        </a>
+                                        <div class="media-body">
+                                            <div ng-if="users.Id !=UserId"><a href="#/chat/{{users.Id}}">{{users.FirstName}} {{users.LastName}}</a></div>
+
+                                            <!-- <small class="text-muted">Active From 3 hours</small>-->
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

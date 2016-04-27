@@ -18,5 +18,8 @@ namespace OpenCRM.BizLogic.Helpers.Interfaces
      void BlockCompany(int companyId);
 
      void UnblockCompany(int companyId);
+     Company GetCompanyByCompanyId(int companyId);
+     LoginResult login(Company company);
+     Company IsVerify(int companyId);
     }
 }

@@ -23,5 +23,6 @@ namespace OpenCRM.DB.DomainObjects
         public virtual DateTime ServerDate { get; set; }
         public virtual DateTime CompletionDate { get; set; }
         public virtual bool IsCompleted { get; set; }
+       
     }
 }

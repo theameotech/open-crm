@@ -10,7 +10,7 @@ function ($scope, $rootScope, growl, loginService, $location, $http, $cookieStor
   
 
     $scope.Login = function () {
-        if ($.fn.validateForceFully($("#LoginID")) == true) {
+      // if ($.fn.validateForceFully($("#LoginID")) == true) {
             loginService.login($scope.UserModel)
                  .then(function (response) {
 
@@ -26,6 +26,7 @@ function ($scope, $rootScope, growl, loginService, $location, $http, $cookieStor
                              $cookieStore.put('CompanyId', response.data.CompanyId);
                              $cookieStore.put('EmailId', response.data.EmailId);
                              $cookieStore.put('UserPrivilege', response.data.UserPrivilege);
+                             $cookieStore.put('CreateTime', response.data.CreateTime);
                              $rootScope.globals = response.data.Token;
                              $rootScope.IsAdmin = response.data.IsAdmin;
                              //$rootScope.userName = $scope.UserModel.UserName;
@@ -35,7 +36,9 @@ function ($scope, $rootScope, growl, loginService, $location, $http, $cookieStor
                              $rootScope.CompanyId = response.data.CompanyId;
                              $rootScope.EmailId = response.data.EmailId;
                              $rootScope.UserPrivilege = response.data.UserPrivilege;
-
+                             $rootScope.CreateTime = response.data.CreateTime;
+                             $rootScope.GetAllUsers();
+                             $rootScope.GetRoles();
                              $rootScope.Auth = true;
                              $rootScope.shownavbar = true;
                              $rootScope.showdasboard = false;
@@ -57,7 +60,7 @@ function ($scope, $rootScope, growl, loginService, $location, $http, $cookieStor
 
 
                  });
-        }
+       // }
     }
 }])
 

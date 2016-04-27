@@ -1,0 +1,92 @@
+﻿<div class="content-wrapper">
+    <div>
+        <form name="buyerForm" novalidate>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Create To Do List</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Priority</label>
+                                    <!--<input type="text" required name="BuyerName" ng-model="Dolistmodel.ListPriority" class="form-control" />-->
+                                    <select required required ng-model="Dolistmodel.ListPriority" class="form-control">
+                                        <option value="">---Please select---</option>
+                                        <option value="High">High</option>
+                                        <option value="Low">Low</option>
+                                        <option value="Medium">Medium</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Message</label>
+                                    <textarea type="text" required name="BuyerName" ng-model="Dolistmodel.ListMessage" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Category</label>
+                                    <!--<input type="text" required name="BuyerName" ng-model="Dolistmodel.ListCategory" class="form-control" />-->
+                                    <select required ng-model="Dolistmodel.ListCategory" class="form-control">
+                                        <option value="">---Please select---</option>
+                                        <option value="General">General</option>
+                                        <option value="Accounting">Accounting</option>
+                                        <option value="Marketing">Marketing</option>
+                                        <option value="Sales">Sales</option>
+                                        <option value="Finance">Finance</option>
+                                        <option value="Arbitration">Arbitration</option>
+                                        <option value="Transportation">Transportation</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Target Date</label>
+                                      <input type="text" required name="BuyerName" ng-model="Dolistmodel.TargetDate" class="form-control" />
+                                    <!--<input type="text" name="Dolistmodel.TargetDate" class="form-control" uib-datepicker-popup="{{format}}"
+                                        ng-model="Dolistmodel.TargetDate" is-open="popup1.opened"
+                                        max-date="maxDate" datepicker-options="dateOptions"
+                                        ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />-->
+                                </div>
+                                         <button class="btn btn-primary" type="button" style="width: 230px;" ng-click="CreateDolist()">Create List</button>
+                        <a href="#/dashboard">
+                            <button class="btn btn-warning"style="width: 230px; margin-left: 34px;" type="button">Cancel</button></a>
+                        </div>
+                            </div>
+                       
+                    
+                    </div>
+                       
+                   
+                <div class="col-md-6">
+                       <div class="panel panel-default">
+                            <div class="panel-heading">To Do List</div>
+                                   <div class="panel-body">
+                   <!-- <div class="box-body">-->
+                        <ul class="todo-list ui-sortable"  ng-repeat="list in DoList">
+                    <li>
+                      <!-- drag handle -->
+                      <span class="handle ui-sortable-handle">
+                        <i class="fa fa-ellipsis-v"></i>
+                        <i class="fa fa-ellipsis-v"></i>
+                      </span>
+                      <!-- checkbox -->
+                   <!--   <input type="checkbox" name="" value="">-->
+                         <input type="checkbox" ng-click="CompleteTask(list.DoListID)">
+                      <span class="text">
+                           <a class="a-color " href="javascript:void(0)" ng-click="IsRead(list.DoListID)">{{list.ListMessage| markdown}}</a>
+                      </span>
+                      <small class="label label-danger"><i class="fa fa-clock-o"></i>{{list.TargetDate |date}}</small>
+                      <div class="tools">
+                       <a href="#/Editdolist/{{list.DoListID}}"> <i class="fa fa-edit"></i></a>
+                        <a href="javascript:void(0)" ng-click="DeleteDoList(list.DoListID)"><i class="fa fa-trash-o"></i></a>
+                      </div>
+                    </li>
+                            </ul>
+                    </div>
+                           </div>
+                    </div>
+             
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

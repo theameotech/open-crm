@@ -56,5 +56,21 @@ namespace OpenCRM.Web.API.admin
         {
             _companyManager.UnblockCompany(companyId);
         }
+        [Route("GetCompanyByCompanyId")]
+        public Company GetCompanyByCompanyId(int companyId)
+        {
+            return _companyManager.GetCompanyByCompanyId(companyId);
+        }
+        [Route("login")]
+        public LoginResult login(Company company)
+        {
+            return _companyManager.login(company);
+        }
+        [HttpGet]
+        [Route("IsVerify")]
+        public Company IsVerify(int companyId)
+        {
+            return _companyManager.IsVerify(companyId);
+        }
     }
 }

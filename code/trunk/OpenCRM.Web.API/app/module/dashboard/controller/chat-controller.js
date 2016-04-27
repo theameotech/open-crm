@@ -38,8 +38,6 @@ function ($scope, userService, messageService, $rootScope, $routeParams, $interv
             .then(function (response) {
                 angular.forEach(response.data, function (item) {
                     $scope.MessageList.push(item);
-
-                    console.log($scope.MessageList);
                 });
             });
     };
@@ -58,6 +56,17 @@ function ($scope, userService, messageService, $rootScope, $routeParams, $interv
         $scope.stopInterval();
     });
 
+
+
+
+    $scope.UsersList = [];
+    $scope.GetAllUsers = function () {
+        userService.getUser()
+            .then(function (response) {
+                $scope.UsersList = response.data;
+            });
+    };
+    $scope.GetAllUsers();
     $scope.GetAllMessages();
 }]);
 

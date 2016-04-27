@@ -16,7 +16,6 @@ using System.Web.Http;
 namespace OpenCRM.Web.API.admin
 {
     [RoutePrefix("api/message")]
-    [AuthorizedUser]
     public class MessageController : ApiController
     {
 

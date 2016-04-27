@@ -18,6 +18,10 @@ namespace OpenCRM.Common.DTO
         public string EmailId { get; set; }
         public string UserPrivilege { get; set; }
         public bool Isblock { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public string CompanyName { get; set; }
+        public string BussinessEmail { get; set; }
         public DateTime CreateTime { get; set; }
     }
 }
