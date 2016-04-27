@@ -74,12 +74,12 @@
             <!--    <h3 class="text-center" >BOOTSTRAP CHAT EXAMPLE </h3>-->
             <br />
             <br />
-            <div class="col-md-8">
+            <div class="col-md-4" style=" margin-left: 512px; margin-top: 111px;">
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         RECENT CHAT HISTORY
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body" style="overflow-y: scroll; max-height: 315px;min-height:315px;">
                             <!--    <div class="media-body">-->
 
                                    <!-- <div class="media">
@@ -121,7 +121,7 @@
                   <!--  </div>-->
                     <div class="panel-footer">
                         <div class="input-group">
-                             <input id="Text1" class="form-control input-sm" ng-model="messageModel.MessageBody" placeholder="Type your message here..." ng-keypress="SendMessage($event)" type="text" style="width: 606px;">
+                             <input id="Text1" class="form-control input-sm" ng-model="messageModel.MessageBody" placeholder="Type your message here..." ng-keypress="SendMessage($event)" type="text" style="width: 230px;">
                             <span class="input-group-btn">
                                 <button class="btn btn-info" type="button" ng-click="SendMessageOnButtonClick()" style="width:90px;">SEND</button>
                             </span>
