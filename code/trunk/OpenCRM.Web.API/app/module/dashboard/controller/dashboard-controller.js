@@ -1,13 +1,16 @@
 ﻿
 var app = angular.module('acApp').controller('dashboard-controller',
-    ['$scope', 'userService', 'messageService', 'inboxService', 'companyService', '$rootScope', '$routeParams', '$uibModal','doListService',
-function ($scope, userService, messageService, inboxService, companyService, $rootScope, $routeParams, $uibModal, doListService) {
-
+    ['$scope', 'userService', 'messageService', 'inboxService', 'companyService', '$rootScope', '$routeParams', '$uibModal','doListService','$q',
+function ($scope, userService, messageService, inboxService, companyService, $rootScope, $routeParams, $uibModal, doListService, $q) {
+    var defered = $q.defer();
+    var promise = defered.promise;
   
 
     $rootScope.Ismaster = false;
     $scope.Isblock = false;
     $rootScope.Authaside = true;
+
+    $rootScope.MasterSideBar = false;
 
     if ($rootScope.UserPrivilege == "Master") {
         $rootScope.Ismaster = true;
@@ -102,6 +105,7 @@ function ($scope, userService, messageService, inboxService, companyService, $ro
         userModel.User = $scope.User;
 
         userModel.CompanyName = $scope.User.CompanyName;
+        userModel.User.CompanyID = $rootScope.CompanyId;
         userService.createUser(userModel)
             .then(function (response) {
                 if (response.data.Success) {
@@ -140,8 +144,6 @@ $scope.GetAllCompany = function () {
     companyService.getAllCompany()
         .then(function (response) {
             $scope.GetAllCompanyList = response.data;
-          
-
         });
 
 };
@@ -247,7 +249,12 @@ if ($scope.DoListId > 0) {
     $scope.GetDoList();
 }
 
-
+$scope.GetCountries = function () {
+    userService.getCountries()
+        .then(function (response) {
+            $scope.Countries = response.data;
+        });
+};
 
 $scope.UnblockCompany = function (id) {
 
@@ -257,8 +264,7 @@ $scope.UnblockCompany = function (id) {
     })
 
 };
-
-$scope.GetAllUsers();
+promise.then($scope.GetAllUsers()).then($scope.GetCountries());
 }]);
 
 

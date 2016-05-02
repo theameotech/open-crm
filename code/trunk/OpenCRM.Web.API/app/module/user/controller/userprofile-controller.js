@@ -2,6 +2,8 @@
 var app = angular.module('acApp').controller('userprofile-controller',
     ['$scope', 'baseUrl', 'userService', 'growl',
 function ($scope, baseUrl, userService, growl) {
+    $scope.IsMasterShow = false;
+
     $scope.User = {
         UserName: "",
         Password: "",
@@ -17,12 +19,25 @@ function ($scope, baseUrl, userService, growl) {
     $scope.PageChanged = function () {
         $scope.GetAllUsers();
     };
+
     $scope.UsersList = [];
+    $scope.userPrivilege={};
     $scope.GetAllUsers = function () {
         userService.getUser()
             .then(function (response) {
-                $scope.UsersList = response.data;
-                $scope.totalUsers = response.data.length;
+               
+                
+                angular.forEach(response.data, function (item) {
+                    if (item.UserPrivilege !== "Master") {
+                        $scope.UsersList.push(item);
+                    } 
+                });
+
+
+
+
+                // console.log($scope.UsersList);
+                //   $scope.totalUsers = response.data.length;
             });
     };
     $scope.DeleteUser = function (Id) {

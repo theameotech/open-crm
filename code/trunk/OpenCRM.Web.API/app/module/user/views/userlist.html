@@ -22,7 +22,7 @@
                                         <input type="text" ng-model="search.Email" class="form-control">
                                     </div>
 
-                                    <div class="col-md-1 search-button" style="float: right; margin-right: 30px;margin-top: -80px;">
+                                    <div class="col-md-1 search-button" style="float: right; margin-right: 30px;margin-top:  14px;">
                                         <div class="" ng-show="IsAdmin">
                                             <a class="btn btn-primary" href="#/admin/user/createuser">New User</a>
                                         </div>
@@ -57,13 +57,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="userlist in UsersList | filter: search ">
-                                            <td><a href="#/admin/user/userprofile/{{userlist.Id}}">{{userlist.FirstName}}  {{userlist.LastName}}</a></td>
+                                        <tr  ng-repeat="userlist in UsersList | filter: search ">
+                                          
+                                            <td >{{userlist.FirstName}}  {{userlist.LastName}}</td>                                           
                                             <td>{{userlist.UserName}} </td>
                                             <td>{{userlist.UserEmail}} </td>
                                             <!--    <td>{{userlist.Address}} </td>-->
                                             <td>{{userlist.Phone}} </td>
-                                            <td>
+                                            <td   >
                                                 <a href="#/admin/user/createuser/{{userlist.Id}}">
                                                     <i class="fa fa-pencil-square-o"></i>
                                                 </a>

@@ -1,4 +1,10 @@
-﻿<!--   <div class="col-md-8">
+﻿
+
+
+
+
+
+<!--   <div class="col-md-8">
         <div class="company-register-body">
             <form id="registerform">
                 <div class="row">
@@ -111,7 +117,7 @@
 
 <div class="register-box">
     <div class="register-logo">
-        <a href="#"><b>Open</b>CRM</a>
+        <a href=""><b>Open</b>CRM</a>
     </div>
 
     <div class="register-box-body" style="height: 540px;background: #fff; margin-bottom:20px;">
@@ -166,7 +172,7 @@
                      <input type="email" class="form-control validate[required] text-input" ng-model="CompanyModel.BusinessEmail" placeholder="Bussiness Email" id="Password2">
                 </div>
                 <div class="form-group has-feedback">
-                    <input type="text" class="form-control validate[required] text-input" ng-model="CompanyModel.CompanyAdmin" placeholder="Admin">
+                    <input type="text" class="form-control validate[required] text-input"  ng-model="CompanyModel.CompanyAdmin" placeholder="Admin">
                 </div>
                 <div class="form-group has-feedback" ng-style="passwordStrength" style="color: #fff; font-size: 13px;">
                     <b>{{status}}</b>
@@ -229,7 +235,7 @@
     jQuery(document).ready(function () {
         // binds form submission and fields to the validation engine
         // binds form submission and fields to the validation engine
-        $("#registerform").validationEngine();
+        $("#form").validationEngine();
     });
 
     $(function () {

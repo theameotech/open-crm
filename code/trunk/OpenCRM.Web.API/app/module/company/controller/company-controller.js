@@ -1,10 +1,14 @@
 ﻿var app = angular.module('acApp').controller('company-controller',
-    ['$scope', 'growl', 'companyService', 'userService', '$location', '$rootScope', '$cookieStore', '$http','$routeParams',
-function ($scope, growl, companyService, userService, $location, $rootScope, $cookieStore, $http, $routeParams) {
+    ['$scope', 'growl', 'companyService', 'userService', '$location', '$rootScope', '$cookieStore', '$http', '$routeParams', '$q',
+function ($scope, growl, companyService, userService, $location, $rootScope, $cookieStore, $http, $routeParams, $q) {
+
+    var defered = $q.defer();
+    var promise = defered.promise;
+
     $scope.ConfirmepasswordStatus = false;
 
     $scope.ShowSighnUpForm = false;
-   
+
     $scope.CompanyModel = {
         CompanyName: "",
         BusinessEmail: "",
@@ -26,7 +30,7 @@ function ($scope, growl, companyService, userService, $location, $rootScope, $co
         UserPassword: "",
         UserEmail: "",
         UserPhone: "",
-        UserOfficPhone:"",
+        UserOfficPhone: "",
         FirstName: "",
         LastName: "",
         UserOfficePhoneExt: "",
@@ -40,14 +44,14 @@ function ($scope, growl, companyService, userService, $location, $rootScope, $co
         Isblock: 0,
         IsVerify: 0,
         IsActive: 0,
-        UserPrivilege:"Admin",
+        UserPrivilege: "OpenCRM ADMIN",
         Gender: "",
-        CompanyId:$scope.CompanyId
+        CompanyId: $scope.CompanyId
 
 
     };
-   
-  
+
+
     $scope.CreateUser = function () {
         console.log($scope.User);
         var userModel = {
@@ -65,7 +69,7 @@ function ($scope, growl, companyService, userService, $location, $rootScope, $co
                         growl.success('new user has been created.');
                     }
 
-                   // $location.path("admin/user");
+                    // $location.path("admin/user");
                 }
                 else {
                     $scope.Error = response.data.Message;
@@ -148,11 +152,10 @@ function ($scope, growl, companyService, userService, $location, $rootScope, $co
         companyService.getCompanyById($rootScope.UserId)
         .then(function (response) {
             $scope.Company = response.data.CompanyName;
-            $scope.name = response.data.CompanyName.slice(0,1);
+            $scope.name = response.data.CompanyName.slice(0, 1);
         })
     }
-    if ($rootScope.UserId > 0)
-    {
+    if ($rootScope.UserId > 0) {
         $scope.GetCompanyById();
     }
 
@@ -162,12 +165,13 @@ function ($scope, growl, companyService, userService, $location, $rootScope, $co
         CompanyAdmin: "",
         AdminPassword: ""
     }
-  
+
 
     $scope.Login = function () {
+
         companyService.login($scope.UserModel)
                  .then(function (response) {
-                     if (response.data.Success == true && response.data.UserName == $scope.UserModel.CompanyAdmin 
+                     if (response.data.Success == true && response.data.UserName == $scope.UserModel.CompanyAdmin
                          && response.data.Password == $scope.UserModel.AdminPassword) {
                          $scope.ShowSighnUpForm = true;
                          $scope.User.CompanyName = response.data.CompanyName;
@@ -176,11 +180,11 @@ function ($scope, growl, companyService, userService, $location, $rootScope, $co
                          $scope.User.UserEmail = response.data.BussinessEmail;
                          $scope.User.CompanyId = response.data.CompanyId;
                          $scope.IsRead();
-                         }
-                         else {
-                             growl.error('Invalid username and password.');
-                         }
-                 
+                     }
+                     else {
+                         growl.error('Invalid username and password.');
+                     }
+
                  });
     }
 
@@ -224,13 +228,16 @@ function ($scope, growl, companyService, userService, $location, $rootScope, $co
 
               })
     }
-   
 
-    $scope.GetCompanyByCompanyId();
+    if ($rootScope.UserId > 0) {
+        $scope.GetCompanyByCompanyId();
+    }
+    promise.then($scope.GetCountries()).then($scope.Test());
+    // $scope.GetCompanyByCompanyId();
 
-   $scope.GetCountries();
+    //$scope.GetCountries();
 
-    $scope.Test();
+    // $scope.Test();
 }]);
 
 

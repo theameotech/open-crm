@@ -65,12 +65,15 @@ namespace OpenCRM.BizLogic.Helpers.Impl
             compny.CompanyCountry = company.CompanyCountry;
             compny.ServerDate = DateTime.Now;
             compny.SystemDate = DateTime.Now;
+
+
             _companyRepo.Add(compny);
             SendGridMessage myMessage = new SendGridMessage();
             myMessage.AddTo(compny.BusinessEmail);
             myMessage.From = new MailAddress("Support@openCrm.com", "OpenCRM Supprot");
-            myMessage.Subject = "Testing the SendGrid Library";
-            myMessage.Text = "thanks for become a member of us http://localhost:26159/app/index.html#/companylogin";
+            myMessage.Subject = "Thanks From OPEN CRM";
+            myMessage.Html = "'thanks for become a member of us your UserName is:'"+"<b>"+ compny.CompanyAdmin +"</b>"+"'and Password is:'"+"<b>"+compny.AdminPassword +"</b>"+"' Please click on this Url  http://localhost:26159/app/index.html#/companylogin'";
+           
             // Create a Web transport, using API Key
             var transportWeb = new SendGrid.Web("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");
             transportWeb.DeliverAsync(myMessage);
@@ -153,7 +156,7 @@ namespace OpenCRM.BizLogic.Helpers.Impl
                 var dbcompany = _companyRepo.Get(x => x.CompanyAdmin == company.CompanyAdmin && x.AdminPassword == company.AdminPassword);
 
 
-                string token = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+                //string token = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
 
                 if (dbcompany != null)
                 {

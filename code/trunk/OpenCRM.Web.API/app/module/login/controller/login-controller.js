@@ -1,7 +1,10 @@
 ﻿
 var app = angular.module('acApp')
-    .controller('login-controller', ['$scope', '$rootScope', 'growl', 'loginService', '$location', '$http', '$cookieStore',
-function ($scope, $rootScope, growl, loginService, $location, $http, $cookieStore) {
+    .controller('login-controller', ['$scope', '$rootScope', 'growl', 'loginService', '$location', '$http', '$cookieStore','$q',
+function ($scope, $rootScope, growl, loginService, $location, $http, $cookieStore, $q) {
+    var defered = $q.defer();
+    var promise = defered.promise;
+   
     $rootScope.Auth = false;
     $scope.UserModel = {
         UserName: "",
@@ -9,8 +12,9 @@ function ($scope, $rootScope, growl, loginService, $location, $http, $cookieStor
     }
   
 
+
     $scope.Login = function () {
-      // if ($.fn.validateForceFully($("#LoginID")) == true) {
+       if ($.fn.validateForceFully($("#LoginID")) == true) {
             loginService.login($scope.UserModel)
                  .then(function (response) {
 
@@ -37,11 +41,12 @@ function ($scope, $rootScope, growl, loginService, $location, $http, $cookieStor
                              $rootScope.EmailId = response.data.EmailId;
                              $rootScope.UserPrivilege = response.data.UserPrivilege;
                              $rootScope.CreateTime = response.data.CreateTime;
-                             $rootScope.GetAllUsers();
-                             $rootScope.GetRoles();
                              $rootScope.Auth = true;
                              $rootScope.shownavbar = true;
                              $rootScope.showdasboard = false;
+                             promise.then($rootScope.GetAllUsers()).then($rootScope.GetRoles());
+                           
+                            
                              $http.defaults.headers.common['Authorization'] = response.data.Token;
                              $rootScope.$broadcast('on-login', {});
                             
@@ -60,7 +65,7 @@ function ($scope, $rootScope, growl, loginService, $location, $http, $cookieStor
 
 
                  });
-       // }
+        }
     }
 }])
 

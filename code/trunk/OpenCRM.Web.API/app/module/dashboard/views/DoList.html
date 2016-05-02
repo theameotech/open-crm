@@ -70,9 +70,9 @@
                       </span>
                       <!-- checkbox -->
                    <!--   <input type="checkbox" name="" value="">-->
-                         <input type="checkbox" ng-click="CompleteTask(list.DoListID)">
+                        <!-- <input type="checkbox" ng-click="CompleteTask(list.DoListID)">-->
                       <span class="text">
-                           <a class="a-color " href="javascript:void(0)" ng-click="IsRead(list.DoListID)">{{list.ListMessage| markdown}}</a>
+                           <a class="a-color">{{list.ListMessage| markdown}}</a>
                       </span>
                       <small class="label label-danger"><i class="fa fa-clock-o"></i>{{list.TargetDate |date}}</small>
                       <div class="tools">

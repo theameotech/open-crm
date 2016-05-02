@@ -27,6 +27,7 @@ namespace OpenCRM.DB.DomainObjects
         //public virtual DateTime LastUpdateTime { get; set; }
         public virtual DateTime SystemDate { get; set; }
         public virtual DateTime ServerDate { get; set; }
+        //public virtual string AuthToken { get; set; }
 
 
 

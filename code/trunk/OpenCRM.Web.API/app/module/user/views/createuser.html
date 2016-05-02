@@ -7,8 +7,8 @@
             <small>Staff</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-            <li><a href="#">Forms</a></li>
+            <li><a href=""><i class="fa fa-dashboard"></i>Home</a></li>
+            <li><a href="">Forms</a></li>
             <li class="active">Create User - Staff</li>
         </ol>
     </section>
@@ -24,7 +24,7 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form">
+                    <form  id= formID name="form">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">
@@ -94,7 +94,7 @@
                                 <label for="exampleInputPassword1">Office Phone</label>
                                 <input type="text" ng-change="OfficeNameChanged()"
                                     name="User.Office"
-                                    ng-model="User.Office"
+                                    ng-model="User.UserOfficPhone"
                                     mask='(999) 999-9999'
                                     class="form-control input-us-phone validate[required] text-input" placeholder="(xxx) xxx-xxxx">
                             </div>
@@ -275,10 +275,10 @@
     }
 
     //jQuery(document).ready(function () {
+     //binds form submission and fields to the validation engine
     // binds form submission and fields to the validation engine
-    // binds form submission and fields to the validation engine
-    //$("form").validationEngine();
-    //});
+   // $("form").validationEngine();
+   // });
 
 
 </script>

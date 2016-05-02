@@ -1,7 +1,11 @@
 ﻿
 var app = angular.module('acApp').controller('user-controller',
-    ['$scope', 'baseUrl', '$location', '$routeParams', 'userService', 'growl','companyService','$rootScope',
-function ($scope, baseUrl, $location, $routeParams, userService, growl, companyService, $rootScope) {
+    ['$scope', 'baseUrl', '$location', '$routeParams', 'userService', 'growl','companyService','$rootScope','$q',
+function ($scope, baseUrl, $location, $routeParams, userService, growl, companyService, $rootScope, $q) {
+
+    var defered = $q.defer();
+    var promise = defered.promise;
+
     $scope.UserId = 0;
     $scope.CompanyID = 0;
     if ($routeParams.userId !== undefined)
@@ -23,7 +27,8 @@ function ($scope, baseUrl, $location, $routeParams, userService, growl, companyS
         UserAddress : "",
         UserAlternateAddress : "",
         UserCity : "",
-        UserCountry : "",
+        UserCountry: "",
+        UserOfficPhone:"",
         UserState : "",
         UserZipCode : "",
         Isblock : 0,
@@ -54,16 +59,18 @@ function ($scope, baseUrl, $location, $routeParams, userService, growl, companyS
             .then(function (response) {
                 $scope.AssignRoles = response.data;
                 $scope.AssignRole();
+                $scope.GetCompanyById();
+
             });
     };
 
-    if ($scope.UserId > 0) {
-        $scope.GetUser();
-    }
+    //if ($scope.UserId > 0) {
+    //    $scope.GetUser();
+    //}
     var userModel = {
         User: {},
         Roles: [],
-        CompanyName: ""
+      
     };
 
 
@@ -73,6 +80,7 @@ function ($scope, baseUrl, $location, $routeParams, userService, growl, companyS
         userModel.User = $scope.User;
         userModel.User.Id = $scope.UserId;
         userModel.Roles = $scope.AssignRoles;
+        userModel.User.CompanyID = $rootScope.CompanyId;
         userModel.CompanyName = $scope.User.CompanyName;
         userService.createUser(userModel)
             .then(function (response) {
@@ -92,7 +100,7 @@ function ($scope, baseUrl, $location, $routeParams, userService, growl, companyS
             }, function (err) {
                 $scope.Error = "We are unable to create user at this time, Please try again later.";
             });
-        // }
+      //   }
     };
 
     $scope.GetRoles = function () {
@@ -108,6 +116,11 @@ function ($scope, baseUrl, $location, $routeParams, userService, growl, companyS
                 $scope.Countries = response.data;
             });
     };
+    //if ($rootScope.UserId > 0)
+    //{
+    //    $scope.GetCountries();
+    //}
+
     $scope.SelectRole = function (context) {
         context.Checked = !context.Checked;
     };
@@ -177,11 +190,12 @@ function ($scope, baseUrl, $location, $routeParams, userService, growl, companyS
         companyService.getCompanyById($rootScope.UserId)
         .then(function (response) {
             $scope.User.CompanyName = response.data.CompanyName;
-
+            console.log($scope.User.CompanyName);
+            //$scope.User.UserCountry = response.data.CompanyCountry;
         })
     }
     if ($rootScope.UserId > 0) {
-        $scope.GetCompanyById();
+        promise.then($scope.GetCountries()).then($scope.GetUser());
     }
 
 
@@ -196,8 +210,8 @@ function ($scope, baseUrl, $location, $routeParams, userService, growl, companyS
     //    })
     //}
     //$scope.GetCompanyByCompanyId();
-    $scope.GetCountries();
-    $scope.GetRoles();
+    promise.then($scope.GetRoles()).then($scope.GetCompanyById());
+    //$scope.GetRoles();
 
 }]);
 

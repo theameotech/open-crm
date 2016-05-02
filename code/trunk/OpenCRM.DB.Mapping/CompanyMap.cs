@@ -33,6 +33,8 @@ namespace OpenCRM.DB.Mapping
             Map(x => x.LastUpdateTime);
             Map(x => x.SystemDate);
             Map(x => x.ServerDate);
+            //Map(x => x.AuthToken);
+
 
         }
     }
