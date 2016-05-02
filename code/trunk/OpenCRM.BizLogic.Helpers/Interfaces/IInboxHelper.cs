@@ -16,6 +16,8 @@ namespace OpenCRM.BizLogic.Helpers.Interfaces
 
       void FlagEmail(Inbox inbox);
 
+      void ReadEmail(Inbox inbox);
       void DeleteEmails(string[] inbox);
+      Inbox GetEmailBySenderId(int senderId);
     }
 }

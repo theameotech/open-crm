@@ -10,9 +10,10 @@ app.config(['growlProvider', function (growlProvider) {
 }]);
 
 
-app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'buyerService', '$rootScope', 'userService',
-    function ($rootScope, $cookieStore, loginService, $http, $location, buyerService, $rootScope, userService) {
-
+app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'buyerService', '$rootScope', 'userService','$q',
+    function ($rootScope, $cookieStore, loginService, $http, $location, buyerService, $rootScope, userService, $q) {
+        var defered = $q.defer();
+        var promise = defered.promise;
 
         $rootScope.globals = $cookieStore.get('globals') || ''
         $cookieStore.IsAdmin = $cookieStore.get('IsAdmin');
@@ -22,6 +23,7 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
         $cookieStore.LastName = $cookieStore.get('LastName');
         $cookieStore.UserId = $cookieStore.get('UserId');
         $cookieStore.CompanyId = $cookieStore.get('CompanyId');
+     
         $cookieStore.CreateTime = $cookieStore.get('CreateTime');
 
         $cookieStore.EmailId = $cookieStore.get('EmailId');
@@ -36,10 +38,18 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
         $rootScope.CreateTime = $cookieStore.CreateTime;
         $rootScope.EmailId = $cookieStore.EmailId;
 
+     
+
         $rootScope.UserPrivilege = $cookieStore.UserPrivilege;
+        console.log($rootScope.UserPrivilege);
+
         $rootScope.Logout = function () {
             $rootScope.shownavbar = false;
+            $rootScope.Authaside = false;
+            $rootScope.MasterSideBar=false;
             $rootScope.TabBar = false;
+            $rootScope.Auth = false;
+
             loginService.logout({ AuthToken: $rootScope.globals })
             .then(function () {
 
@@ -136,10 +146,11 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
         };
 
         if ($rootScope.UserId > 0) {
-            $rootScope.GetRoles();
-            $rootScope.GetAllUsers();
+            //$rootScope.GetRoles();
+            //$rootScope.GetAllUsers();
+              promise.then($rootScope.GetRoles()).then($rootScope.GetAllUsers());
         }
-
+      
 
         function loadSearchParam() {
             buyerService.getSearchParams()
@@ -405,6 +416,16 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
                  }
              }
          })
+
+        .when('/readmail/:EmailID', {
+            templateUrl: 'module/inbox/views/reademail.html',
+            controller: 'read-controller',
+            resolve: {
+                setPageTitle: function ($rootScope) {
+                    $rootScope.PageTitle = "Inbox";
+                }
+            }
+        })
 
           .when('/draft', {
               templateUrl: 'module/inbox/views/draft.html',

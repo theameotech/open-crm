@@ -81,5 +81,21 @@ namespace OpenCRM.BizLogic.Helpers.Impl
             }
             
         }
+
+
+        public Inbox GetEmailBySenderId(int senderId)
+        {
+            return _inboxRepo.Get(x => x.EmailID == senderId);
+        }
+
+
+        public void ReadEmail(Inbox inbox)
+        {
+
+            var userEmails = _inboxRepo.Get(x => x.StatusID == inbox.StatusID);
+            userEmails.IsFlagged = inbox.IsFlagged;
+            _inboxRepo.Update(userEmails);
+
+        }
     }
 }

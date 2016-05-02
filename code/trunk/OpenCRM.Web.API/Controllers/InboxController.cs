@@ -48,11 +48,25 @@ namespace OpenCRM.Web.API.admin
         {
             _inboxManager.FlagEmail(inbox);
         }
+
+        [Route("ReadEmail")]
+        public void ReadEmail(Inbox inbox)
+        {
+            _inboxManager.ReadEmail(inbox);
+        }
+
         [HttpPost]
         [Route("DeleteEmails")]
         public void DeleteEmails(string[] inbox)
         {
             _inboxManager.DeleteEmails(inbox);
+
+        }
+
+        [Route("GetEmailBySenderId")]
+        public Inbox GetEmailBySenderId(int senderId)
+        {
+            return _inboxManager.GetEmailBySenderId(senderId);
 
         }
     }

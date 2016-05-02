@@ -3,7 +3,7 @@ var app = angular.module('acApp').controller('inbox-controller',
     ['$scope', 'userService', 'inboxService', '$rootScope', '$routeParams', '$interval',
 function ($scope, userService, inboxService, $rootScope, $routeParams, $interval) {
 
-
+   
     $scope.inboxeModel = {
         CompanyID: $rootScope.CompanyId,
         UserID: $rootScope.UserId,
@@ -101,9 +101,14 @@ function ($scope, userService, inboxService, $rootScope, $routeParams, $interval
                     }
                     if (item.IsDraft == false && item.IsTrash == false) {
                         
+                        if (item.IsRead == false)
+                        {
+                           
+                            $scope.counter++;
+                        }
                         $scope.InboxList.push(item);
-                        $scope.counter++;
-                        console.log($scope.InboxList);
+                      
+                        
                     }
 
                 });
@@ -147,17 +152,12 @@ function ($scope, userService, inboxService, $rootScope, $routeParams, $interval
     $scope.deletevalue = {};
 
     $scope.DeleteEmails = function () {
-
-
-
         console.log($scope.deletevalue);
-
         inboxService.deleteEmail($scope.DeleteItems)
             .then(function (response) {
             });
     }
-
-
+   
 
     $scope.GetAllEmails();
 }]);

@@ -1,4 +1,7 @@
-﻿<div class="content-wrapper">
+﻿
+
+
+<div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
@@ -60,7 +63,7 @@
                     </div>
                   </div><!-- /.box-tools -->
                 </div><!-- /.box-header -->
-                <div class="box-body no-padding">
+                <div class="box-body no-padding" >
                   <div class="mailbox-controls">
                     <!-- Check all button -->
                     <button class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
@@ -71,7 +74,7 @@
                     </div><!-- /.btn-group -->
                     <button class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
                     <div class="pull-right">
-                      1-50/200
+                     
                       <div class="btn-group">
                         <button class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
                         <button class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
@@ -85,8 +88,8 @@
                         <tr ng-repeat="inbox in InboxList">
                           <td><input type="checkbox" ng-click="CheckIsDelete(IsChecked,inbox.StatusID,$index)"  ng-model="IsChecked"  ></td>
                           <td class="mailbox-star" ng-click="FlagMail(inbox)"><a href=""><i class="fa fa-star text-yellow"></i></a></td>
-                          <td class="mailbox-name"><a href="">{{inbox.ToUserName}}</a></td>
-                          <td class="mailbox-subject"><b>{{inbox.EmailSubject}}</b> - {{inbox.EmailContent}}</td>
+                          <td class="mailbox-name"><a href="#/readmail/{{inbox.EmailID}}">{{inbox.ToUserName}}</a></td>
+                          <td class="mailbox-subject"><b>{{inbox.EmailSubject}}</b></td>
                           <td class="mailbox-attachment">{{inbox.AttachmentType}}</td>
                           <td class="mailbox-date">{{inbox.CreateTime}}</td>
                         </tr>
@@ -95,7 +98,7 @@
                     </table><!-- /.table -->
                   </div><!-- /.mail-box-messages -->
                 </div><!-- /.box-body -->
-                <div class="box-footer no-padding">
+                <div class="box-footer no-padding"   >
                   <div class="mailbox-controls">
                     <!-- Check all button -->
                     <button class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
@@ -106,7 +109,7 @@
                     </div><!-- /.btn-group -->
                     <button class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
                     <div class="pull-right">
-                      1-50/200
+                   
                       <div class="btn-group">
                         <button class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
                         <button class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
@@ -116,6 +119,10 @@
                 </div>
               </div><!-- /. box -->
             </div><!-- /.col -->
+
+
+
+
           </div><!-- /.row -->
         </section><!-- /.content -->
       </div>

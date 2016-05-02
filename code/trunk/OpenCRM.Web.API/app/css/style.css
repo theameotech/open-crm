@@ -574,7 +574,7 @@ label > select {
 
 /** button design based on http://codepen.io/guvootes/pen/eyDAb **/
 button {
-    width: 100%;
+    /*width: 100%;*/
     height: 35px;
     border: none;
     border-radius: 4px;

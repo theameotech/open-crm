@@ -14,6 +14,8 @@ namespace OpenCRM.BusinessManagers.Interfaces
        void SendEmail(Inbox inbox);
        void FlagEmail(Inbox inbox);
        void DeleteEmails(string[] inbox);
+       Inbox GetEmailBySenderId(int senderId);
+       void ReadEmail(Inbox inbox);
     }
 
 }
