@@ -1,6 +1,6 @@
 ﻿
 var app = angular.module('acApp').controller('user-controller',
-    ['$scope', 'baseUrl', '$location', '$routeParams', 'userService', 'growl','companyService','$rootScope','$q',
+    ['$scope', 'baseUrl', '$location', '$routeParams', 'userService', 'growl', 'companyService', '$rootScope', '$q',
 function ($scope, baseUrl, $location, $routeParams, userService, growl, companyService, $rootScope, $q) {
 
     var defered = $q.defer();
@@ -17,60 +17,58 @@ function ($scope, baseUrl, $location, $routeParams, userService, growl, companyS
 
 
     $scope.User = {
-        UserName : "",
-        UserPassword : "",
-        UserEmail : "",
-        UserPhone : "",
-        FirstName : "",
-        LastName : "",
-        UserOfficePhoneExt : "",
-        UserAddress : "",
-        UserAlternateAddress : "",
-        UserCity : "",
+        UserName: "",
+        UserPassword: "",
+        UserEmail: "",
+        UserPhone: "",
+        FirstName: "",
+        LastName: "",
+        UserOfficePhoneExt: "",
+        UserAddress: "",
+        UserAlternateAddress: "",
+        UserCity: "",
         UserCountry: "",
-        UserOfficPhone:"",
-        UserState : "",
-        UserZipCode : "",
-        Isblock : 0,
-        IsVerify : 0,
-        IsActive : 0,
-        Gender : "",
+        UserOfficPhone: "",
+        UserState: "",
+        UserZipCode: "",
+        Isblock: 0,
+        IsVerify: 0,
+        IsActive: 0,
+        Gender: "",
         UserPrivilege: "",
         ConfirmPassword: "",
-        CompanyName:""
-        };
+        CompanyName: ""
+    };
 
     $scope.Roles = [];
     $scope.AssignRoles = [];
     $scope.Countries = [];
 
-    $scope.GetUser = function () {
-        userService.getUserById($scope.UserId)
-            .then(function (response) {
-                $scope.User = response.data;
-                if ($scope.UserId > 0) {
-                    $scope.GetUserRoles();
-                }
-            });
+    $scope.GetUser = function (data) {
+        if (data.data != null) {
+            $scope.User = data.data;
+            if ($scope.UserId > 0) {
+                $scope.GetUserRoles();
+            }
+        }
     };
 
     $scope.GetUserRoles = function () {
         userService.getUserRoles($scope.UserId)
-            .then(function (response) {
-                $scope.AssignRoles = response.data;
-                $scope.AssignRole();
-                $scope.GetCompanyById();
-
-            });
+           .then(function (response) {
+               $scope.AssignRoles = response.data;
+               $scope.AssignRole();
+               //$scope.GetCompanyById();
+              
+    });
     };
 
-    //if ($scope.UserId > 0) {
-    //    $scope.GetUser();
-    //}
+
+
     var userModel = {
         User: {},
         Roles: [],
-      
+
     };
 
 
@@ -81,7 +79,7 @@ function ($scope, baseUrl, $location, $routeParams, userService, growl, companyS
         userModel.User.Id = $scope.UserId;
         userModel.Roles = $scope.AssignRoles;
         userModel.User.CompanyID = $rootScope.CompanyId;
-        userModel.CompanyName = $scope.User.CompanyName;
+        userModel.User.CompanyName = $scope.User.CompanyName;
         userService.createUser(userModel)
             .then(function (response) {
                 if (response.data.Success) {
@@ -100,26 +98,17 @@ function ($scope, baseUrl, $location, $routeParams, userService, growl, companyS
             }, function (err) {
                 $scope.Error = "We are unable to create user at this time, Please try again later.";
             });
-      //   }
+        //   }
     };
 
-    $scope.GetRoles = function () {
-        userService.getRoles()
-            .then(function (response) {
-                $scope.Roles = response.data;
-            });
+    $scope.GetRoles = function (data) {
+        $scope.Roles = data.data;
     };
 
-    $scope.GetCountries = function () {
-        userService.getCountries()
-            .then(function (response) {
-                $scope.Countries = response.data;
-            });
+    $scope.GetCountries = function (data) {
+        $scope.Countries = data.data;
     };
-    //if ($rootScope.UserId > 0)
-    //{
-    //    $scope.GetCountries();
-    //}
+ 
 
     $scope.SelectRole = function (context) {
         context.Checked = !context.Checked;
@@ -185,34 +174,57 @@ function ($scope, baseUrl, $location, $routeParams, userService, growl, companyS
         $scope.ComparepasswordStatus = false;
     };
 
-    $scope.Company = {};
-    $scope.GetCompanyById = function () {
-        companyService.getCompanyById($rootScope.UserId)
-        .then(function (response) {
-            $scope.User.CompanyName = response.data.CompanyName;
-            console.log($scope.User.CompanyName);
-            //$scope.User.UserCountry = response.data.CompanyCountry;
-        })
+    $scope.GetCompanyById = function (data) {
+        $scope.User.CompanyName = data.data.CompanyName;
+        
+        //$scope.CompanyLatest = "";
+        //$scope.CompanyLatest = data.data.CompanyName;
+        // = $scope.CompanyLatest;
+      
+        //companyService.getCompanyById($rootScope.UserId)
+        //.then(function (response) {
+            
+        //    $scope.CompanyLatest = response.data.CompanyName;
+        //    $scope.User.CompanyName = $scope.CompanyLatest;
+        //})
     }
-    if ($rootScope.UserId > 0) {
-        promise.then($scope.GetCountries()).then($scope.GetUser());
+
+    $scope.OnLoad = function () {
+        var promises = [
+                        //userService.getCountries(),
+                        //userService.getUserById($scope.UserId),
+                        // userService.getRoles(),
+                        //, companyService.getCompanyById($rootScope.UserId)
+                        userService.getCountries(),
+                        userService.getRoles(),
+                        userService.getUserById($scope.UserId),
+                       companyService.getCompanyById($rootScope.UserId)
+                        
+        ];
+
+        $q.all(promises).then(function (response) {
+            response // [array of response]
+           //company
+            //$scope.GetCountries(response[0]);
+            //$scope.GetUser(response[1]);
+            //$scope.GetRoles(response[2]);
+            //$scope.GetCompanyById(response[3]);
+            $scope.GetCountries(response[0]);
+            $scope.GetRoles(response[1]);
+            $scope.GetUser(response[2]);
+          $scope.GetCompanyById(response[3]);
+         
+
+        });
+
     }
 
+    //if ($scope.UserId === 0) {
 
+    //    $scope.GetCompanyById()
 
-
-    //$scope.GetCompanyByCompanyId = function () {
-    //    $scope.CompanyID = $routeParams.CompanyID;
-    //    companyService.getCompanyByCompanyId($scope.CompanyID)
-    //    .then(function (response) {
-    //        $scope.User.UserName = response.data.CompanyAdmin;
-    //        $scope.User.UserPassword = response.data.AdminPassword;
-    //    })
     //}
-    //$scope.GetCompanyByCompanyId();
-    promise.then($scope.GetRoles()).then($scope.GetCompanyById());
-    //$scope.GetRoles();
-
+    $scope.OnLoad();
 }]);
 
 

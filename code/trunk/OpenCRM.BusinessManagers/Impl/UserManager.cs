@@ -90,8 +90,9 @@ namespace OpenCRM.BusinessManagers.Impl
                 }
             }
         }
-
-
-     
+      public IList<User> GetAllUsersByCompanyId(int companyId)
+      {
+          return _userHelper.GetAllUsersByCompanyId(companyId);
+      }
     }
 }

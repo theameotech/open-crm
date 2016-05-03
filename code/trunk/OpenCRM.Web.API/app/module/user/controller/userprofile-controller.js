@@ -20,16 +20,17 @@ function ($scope, baseUrl, userService, growl) {
         $scope.GetAllUsers();
     };
 
-    $scope.UsersList = [];
+    $scope.Counts = {};
     $scope.userPrivilege={};
     $scope.GetAllUsers = function () {
+          $scope.UsersList = [];
         userService.getUser()
             .then(function (response) {
-               
-                
+               // $scope.Counts = response.data.length;
                 angular.forEach(response.data, function (item) {
                     if (item.UserPrivilege !== "Master") {
                         $scope.UsersList.push(item);
+                        $scope.Counts = $scope.UsersList.length;
                     } 
                 });
 

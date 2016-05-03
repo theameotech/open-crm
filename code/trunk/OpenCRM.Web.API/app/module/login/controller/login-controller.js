@@ -14,7 +14,7 @@ function ($scope, $rootScope, growl, loginService, $location, $http, $cookieStor
 
 
     $scope.Login = function () {
-       if ($.fn.validateForceFully($("#LoginID")) == true) {
+       //if ($.fn.validateForceFully($("#LoginID")) == true) {
             loginService.login($scope.UserModel)
                  .then(function (response) {
 
@@ -44,8 +44,7 @@ function ($scope, $rootScope, growl, loginService, $location, $http, $cookieStor
                              $rootScope.Auth = true;
                              $rootScope.shownavbar = true;
                              $rootScope.showdasboard = false;
-                             promise.then($rootScope.GetAllUsers()).then($rootScope.GetRoles());
-                           
+                             $rootScope.OnLoad();
                             
                              $http.defaults.headers.common['Authorization'] = response.data.Token;
                              $rootScope.$broadcast('on-login', {});
@@ -65,7 +64,7 @@ function ($scope, $rootScope, growl, loginService, $location, $http, $cookieStor
 
 
                  });
-        }
+       // }
     }
 }])
 

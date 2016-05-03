@@ -24,7 +24,7 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form  id= formID name="form">
+                    <form id="formID" name="form">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">
@@ -49,15 +49,15 @@
                                     ng-model="User.UserName" id="Text1" onkeypress="return AvoidSpace(event)" class="form-control validate[required] text-input" />
                             </div>
                             <div class="row">
-                                <div class="col-md-6"  ng-show="UserId>0">
-                                  <div class="form-group">
-                                    <label>Update Password</label>
-                                    <input type="password"
-                                        ng-model="User.UserPassword" class="form-control" />
-                                      </div>
+                                <div class="col-md-6" ng-show="UserId>0">
+                                    <div class="form-group">
+                                        <label>Update Password</label>
+                                        <input type="password"
+                                            ng-model="User.UserPassword" class="form-control" />
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group"  ng-show="UserId<=0">
+                                    <div class="form-group" ng-show="UserId<=0">
                                         <label for="exampleInputPassword1">Password</label>
                                         <input type="password" name="password"
                                             ng-model="User.UserPassword" class="form-control validate[required] text-input" />
@@ -99,13 +99,13 @@
                                     class="form-control input-us-phone validate[required] text-input" placeholder="(xxx) xxx-xxxx">
                             </div>
 
-                             <div class="form-group tablewidth  col-sm-3"  style="margin-left: 13px;">
-                                    <label>Ext</label>
-                                    <input type="text"
-                                        ng-model="User.UserOfficePhoneExt"
-                                        mask='999999' placeholder="ext xxxxxx"
-                                        class="form-control validate[required] text-input">
-                                </div>
+                            <div class="form-group tablewidth  col-sm-3" style="margin-left: 13px;">
+                                <label>Ext</label>
+                                <input type="text"
+                                    ng-model="User.UserOfficePhoneExt"
+                                    mask='999999' placeholder="ext xxxxxx"
+                                    class="form-control validate[required] text-input">
+                            </div>
 
                         </div>
                         <!-- /.box-body -->
@@ -138,7 +138,7 @@
 
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Street Address 2 </label>
-                               <input type="text" ng-model="User.UserAlternateAddress" class="form-control">
+                                <input type="text" ng-model="User.UserAlternateAddress" class="form-control">
                             </div>
 
                             <div class="row">
@@ -165,22 +165,22 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Gender</label>
-                                         <select required ng-model="User.Gender" class="form-control">
-                                        <option value="">---Please select---</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Feemale">Feemale</option>
-                                        
-                                    </select>
+                                        <select required ng-model="User.Gender" class="form-control">
+                                            <option value="">---Please select---</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Feemale">Feemale</option>
+
+                                        </select>
                                     </div>
                                 </div>
                             </div>
 
-                           <div class="form-group">
-                                        <label for="exampleInputEmail1">Country</label>
-                                        <select data-ng-model="User.UserCountry" name="Country" class="form-control">
-                                            <option ng-repeat="cnt in Countries" value="{{cnt.Name}}">{{cnt.Name}}</option>
-                                        </select>
-                                    </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Country</label>
+                                <select data-ng-model="User.UserCountry" name="Country" class="form-control">
+                                    <option ng-repeat="cnt in Countries" value="{{cnt.Name}}">{{cnt.Name}}</option>
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Cell Phone</label>
                                 <input type="text"
@@ -248,17 +248,17 @@
                             </fieldset>
                         </div>
                     </div>
-                    
-                   
-                </div>
-                     <div class="">
-                            <div class="col-md-12">
-                                <button class="btn btn-primary" id="Button1" type="button" style="margin-left: -503px;" ng-click="CreateUser()" ng-show="UserId<=0">Create User</button>
-                                <button  class="btn btn-primary" id="Button2" type="button"  style="margin-left: -503px;" ng-click="CreateUser()" ng-show="UserId>0">Update User</button>
-                                <a class="btn btn-default"  style="margin-left: 56px; width: 443px;" href="#/admin/user">Cancel</a>
 
-                            </div>
-                        </div>
+
+                </div>
+                <div class="">
+                    <div class="col-md-12">
+                        <button class="btn btn-primary" id="Button1" type="button" style="margin-left: -503px; width: 432px;" ng-click="CreateUser()" ng-show="UserId<=0">Create User</button>
+                        <button class="btn btn-primary" id="Button2" type="button" style="margin-left: -503px; width: 432px;" ng-click="CreateUser()" ng-show="UserId>0">Update User</button>
+                        <a class="btn btn-default" style="margin-left: 56px; width: 443px;" href="#/admin/user">Cancel</a>
+
+                    </div>
+                </div>
 
             </div>
 
@@ -275,10 +275,10 @@
     }
 
     //jQuery(document).ready(function () {
-     //binds form submission and fields to the validation engine
+    //binds form submission and fields to the validation engine
     // binds form submission and fields to the validation engine
-   // $("form").validationEngine();
-   // });
+    // $("form").validationEngine();
+    // });
 
 
 </script>

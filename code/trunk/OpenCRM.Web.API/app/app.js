@@ -10,7 +10,7 @@ app.config(['growlProvider', function (growlProvider) {
 }]);
 
 
-app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'buyerService', '$rootScope', 'userService','$q',
+app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'buyerService', '$rootScope', 'userService', '$q',
     function ($rootScope, $cookieStore, loginService, $http, $location, buyerService, $rootScope, userService, $q) {
         var defered = $q.defer();
         var promise = defered.promise;
@@ -23,13 +23,9 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
         $cookieStore.LastName = $cookieStore.get('LastName');
         $cookieStore.UserId = $cookieStore.get('UserId');
         $cookieStore.CompanyId = $cookieStore.get('CompanyId');
-     
         $cookieStore.CreateTime = $cookieStore.get('CreateTime');
-
         $cookieStore.EmailId = $cookieStore.get('EmailId');
-
         $cookieStore.UserPrivilege = $cookieStore.get('UserPrivilege');
-
         //$rootScope.userName = $cookieStore.userName;
         $rootScope.FirstName = $cookieStore.FirstName;
         $rootScope.LastName = $cookieStore.LastName;
@@ -37,16 +33,11 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
         $rootScope.CompanyId = $cookieStore.CompanyId;
         $rootScope.CreateTime = $cookieStore.CreateTime;
         $rootScope.EmailId = $cookieStore.EmailId;
-
-     
-
         $rootScope.UserPrivilege = $cookieStore.UserPrivilege;
-        console.log($rootScope.UserPrivilege);
-
         $rootScope.Logout = function () {
             $rootScope.shownavbar = false;
             $rootScope.Authaside = false;
-            $rootScope.MasterSideBar=false;
+            $rootScope.MasterSideBar = false;
             $rootScope.TabBar = false;
             $rootScope.Auth = false;
 
@@ -92,7 +83,7 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
         $rootScope.DateHelper = {
             SelectedDate: { startDate: new Date(), endDate: new Date() },
         };
-       
+
 
         if ($rootScope.globals != "") {
             $http.defaults.headers.common['Authorization'] = $rootScope.globals; // jshint ignore:line
@@ -110,47 +101,46 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
                 $location.path("dashboard");
 
             loadSearchParam();
-            
+
         }
         else {
             if ($location.path() === "/companylogin") {
                 $rootScope.ShowSingnUpButton = false;
                 $location.path("companylogin");
-               
+
             }
             else {
                 $rootScope.shownavbar = false;
                 $rootScope.ShowSingnUpButton = true;
                 $location.path("login");
-               
+
             }
-          
-            
+
+
         }
 
         $rootScope.AssignRoles = [];
-        $rootScope.GetRoles = function () {
-            userService.getUserRoles($rootScope.UserId)
-                .then(function (response) {
-                    $rootScope.AssignRoles = response.data;
-                });
+        $rootScope.GetRoles = function (data) {
+            $rootScope.AssignRoles = data.data;
         };
 
         $rootScope.UsersList = [];
-        $rootScope.GetAllUsers = function () {
-            userService.getUser()
-                .then(function (response) {
-                    $rootScope.UsersList = response.data;
-                    $rootScope.TotalCount = response.data.length-1;
-                });
+        $rootScope.GetAllUsers = function (data) {
+            $rootScope.UsersList = data.data;
         };
 
+        $rootScope.OnLoad = function () {
+            var promises = [userService.getUserRoles($rootScope.UserId),userService.getUser()];
+            $q.all(promises).then(function (response) {
+                response // [array of response]
+                $rootScope.GetRoles(response[0]);
+                $rootScope.GetAllUsers(response[1]);//company
+            });
+
+        };
         if ($rootScope.UserId > 0) {
-            //$rootScope.GetRoles();
-            //$rootScope.GetAllUsers();
-              promise.then($rootScope.GetRoles()).then($rootScope.GetAllUsers());
+            $rootScope.OnLoad();
         }
-      
 
         function loadSearchParam() {
             buyerService.getSearchParams()
@@ -216,7 +206,7 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
                   }
               }
           })
-       
+
 
           .when('/Editdolist', {
               templateUrl: 'module/dashboard/views/DoList.html',
@@ -258,7 +248,7 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
                }
            }
        })
-    
+
        .when('/forgotpassword', {
            templateUrl: 'module/login/views/forgot-password.html',
            controller: 'forgotpassword-controller',
@@ -308,7 +298,7 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
              }
          })
 
-     
+
          .when('/sellerregister', {
              templateUrl: 'module/sellerregister/views/sellerregister.html',
              controller: 'sellerregister-controller',
@@ -319,7 +309,7 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
              }
          })
 
-      
+
 
         .when('/Company', {
             templateUrl: 'module/company/views/company.html',
@@ -483,7 +473,7 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
                   }
               }
           })
-      
+
         .when('/sales', {
             templateUrl: 'module/sales/views/sales.html',
             controller: 'auction-show-controller',

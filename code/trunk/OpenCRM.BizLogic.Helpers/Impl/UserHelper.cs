@@ -128,6 +128,7 @@ namespace OpenCRM.BizLogic.Helpers.Impl
                 user.UserPhone = users.User.UserPhone;
                 user.FirstName = users.User.FirstName;
                 user.LastName = users.User.LastName;
+                user.UserOfficPhone = users.User.UserOfficPhone;
                 user.UserOfficePhoneExt = users.User.UserOfficePhoneExt;
                 user.UserAddress = users.User.UserAddress;
                 user.UserAlternateAddress = users.User.UserAlternateAddress;
@@ -152,14 +153,14 @@ namespace OpenCRM.BizLogic.Helpers.Impl
                 //_companyRepo.Add(cmpny);
                 user.CompanyID = users.User.CompanyID;
                 _userRepo.Add(user);
-                SendGridMessage myMessage = new SendGridMessage();
-                myMessage.AddTo(user.UserEmail);
-                myMessage.From = new MailAddress("Support@openCrm.com", "OpenCRM Supprot");
-                myMessage.Subject = "Testing the SendGrid Library";
-                myMessage.Text = "Welcom to OpenCrm your changes has been Saved Please Start Your  Session with your Credentials ";
-                // Create a Web transport, using API Key
-                var transportWeb = new SendGrid.Web("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");
-                transportWeb.DeliverAsync(myMessage);
+              //  SendGridMessage myMessage = new SendGridMessage();
+               // myMessage.AddTo(user.UserEmail);
+               // myMessage.From = new MailAddress("Support@openCrm.com", "OpenCRM Supprot");
+               // myMessage.Subject = "Testing the SendGrid Library";
+              //  myMessage.Text = "Welcom to OpenCrm your changes has been Saved Please Start Your  Session with your Credentials ";
+               // // Create a Web transport, using API Key
+               // var transportWeb = new SendGrid.Web("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");
+             //   transportWeb.DeliverAsync(myMessage);
 
 
 
@@ -181,7 +182,16 @@ namespace OpenCRM.BizLogic.Helpers.Impl
 
         public User GetUser(int userId)
         {
-            return _userRepo.Get(x => x.Id == userId);
+            var user= _userRepo.Get(x => x.Id == userId);
+            return user;
+        }
+
+
+
+        public IList<User> GetAllUsersByCompanyId(int companyId) 
+        {
+            var users = _userRepo.FetchAll(x => x.CompanyID == companyId);
+            return users;
         }
 
         public IList<User> GetAll()

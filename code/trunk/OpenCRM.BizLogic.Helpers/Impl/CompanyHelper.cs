@@ -94,7 +94,7 @@ namespace OpenCRM.BizLogic.Helpers.Impl
 
 
 
-        public Company GetCompanieById(int userId)
+        public Company GetCompanyById(int userId)
         {
             var user = _userRepo.Get(x => x.Id == userId);
             var company = _companyRepo.Get(x => x.CompanyID == user.CompanyID);

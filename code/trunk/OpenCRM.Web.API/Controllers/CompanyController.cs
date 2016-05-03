@@ -31,10 +31,10 @@ namespace OpenCRM.Web.API.admin
             return _companyManager.AddCompany(company);
 
         }
-        [Route("GetCompanieById")]
-        public Company GetCompanieById(int userId)
+        [Route("GetCompanyById")]
+        public Company GetCompanyById(int userId)
         {
-            return _companyManager.GetCompanieById(userId);
+            return _companyManager.GetCompanyById(userId);
         }
 
         [Route("GetAllCompany")]

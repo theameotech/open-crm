@@ -20,6 +20,7 @@ namespace OpenCRM.BusinessManagers.Interfaces
 
         void DeleteUser(int userId);
         void UpdatePassword(User user);
+        IList<User> GetAllUsersByCompanyId(int companyId);
       
     }
 }

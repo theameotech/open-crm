@@ -11,7 +11,7 @@ namespace OpenCRM.BusinessManagers.Interfaces
   public interface ICompanyManager
     {
       HttpResult AddCompany(Company company);
-      Company GetCompanieById(int userId);
+      Company GetCompanyById(int userId);
 
       IList<Company> GetAllCompany();
 

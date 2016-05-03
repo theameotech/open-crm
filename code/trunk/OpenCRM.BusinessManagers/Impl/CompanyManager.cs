@@ -43,10 +43,10 @@ namespace OpenCRM.BusinessManagers.Impl
 
 
 
-        public Company GetCompanieById(int userId)
+        public Company GetCompanyById(int userId)
         {
 
-            return _companyHelper.GetCompanieById(userId);
+            return _companyHelper.GetCompanyById(userId);
         }
 
 

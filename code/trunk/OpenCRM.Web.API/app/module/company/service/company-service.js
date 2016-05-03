@@ -7,7 +7,7 @@
             return $http.post(baseUrl + '/api/company/AddCompany', companyModel);
         };
         companyService.getCompanyById = function (userId) {
-            return $http.get(baseUrl + '/api/company/GetCompanieById?userId='+userId);
+            return $http.get(baseUrl + '/api/company/GetCompanyById?userId=' + userId);
         };
 
         companyService.blockCompany = function (companyId) {

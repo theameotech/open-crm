@@ -60,6 +60,11 @@ namespace OpenCRM.Web.API.admin
         {
              _userManager.UpdatePassword(users);
         }
+          [Route("GetAllUsersByCompanyId")]
+         public IList<User> GetAllUsersByCompanyId(int companyId)
+         {
+             return _userManager.GetAllUsersByCompanyId(companyId);
+         }
 
     }
 }

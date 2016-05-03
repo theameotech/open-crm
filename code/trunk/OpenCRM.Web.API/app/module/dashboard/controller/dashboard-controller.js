@@ -128,14 +128,16 @@ function ($scope, userService, messageService, inboxService, companyService, $ro
 
 
 $scope.UsersList = [];
-$scope.GetAllUsers = function () {
-    userService.getUser()
-        .then(function (response) {
-            $scope.UsersList = response.data;
-            $scope.GetAllCompany();
+$scope.GetAllUsers = function (data) {
+    $scope.UsersList = data;
+     $scope.GetAllCompany();
+    //userService.getUser()
+    //    .then(function (response) {
+    //        $scope.UsersList = response.data;
+    //        $scope.GetAllCompany();
            
      
-        });
+    //    });
 };
 
 $scope.GetAllCompanyList = [];
@@ -179,22 +181,30 @@ $scope.CreateDolist = function () {
 }
 $scope.Messagelist = [];
 $scope.DoList = [];
-$scope.GetAlllist = function () {
+$scope.GetAlllist = function (data) {
     $scope.Messagelist = [];
     $scope.DoList = [];
     $rootScope.counter = 0;
     var date = new Date().toJSON().slice(0, 10);
-    doListService.getdoList()
-        .then(function (response) {
-            $scope.DoList = response.data;
-            angular.forEach($scope.DoList, function (item) {
-                var currentdate = item.CreateDate.slice(0, 10);
-                if (currentdate == date) {
-                    $rootScope.counter++;
-                    $scope.Messagelist.push(item);
-                }
-            });
+
+    $scope.DoList = data.data;
+        angular.forEach($scope.DoList.data, function (item) {
+            var currentdate = item.CreateDate.slice(0, 10);
+            if (currentdate == date) {
+                $rootScope.counter++;
+                $scope.Messagelist.push(item);
+            }
         });
+        //.then(function (response) {
+        //    $scope.DoList = response.data;
+        //    angular.forEach($scope.DoList, function (item) {
+        //        var currentdate = item.CreateDate.slice(0, 10);
+        //        if (currentdate == date) {
+        //            $rootScope.counter++;
+        //            $scope.Messagelist.push(item);
+        //        }
+        //    });
+        //});
 };
 
 $scope.DeleteDoList = function (Id) {
@@ -243,18 +253,19 @@ $scope.CompleteTask = function (Id) {
 $scope.cancel = function () {
     modalInstance.dismiss('cancel');
 };
-$scope.GetAlllist();
+
     //$scope.GetAllUsers();
 if ($scope.DoListId > 0) {
     $scope.GetDoList();
 }
 
-$scope.GetCountries = function () {
-    userService.getCountries()
-        .then(function (response) {
-            $scope.Countries = response.data;
-        });
-};
+//$scope.GetCountries = function (data) {
+    //$scope.Countries = data;
+    //userService.getCountries()
+    //    .then(function (response) {
+    //        $scope.Countries = response.data;
+    //    });
+//};
 
 $scope.UnblockCompany = function (id) {
 
@@ -264,7 +275,20 @@ $scope.UnblockCompany = function (id) {
     })
 
 };
-promise.then($scope.GetAllUsers()).then($scope.GetCountries());
+
+$scope.OnPageLoad = function () {
+    var promises = [/*userService.getCountries(),*/ doListService.getdoList(), userService.getUser()];
+    $q.all(promises).then(function (response) {
+        response // [array of response]
+        /* $scope.GetCountries(response[0]);*/
+        $scope.GetAlllist(response[0]);
+        $scope.GetAllUsers(response[1]);
+    
+       
+    });
+}
+$scope.OnPageLoad();
+//promise.then($scope.GetAllUsers()).then($scope.GetCountries());
 }]);
 
 
