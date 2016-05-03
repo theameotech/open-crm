@@ -190,7 +190,7 @@ namespace OpenCRM.BizLogic.Helpers.Impl
 
         public IList<User> GetAllUsersByCompanyId(int companyId) 
         {
-            var users = _userRepo.FetchAll(x => x.CompanyID == companyId);
+            var users = _userRepo.FetchAll(x => x.CompanyID == companyId && x.Deleted==false);
             return users;
         }
 

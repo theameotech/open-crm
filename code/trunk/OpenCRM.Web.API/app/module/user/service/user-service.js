@@ -30,6 +30,9 @@
             getCountries: function () {
                 return $http.get(baseUrl + '/api/lookup/GetAll');
             },
+            getUsersBycompanyId: function (companyId) {
+                return $http.get(baseUrl + '/api/admin/user/GetAllUsersByCompanyId?companyId=' + companyId);
+            },
         };
         return userService;
 

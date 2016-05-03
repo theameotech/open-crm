@@ -325,9 +325,12 @@
     <Content Include="app\dist\js\demo.js" />
     <Content Include="app\dist\js\pages\dashboard.js" />
     <Content Include="app\dist\js\pages\dashboard2.js" />
+    <Content Include="app\images\chat-user.png" />
+    <Content Include="app\images\image-user.png" />
     <Content Include="app\images\logo.png" />
     <Content Include="app\images\search.png" />
     <Content Include="app\images\spinner.gif" />
+    <Content Include="app\images\user.png" />
     <Content Include="app\index.html" />
     <Content Include="app\module\accounting\controller\accounting-contoller.js" />
     <Content Include="app\module\accounting\service\accounting-service.js" />
@@ -351,6 +354,9 @@
     <Content Include="app\module\company\controller\company-controller.js" />
     <Content Include="app\module\company\service\company-service.js" />
     <Content Include="app\module\company\views\company.html" />
+    <Content Include="app\module\company\views\companyinfo.html" />
+    <Content Include="app\module\company\views\companylogin.html" />
+    <Content Include="app\module\company\views\register.html" />
     <Content Include="app\module\dashboard\controller\chat-controller.js" />
     <Content Include="app\module\dashboard\controller\dashboard-controller.js" />
     <Content Include="app\module\dashboard\directive\ToDoList-directive.js" />
@@ -358,6 +364,7 @@
     <Content Include="app\module\dashboard\service\dolist-service.js" />
     <Content Include="app\module\dashboard\service\message-service.js" />
     <Content Include="app\module\dashboard\views\chat.html" />
+    <Content Include="app\module\dashboard\views\createmasteruser.html" />
     <Content Include="app\module\dashboard\views\dashboard.html" />
     <Content Include="app\module\dashboard\views\DoList.html" />
     <Content Include="app\module\dashboard\views\ToDoList.html" />
@@ -366,12 +373,14 @@
     <Content Include="app\module\finance\controller\finance-controller.js" />
     <Content Include="app\module\finance\service\finance-service.js" />
     <Content Include="app\module\finance\views\finance.html" />
+    <Content Include="app\module\inbox\controller\read-controller.js" />
     <Content Include="app\module\inbox\controller\draft-controller.js" />
     <Content Include="app\module\inbox\controller\inbox-controller.js" />
     <Content Include="app\module\inbox\service\inbox-service.js" />
     <Content Include="app\module\inbox\views\compose.html" />
     <Content Include="app\module\inbox\views\draft.html" />
     <Content Include="app\module\inbox\views\inbox.html" />
+    <Content Include="app\module\inbox\views\reademail.html" />
     <Content Include="app\module\leadregister\controller\leadregister-controller.js" />
     <Content Include="app\module\leadregister\views\leadregister.html" />
     <Content Include="app\module\leadregister\views\loginlead.html" />
@@ -402,6 +411,7 @@
     <Content Include="app\module\user\service\user-service.js" />
     <Content Include="app\module\user\views\createuser.html" />
     <Content Include="app\module\user\views\userlist.html" />
+    <Content Include="app\module\user\views\userprofile.html" />
     <Content Include="app\module\vehicle\controller\vehicle-controller.js" />
     <Content Include="app\module\vehicle\views\vehicleinfo.html" />
     <Content Include="app\plugins\bootstrap-slider\bootstrap-slider.js" />
@@ -1246,6 +1256,7 @@
   <ItemGroup>
     <Folder Include="app\module\bids\service\" />
     <Folder Include="app\module\dealership\views\" />
+    <Folder Include="app\module\leadregister\service\" />
     <Folder Include="app\module\vehicle\service\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />

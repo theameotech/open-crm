@@ -588,7 +588,7 @@
             <h2 class="chat-header"><a class="chat-close" href="#"><i class="entypo-cancel"></i></a><i class="entypo-users"></i>
                 Chat
                 <span class="badge badge-success is-hidden">{{TotalCount}}</span> </h2>
-            <div ng-repeat="users in UsersList">
+            <div ng-repeat="users in Users">
                 <div ng-if="users.Id !=UserId"><a href="#/chat/{{users.Id}}" style="margin-left: 15px; color: #fff;">{{users.FirstName}} {{users.LastName}}</a></div>
             </div>
         </aside>

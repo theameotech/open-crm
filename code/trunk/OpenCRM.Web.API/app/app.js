@@ -124,17 +124,21 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
             $rootScope.AssignRoles = data.data;
         };
 
-        $rootScope.UsersList = [];
-        $rootScope.GetAllUsers = function (data) {
-            $rootScope.UsersList = data.data;
-        };
-
+        //$rootScope.UsersList = [];
+        //$rootScope.GetAllUsers = function (data) {
+        //    $rootScope.UsersList = data.data;
+        //};
+        $rootScope.Users = [];
+        $rootScope.GetAllUsersByCompanyId = function (data) {
+            $rootScope.Users = data.data;
+       };
+   
         $rootScope.OnLoad = function () {
-            var promises = [userService.getUserRoles($rootScope.UserId),userService.getUser()];
+            var promises = [userService.getUserRoles($rootScope.UserId), userService.getUsersBycompanyId($rootScope.CompanyId)];
             $q.all(promises).then(function (response) {
                 response // [array of response]
                 $rootScope.GetRoles(response[0]);
-                $rootScope.GetAllUsers(response[1]);//company
+                $rootScope.GetAllUsersByCompanyId(response[1]);//company
             });
 
         };
