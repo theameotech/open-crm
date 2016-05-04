@@ -1,0 +1,118 @@
+﻿<div class="content-wrapper">
+
+   <div>
+        <form name="buyerForm" novalidate>
+            <div class="modal-body">
+                <div class="row">
+                  
+
+
+<!--                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Template List</div>
+                            <div class="panel-body">
+                                 <div class="row">
+          
+                                    </div>
+       
+                            </div>
+                        </div>
+                    </div>-->
+
+                      
+            <div class="col-md-6">
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Email Template List</h3>
+                  <div class="box-tools">
+                    <div class="input-group" style="width: 150px;">
+                      <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search">
+                      <div class="input-group-btn">
+                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                  <table class="table table-hover">
+                    <tr>
+                      <th>ID</th>
+                      <th>Template Name</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                    <tr>
+                      <td>183</td>
+                      <td>John Doe</td>
+                      <td><i class="fa fa-dot-circle-o" style="color: green;"></i></td>
+                      <td><i class="fa fa-eye"></i> <i class="fa fa-edit"></i></td>                   
+                      
+                    </tr>
+                    <tr>
+                      <td>219</td>
+                      <td>Alexander Pierce</td>
+                      <td><i class="fa fa-times" style="color: red;"></i></td>
+                      <td><i class="fa fa-eye"></i> <i class="fa fa-edit"></i></td>                      
+                    </tr>
+                    <tr>
+                      <td>657</td>
+                      <td>Bob Doe</td>
+                      <td><i class="fa fa-circle" style="color: green;"></i></td>
+                      <td><i class="fa fa-eye"></i> <i class="fa fa-edit"></i></td>                      
+                    </tr>
+                    <tr>
+                      <td>175</td>
+                      <td>Mike Doe</td>
+                      <td><i class="fa fa-times" style="color: red;"></i></td>
+                      <td><i class="fa fa-eye"></i> <i class="fa fa-edit"></i></td>
+                      
+                    </tr>
+                  </table>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div>
+   
+       
+
+
+                      <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Email Templates</div>
+                            <div class="panel-body">
+                                 <div class="form-group">
+                                    <label for="exampleInputEmail1">Template Name</label>
+                                    <input type="text" required name="BuyerName" ng-model="Dolistmodel.TargetDate" class="form-control" />
+                                   </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Select Template</label>
+                                    <!--<input type="text" required name="BuyerName" ng-model="Dolistmodel.ListPriority" class="form-control" />-->
+                                    <select required required ng-model="Dolistmodel.ListPriority" class="form-control">
+                                        <option value="">---Please select---</option>
+                                        <option value="High">High</option>
+                                        <option value="Low">Low</option>
+                                        <option value="Medium">Medium</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Template Body</label>
+                                    <textarea type="text" required name="BuyerName" ng-model="Dolistmodel.ListMessage" class="form-control" />
+                                </div>
+                              
+                                <div >
+  <div ckeditor="options" ng-model="content" ready="onReady()"></div>
+</div>
+                               
+                                <button class="btn btn-primary" type="button" ">Save</button>
+                                <button class="btn btn-warning" type="button">Cancel</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
