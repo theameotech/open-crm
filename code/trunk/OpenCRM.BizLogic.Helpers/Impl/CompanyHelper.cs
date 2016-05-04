@@ -72,7 +72,7 @@ namespace OpenCRM.BizLogic.Helpers.Impl
             myMessage.AddTo(compny.BusinessEmail);
             myMessage.From = new MailAddress("Support@openCrm.com", "OpenCRM Supprot");
             myMessage.Subject = "Thanks From OPEN CRM";
-            myMessage.Html = "'thanks for become a member of us your UserName is:'"+"<b>"+ compny.CompanyAdmin +"</b>"+"'and Password is:'"+"<b>"+compny.AdminPassword +"</b>"+"' Please click on this Url  http://localhost:26159/app/index.html#/companylogin'";
+            myMessage.Html = "'Thanks for become a member of us your UserName is:'"+"<b>"+ compny.CompanyAdmin +"</b>"+"'and Password is:'"+"<b>"+compny.AdminPassword +"</b>"+"' Please click on this Url  http://localhost:26159/app/index.html#/companylogin'";
            
             // Create a Web transport, using API Key
             var transportWeb = new SendGrid.Web("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");

@@ -40,7 +40,14 @@
 
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Target Date</label>
-                                      <input type="text" required name="BuyerName" ng-model="Dolistmodel.TargetDate" class="form-control" />
+                                      <input type="text" required name="BuyerName" ng-model="Dolistmodel.TargetDate" class="form-control" 
+                                     uib-datepicker-popup="{{format}}"
+                                    ng-model="Dolistmodel.TargetDate" is-open="popup1.opened"
+                                    max-date="maxDate" datepicker-options="dateOptions"
+                                    ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                <span class="input-group-btn">
+                                    <button type="button"  class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
                                     <!--<input type="text" name="Dolistmodel.TargetDate" class="form-control" uib-datepicker-popup="{{format}}"
                                         ng-model="Dolistmodel.TargetDate" is-open="popup1.opened"
                                         max-date="maxDate" datepicker-options="dateOptions"

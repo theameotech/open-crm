@@ -9,16 +9,32 @@ function ($scope, userService, messageService, inboxService, companyService, $ro
     $rootScope.Ismaster = false;
     $scope.Isblock = false;
     $rootScope.Authaside = true;
-
+    $rootScope.SellerSideBar = false;
     $rootScope.MasterSideBar = false;
+    $rootScope.BuyerSideBar = false;
 
     if ($rootScope.UserPrivilege == "Master") {
         $rootScope.Ismaster = true;
         $rootScope.MasterSideBar = true;
         $rootScope.Authaside = false;
+        $rootScope.SellerSideBar = false;
+        $rootScope.MasterSideBar = false;
     }
 
-    
+    if ($rootScope.UserPrivilege === " Auction  Buyer") {
+       
+        $rootScope.Authaside = false;
+        $rootScope.MasterSideBar = false;
+        $rootScope.BuyerSideBar = true;
+        $rootScope.SellerSideBar = false;
+    }
+    if ($rootScope.UserPrivilege === "Auction seller") {
+     
+        $rootScope.Authaside = false;
+        $rootScope.MasterSideBar = false;
+        $rootScope.BuyerSideBar = false;
+        $rootScope.SellerSideBar = true;
+    }
 
     $scope.DoListId = 0;
     if ($routeParams.dolistId !== undefined)
@@ -36,7 +52,8 @@ function ($scope, userService, messageService, inboxService, companyService, $ro
         IsDelete: 0,
         IsActive: 0,
         IsAcheived: 0,
-        IsCompleted:0
+        IsCompleted: 0,
+         TargetDate:""
 
     };
 
@@ -276,13 +293,44 @@ $scope.UnblockCompany = function (id) {
 
 };
 
+$scope.today = function () {
+    $scope.Dolistmodel.TargetDate = new Date();
+};
+
+$scope.today();
+
+    // Disable weekend selection
+$scope.disabled = function (date, mode) {
+    return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+};
+
+$scope.toggleMin = function () {
+    $scope.minDate = $scope.minDate ? null : new Date();
+};
+
+$scope.toggleMin();
+
+$scope.maxDate = new Date(2020, 5, 22);
+
+$scope.open1 = function () {
+    $scope.popup1.opened = true;
+};
+
+$scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+$scope.format = $scope.formats[0];
+$scope.altInputFormats = ['M!/d!/yyyy'];
+
+$scope.popup1 = {
+    opened: false
+};
 $scope.OnPageLoad = function () {
-    var promises = [/*userService.getCountries(),*/ doListService.getdoList(), userService.getUser()];
+    var promises = [/*userService.getCountries(),*/userService.getUser(),doListService.getdoList()];
     $q.all(promises).then(function (response) {
         response // [array of response]
         /* $scope.GetCountries(response[0]);*/
-        $scope.GetAlllist(response[0]);
-        $scope.GetAllUsers(response[1]);
+        $scope.GetAllUsers(response[0]);
+        $scope.GetAlllist(response[1]);
+      
     
        
     });
