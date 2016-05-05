@@ -38,6 +38,8 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
             $rootScope.shownavbar = false;
             $rootScope.Authaside = false;
             $rootScope.MasterSideBar = false;
+            $rootScope.BuyerSideBar = false;
+            $rootScope.SellerSideBar = false;
             $rootScope.TabBar = false;
             $rootScope.Auth = false;
 
@@ -93,6 +95,19 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
                 $rootScope.Authaside = false;
                 $rootScope.MasterSideBar = true;
             }
+            if ($rootScope.UserPrivilege === "Auction  Buyer") {
+                $rootScope.Auth = false;
+                $rootScope.Authaside = false;
+                $rootScope.MasterSideBar = false;
+                $rootScope.BuyerSideBar = true;
+            }
+            if ($rootScope.UserPrivilege === "Auction seller") {
+                $rootScope.Auth = false;
+                $rootScope.Authaside = false;
+                $rootScope.MasterSideBar = false;
+                $rootScope.BuyerSideBar = false;
+                $rootScope.SellerSideBar = true;
+            }
             $rootScope.Auth = true;
             $rootScope.shownavbar = true;
             $rootScope.Authaside = true;
@@ -124,15 +139,11 @@ app.run(['$rootScope', '$cookieStore', 'loginService', '$http', '$location', 'bu
             $rootScope.AssignRoles = data.data;
         };
 
-        //$rootScope.UsersList = [];
-        //$rootScope.GetAllUsers = function (data) {
-        //    $rootScope.UsersList = data.data;
-        //};
         $rootScope.Users = [];
         $rootScope.GetAllUsersByCompanyId = function (data) {
             $rootScope.Users = data.data;
-       };
-   
+        };
+
         $rootScope.OnLoad = function () {
             var promises = [userService.getUserRoles($rootScope.UserId), userService.getUsersBycompanyId($rootScope.CompanyId)];
             $q.all(promises).then(function (response) {
@@ -188,36 +199,34 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
                 }
             }
         })
+           .when('/dashboardSeller', {
+               templateUrl: 'module/sellerlogin/views/Sellerdashboard.html',
+               controller: 'sellerdashboard-controller',
+               resolve: {
+                   setPageTitle: function ($rootScope) {
+                       $rootScope.PageTitle = "Dashboard";
+                   }
+               }
+           })
+              .when('/dashboardBuyer', {
+                  templateUrl: 'module/buyerlogin/views/Buyerdashboard.html',
+                  controller: 'buyerdashboard-controller',
+                  resolve: {
+                      setPageTitle: function ($rootScope) {
+                          $rootScope.PageTitle = "Dashboard";
+                      }
+                  }
+              })
 
-
- .when('/createmasteruser', {
-     templateUrl: 'module/dashboard/views/createmasteruser.html',
-     controller: 'dashboard-controller',
-     resolve: {
-         setPageTitle: function ($rootScope) {
-             $rootScope.PageTitle = "Dashboard";
-         }
-     }
- })
-         .when('/EmailTemplate', {
-             templateUrl: 'module/dashboard/views/EmailTemplate.html',
-             controller: 'dashboard-controller',
-             resolve: {
-                 setPageTitle: function ($rootScope) {
-                     $rootScope.PageTitle = "Email Template";
-                 }
-             }
-         })
-
-                 .when('/WebsiteSetting', {
-                     templateUrl: 'module/dashboard/views/WebsiteSetting.html',
-                     controller: 'dashboard-controller',
-                     resolve: {
-                         setPageTitle: function ($rootScope) {
-                             $rootScope.PageTitle = "Website Settings";
-                         }
-                     }
-                 })
+          .when('/createmasteruser', {
+              templateUrl: 'module/dashboard/views/createmasteruser.html',
+              controller: 'dashboard-controller',
+              resolve: {
+                  setPageTitle: function ($rootScope) {
+                      $rootScope.PageTitle = "Dashboard";
+                  }
+              }
+          })
 
 
           .when('/dolist', {
@@ -551,6 +560,111 @@ app.config(['$routeProvider', 'blockUIConfig', 'growlProvider', function ($route
                  }
              }
          })
+          .when('/assignedforauction', {
+              templateUrl: 'module/assignedforauction/views/assignedforauction.html',
+              controller: 'assignedforauction-controller',
+              resolve: {
+                  setPageTitle: function ($rootScope) {
+                      $rootScope.PageTitle = "Assigned For Auction";
+                  }
+              }
+          })
+
+        .when('/awaitingdecision', {
+            templateUrl: 'module/awaitingdecision/views/awaitingdecision.html',
+            controller: 'awaitingdecision-controller',
+            resolve: {
+                setPageTitle: function ($rootScope) {
+                    $rootScope.PageTitle = "Awaiting For Decision";
+                }
+            }
+        })
+        .when('/readyforauction', {
+            templateUrl: 'module/readyforauction/views/readyforauction.html',
+            controller: 'readyforauction-controller',
+            resolve: {
+                setPageTitle: function ($rootScope) {
+                    $rootScope.PageTitle = "Ready For Auction";
+                }
+            }
+        })
+          .when('/vehiclearbitrated', {
+              templateUrl: 'module/vehiclearbitrated/views/vehiclearbitrated.html',
+              controller: 'vehiclearbitrated-controller',
+              resolve: {
+                  setPageTitle: function ($rootScope) {
+                      $rootScope.PageTitle = "Vehicle Arbitrated";
+                  }
+              }
+          })
+         .when('/vehiclepaid', {
+             templateUrl: 'module/vehiclepaid/views/vehiclepaid.html',
+             controller: 'vehiclepaid-controller',
+             resolve: {
+                 setPageTitle: function ($rootScope) {
+                     $rootScope.PageTitle = "vehicle Paid";
+                 }
+             }
+         })
+            .when('/vehiclesold', {
+                templateUrl: 'module/vehiclesold/views/vehiclesold.html',
+                controller: 'vehiclesold-controller',
+                resolve: {
+                    setPageTitle: function ($rootScope) {
+                        $rootScope.PageTitle = "vehicle Sold";
+                    }
+                }
+            })
+        .when('/vehicleswithtitle', {
+            templateUrl: 'module/vehicleswithtitle/views/vehicleswithtitle.html',
+            controller: 'vehicleswithtitle-controller',
+            resolve: {
+                setPageTitle: function ($rootScope) {
+                    $rootScope.PageTitle = "vehicle With Title";
+                }
+            }
+        })
+         .when('/vehiclewon', {
+             templateUrl: 'module/vehiclewon/views/vehiclewon.html',
+             controller: 'vehiclewon-controller',
+             resolve: {
+                 setPageTitle: function ($rootScope) {
+                     $rootScope.PageTitle = "vehicle Won";
+                 }
+             }
+         })
+         .when('/waitingtobepaid', {
+             templateUrl: 'module/waitingtobepaid/views/waitingtobepaid.html',
+             controller: 'waitingtobepaid-controller',
+             resolve: {
+                 setPageTitle: function ($rootScope) {
+                     $rootScope.PageTitle = "Waiting To Be Paid";
+                 }
+             }
+         })
+
+           .when('/waitingfortitle', {
+               templateUrl: 'module/waitingfortitle/views/waitingfortitle.html',
+               controller: 'waitingfortitle-controller',
+               resolve: {
+                   setPageTitle: function ($rootScope) {
+                       $rootScope.PageTitle = "Waiting For Title";
+                   }
+               }
+           })
+
+        .when('/vehicleinspected', {
+            templateUrl: 'module/vehicleinspected/views/vehicleinspected.html',
+            controller: 'vehicleinspected-controller',
+            resolve: {
+                setPageTitle: function ($rootScope) {
+                    $rootScope.PageTitle = "Vehicle Inspected";
+                }
+            }
+        })
+
+
+
     .otherwise({ redirectTo: '/dashboard' });
 }]);
 

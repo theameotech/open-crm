@@ -21,20 +21,20 @@ function ($scope, userService, messageService, inboxService, companyService, $ro
         $rootScope.MasterSideBar = false;
     }
 
-    if ($rootScope.UserPrivilege === " Auction  Buyer") {
+    //if ($rootScope.UserPrivilege === " Auction  Buyer") {
        
-        $rootScope.Authaside = false;
-        $rootScope.MasterSideBar = false;
-        $rootScope.BuyerSideBar = true;
-        $rootScope.SellerSideBar = false;
-    }
-    if ($rootScope.UserPrivilege === "Auction seller") {
+    //    $rootScope.Authaside = false;
+    //    $rootScope.MasterSideBar = false;
+    //    $rootScope.BuyerSideBar = true;
+    //    $rootScope.SellerSideBar = false;
+    //}
+    //if ($rootScope.UserPrivilege === "Auction seller") {
      
-        $rootScope.Authaside = false;
-        $rootScope.MasterSideBar = false;
-        $rootScope.BuyerSideBar = false;
-        $rootScope.SellerSideBar = true;
-    }
+    //    $rootScope.Authaside = false;
+    //    $rootScope.MasterSideBar = false;
+    //    $rootScope.BuyerSideBar = false;
+    //    $rootScope.SellerSideBar = true;
+    //}
 
     $scope.DoListId = 0;
     if ($routeParams.dolistId !== undefined)
